@@ -1,0 +1,53 @@
+<div class="news-wrapper container py-5">
+
+  <!-- Tiêu đề -->
+  <h2 class="main-title mb-4">
+    <i class="bi bi-newspaper"></i> Tin Tức & Sự Kiện
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- Tin nổi bật trái -->
+    <div class="col-lg-7">
+      <div class="highlight-card shadow-lg">
+        <img [src]="featured.image" class="highlight-img" />
+
+        <div class="highlight-content">
+          <h3 class="highlight-title">
+            {{ featured.title }}
+          </h3>
+
+          <p class="highlight-summary">{{ featured.summary }}</p>
+
+          <button class="btn btn-primary px-4">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tin danh sách phải -->
+    <div class="col-lg-5">
+      <div class="news-list">
+
+        <div class="news-card d-flex shadow-sm"
+             *ngFor="let item of newsList">
+             
+          <img [src]="item.image" class="news-thumb" />
+
+          <div class="news-info">
+            <h5 class="news-title">{{ item.title }}</h5>
+
+            <p class="news-desc text-muted">{{ item.summary }}</p>
+
+            <small class="news-date">
+              <i class="bi bi-clock"></i> {{ item.date }}
+            </small>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,265 @@
+/* HEADER */
+.header {
+  width: 100%;
+  background: linear-gradient(180deg, #4da8ff, #1e90ff);
+  color: white;
+  padding: 10px 0 20px 0;
+}
+
+/* Container cố định */
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* MAIN BAR */
+.main-bar {
+  position: relative; /* tạo khung để canh vị trí */
+  height: 70px;       /* đảm bảo đủ chỗ cho logo */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ĐẶT MENU Ở GIỮA */
+}
+/* Container cho nút đăng nhập bên phải */
+.login-box {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Nút đăng nhập */
+.login-btn {
+  background: white;
+  color: #1e90ff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #f0f8ff;
+  transform: translateY(-1px);
+}
+
+
+/* LOGO bên trái */
+.logo {
+  position: absolute;
+  left: 0;
+  height: 65px;
+  object-fit: contain;
+}
+
+/* MENU giữa */
+.menu {
+  display: flex;
+  gap: 40px;
+}
+
+.menu a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+/* Active underline */
+.menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 5px;
+}
+
+
+
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+/* --- Biến màu Thương hiệu Cúc Dũng (Đã định nghĩa ở lần trước) --- */
+
+$brand-red: #E7302A; // Accent/Primary
+$text-light: #f4f4f4; // Primary-Foreground
+
+/* --- Định nghĩa SCSS cho các class Tailwind trong Footer --- */
+
+
+footer {
+    // Giả lập class bg-foreground (Nền Footer)
+  background: var(--primary);
+  color: var(--foreground);
+    
+    // Giả lập class text-primary-foreground (Màu chữ chính trên nền tối)
+    color: $text-light;
+    padding-top: 4rem; // pt-16
+    padding-bottom: 2rem; // pb-8
+}
+
+.max-w-7xl {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; // px-4
+    padding-right: 1rem; // px-4
+}
+
+/* --- Grid và Column Styling --- */
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+    .md\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+.gap-8 {
+    gap: 2rem;
+}
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+/* --- Logo & Info Section --- */
+.logo .w-8.h-8 {
+    background-color: $brand-red; // Màu đỏ cho icon bus
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i.fa-bus {
+        color: $text-light;
+        font-size: 1.1rem;
+    }
+}
+
+p.text-primary-foreground\/70 {
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* --- Social Icons & Links --- */
+.flex.gap-4 a, .space-y-2 a {
+    color: rgba($text-light, 0.7); // text-primary-foreground/70
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    
+    // Icon Mạng xã hội
+    svg {
+        fill: currentColor; // Đảm bảo icon lấy màu từ thẻ <a>
+    }
+
+    &:hover {
+        color: $brand-red; // hover:text-primary (Màu đỏ)
+        transform: translateX(3px); // Thêm hiệu ứng di chuyển nhẹ
+    }
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* --- Contact Section --- */
+.flex.gap-3.items-start {
+    .text-primary {
+        color: $brand-red; // Icons liên hệ (Màu đỏ)
+    }
+    p {
+        color: rgba($text-light, 0.7);
+    }
+    p.font-semibold {
+        color: $text-light; // Số điện thoại, Email, Địa chỉ đậm
+        font-weight: 600;
+    }
+}
+
+/* --- Copyright Section --- */
+.border-t {
+    border-top: 1px solid rgba($text-light, 0.2); // border-primary-foreground/20
+    padding-top: 2rem; // pt-8
+}
+.text-sm {
+    font-size: 0.875rem;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .md\:flex-row {
+        flex-direction: column;
+    }
+    .justify-between {
+        justify-content: center;
+    }
+    .items-center {
+        align-items: center;
+    }
+    .gap-4 {
+        gap: 1rem;
+    }
+    
+    // Canh giữa nội dung các cột trên mobile
+    .grid > div {
+        text-align: center;
+    }
+    
+    .grid > div:first-child .flex {
+        justify-content: center;
+    }
+    .grid > div:first-child .flex.gap-4 {
+        justify-content: center;
+    }
+    
+    .space-y-2 {
+        ul {
+            padding-left: 0;
+        }
+        li {
+            padding-left: 0;
+        }
+    }
+}

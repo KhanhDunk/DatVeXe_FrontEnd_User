@@ -1,0 +1,108 @@
+<header class="header">
+  <div class="container">
+
+    <div class="main-bar">
+
+      <!-- LOGO BÊN TRÁI -->
+      <img class="logo" src="Assets/images/Logo.jpg" alt="Logo" />
+
+      <!-- MENU Ở GIỮA -->
+      <nav class="menu">
+        <a routerLink="/trang-chu" routerLinkActive="active">Trang chủ</a>
+        <a routerLink="/tra-cuu" routerLinkActive="active">Tra cứu</a>
+        <a routerLink="/lich-trinh" routerLinkActive="active">Lịch trình</a>
+        <a routerLink="/tin-tuc" routerLinkActive="active">Tin tức</a>
+        <a routerLink="/lien-he" routerLinkActive="active">Liên hệ</a>
+      </nav>
+
+      <!-- ĐĂNG NHẬP BÊN PHẢI -->
+      <div class="login-box">
+        <button class="login-btn">Đăng nhập</button>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+
+
+
+
+
+
+
+<footer class="bg-[#E6FFFA] text-[#1A1A1A] pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-[#2D9CDB] rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-bus text-white font-bold text-lg"></i>
+          </div>
+          <span class="font-bold text-lg text-[#1A1A1A]">Cúc Dũng</span>
+        </div>
+
+        <p class="text-[#1A1A1A]/70 mb-4">
+          Nhà xe uy tín, cung cấp các tuyến xe chất lượng cao giữa các tỉnh thành lớn.
+        </p>
+
+        <div class="flex gap-4">
+          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] transition">
+            Facebook icon SVG
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 text-[#1A1A1A]">Liên kết nhanh</h4>
+        <ul class="space-y-2">
+          <li><a routerLink="/" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Trang chủ</a></li>
+          <li><a routerLink="/lich-trinh" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Tuyến xe & Lịch trình</a></li>
+          <li><a routerLink="/tra-cuu" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Tra cứu vé</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 text-[#1A1A1A]">Hỗ trợ</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Trung tâm trợ giúp</a></li>
+          <li><a routerLink="/lien-he" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Liên hệ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 text-[#1A1A1A]">Liên hệ</h4>
+        <div class="space-y-3">
+          <div class="flex gap-3 items-start">
+            <div class="text-[#2D9CDB] mt-1">SVG</div>
+            <div>
+              <p class="text-sm text-[#1A1A1A]/70">Hotline Đặt vé</p>
+              <p class="font-semibold">1900 6789</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-[#2D9CDB]/30 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[#1A1A1A]/70 text-sm">© 2025 Cúc Dũng.</p>
+
+        <div class="flex gap-6">
+          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] text-sm">Sitemap</a>
+          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] text-sm">Nhà xe đối tác</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

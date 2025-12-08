@@ -1,0 +1,115 @@
+<div class="schedule-page">
+  <div class="container">
+    <h1 class="page-title">Tìm kiếm và Đặt vé Xe</h1>
+
+    <!-- Trip Type -->
+    <div class="trip-type">
+      <label>
+        <input type="radio" name="tripType" [(ngModel)]="isRoundTrip" [value]="false"> Một chiều
+      </label>
+      <label>
+        <input type="radio" name="tripType" [(ngModel)]="isRoundTrip" [value]="true"> Khứ hồi
+      </label>
+    </div>
+
+    <!-- Search Panel -->
+    <div class="search-panel">
+      <div class="input-group">
+        <label for="diem-di">Nơi đi</label>
+        <input type="text" id="diem-di" placeholder="Chọn điểm khởi hành" [(ngModel)]="diemDi">
+      </div>
+
+      <div class="input-group">
+        <label for="diem-den">Nơi đến</label>
+        <input type="text" id="diem-den" placeholder="Chọn điểm đến" [(ngModel)]="diemDen">
+      </div>
+
+      <div class="input-group date-input">
+        <label for="ngay-di">Ngày đi</label>
+        <input type="date" id="ngay-di" [(ngModel)]="ngayDi">
+      </div>
+
+      <div class="input-group date-input" *ngIf="isRoundTrip">
+        <label for="ngay-ve">Ngày về</label>
+        <input type="date" id="ngay-ve" [(ngModel)]="ngayVe">
+      </div>
+
+      <button class="search-button" (click)="timLichTrinh()">
+        <i class="fa-solid fa-magnifying-glass"></i> Tìm chuyến
+      </button>
+    </div>
+
+    <!-- Results -->
+    <div class="results-container" *ngIf="ketQuaChuyenDi.length > 0; else noResults">
+      <h2>Kết quả chuyến đi: {{ diemDi || 'Hà Nội' }} → {{ diemDen || 'Sapa' }} ({{ ngayDi | date:'dd/MM/yyyy' }})</h2>
+      <div class="trip-list">
+        <div class="trip-card" *ngFor="let chuyenDi of ketQuaChuyenDi">
+          <div class="card-header">
+            <span class="hang-xe">{{ chuyenDi.hang }}</span>
+            <span class="loai-xe">{{ chuyenDi.loaiXe }}</span>
+          </div>
+          <div class="card-body">
+            <div class="route-details">
+              <div class="time-point start-time">
+                <strong>{{ chuyenDi.gioKhoiHanh }}</strong>
+                <span class="diem-di">{{ diemDi || 'Hà Nội' }}</span>
+              </div>
+              <div class="duration">
+                <span>{{ chuyenDi.thoiGian }}</span>
+                <div class="line"></div>
+              </div>
+              <div class="time-point end-time">
+                <strong>{{ chuyenDi.gioDen }}</strong>
+                <span class="diem-den">{{ diemDen || 'Sapa' }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="price">{{ chuyenDi.gia | number:'1.0-0':'vi-VN' }} VND</span>
+            <button class="booking-button" (click)="datVe(chuyenDi)">Chọn chỗ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nếu khứ hồi, hiển thị chuyến về -->
+      <div *ngIf="isRoundTrip">
+        <h2>Kết quả chuyến về: {{ diemDen || 'Sapa' }} → {{ diemDi || 'Hà Nội' }} ({{ ngayVe | date:'dd/MM/yyyy' }})</h2>
+        <div class="trip-list">
+          <div class="trip-card" *ngFor="let chuyenVe of ketQuaChuyenVe">
+            <div class="card-header">
+              <span class="hang-xe">{{ chuyenVe.hang }}</span>
+              <span class="loai-xe">{{ chuyenVe.loaiXe }}</span>
+            </div>
+            <div class="card-body">
+              <div class="route-details">
+                <div class="time-point start-time">
+                  <strong>{{ chuyenVe.gioKhoiHanh }}</strong>
+                  <span class="diem-di">{{ diemDen || 'Sapa' }}</span>
+                </div>
+                <div class="duration">
+                  <span>{{ chuyenVe.thoiGian }}</span>
+                  <div class="line"></div>
+                </div>
+                <div class="time-point end-time">
+                  <strong>{{ chuyenVe.gioDen }}</strong>
+                  <span class="diem-den">{{ diemDi || 'Hà Nội' }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="price">{{ chuyenVe.gia | number:'1.0-0':'vi-VN' }} VND</span>
+              <button class="booking-button" (click)="datVe(chuyenVe)">Chọn chỗ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        Không tìm thấy chuyến đi nào phù hợp. Vui lòng thử ngày khác.
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="ticket-wrapper d-flex justify-content-center align-items-center px-3 py-5">
+  <div class="ticket-box">
+
+    <h2 class="title mb-4">Tra Cứu Vé Xe</h2>
+
+    <div class="search-box mb-4">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nhập mã vé (VD: CD2025-0001)"
+        [(ngModel)]="ticketCode"
+      />
+      <button class="btn btn-primary" (click)="onLookup()">Tra cứu</button>
+    </div>
+
+    <div *ngIf="ticketInfo" class="card info-card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Chi tiết vé: {{ ticketCode }}</h5>
+      </div>
+      <div class="card-body">
+        <p><strong>Hành khách:</strong> {{ ticketInfo.customerName }}</p>
+        <p><strong>Tuyến:</strong> {{ ticketInfo.route }}</p>
+        <p><strong>Ngày đi:</strong> {{ ticketInfo.departDate }}</p>
+        <p><strong>Ghế:</strong> {{ ticketInfo.seat }}</p>
+        <p><strong>Trạng thái:</strong>
+          <span [ngClass]="statusClass(ticketInfo.status)">
+            {{ ticketInfo.status }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div *ngIf="!ticketInfo && lookedUp" class="alert alert-warning mt-3 text-center">
+      Không tìm thấy vé với mã "{{ ticketCode }}"
+    </div>
+
+  </div>
+</div>

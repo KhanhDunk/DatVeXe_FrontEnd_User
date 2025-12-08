@@ -1,0 +1,54 @@
+.ticket-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-box {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+
+  input {
+    flex: 1;
+  }
+}
+
+.info-card {
+  margin-top: 20px;
+
+  .card-header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+
+.status-active {
+  color: #198754;
+  font-weight: 600;
+}
+.status-pending {
+  color: #ffc107;
+  font-weight: 600;
+}
+.status-cancelled {
+  color: #dc3545;
+  font-weight: 600;
+}
