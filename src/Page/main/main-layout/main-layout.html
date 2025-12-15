@@ -17,8 +17,9 @@
 
       <!-- ĐĂNG NHẬP BÊN PHẢI -->
       <div class="login-box">
-        <button class="login-btn">Đăng nhập</button>
+        <a class="login-btn" routerLink="/dang-nhap" routerLinkActive="active">Đăng nhập</a>
       </div>
+
 
     </div>
 
@@ -36,72 +37,99 @@
 
 
 
+<footer class="bg-facebook text-white pt-16 pb-10">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
 
-
-<footer class="bg-[#E6FFFA] text-[#1A1A1A] pt-16 pb-8">
-  <div class="max-w-7xl mx-auto px-4 mb-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-
+      <!-- Logo & Giới thiệu -->
       <div>
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 bg-[#2D9CDB] rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-bus text-white font-bold text-lg"></i>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-bus text-[#1877F2] text-xl"></i>
           </div>
-          <span class="font-bold text-lg text-[#1A1A1A]">Cúc Dũng</span>
+          <span class="font-bold text-xl">Cúc Dũng</span>
         </div>
-
-        <p class="text-[#1A1A1A]/70 mb-4">
-          Nhà xe uy tín, cung cấp các tuyến xe chất lượng cao giữa các tỉnh thành lớn.
+        <p class="text-white/80 mb-4">
+          Dịch vụ xe khách uy tín, kết nối các tuyến đường giữa các tỉnh thành lớn, đảm bảo an toàn và tiện lợi.
         </p>
-
-        <div class="flex gap-4">
-          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] transition">
-            Facebook icon SVG
+        <div class="flex gap-4 mt-2">
+          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
+            <i class="fa-brands fa-twitter"></i>
           </a>
         </div>
       </div>
 
+      <!-- Liên kết nhanh -->
       <div>
-        <h4 class="font-bold mb-4 text-[#1A1A1A]">Liên kết nhanh</h4>
-        <ul class="space-y-2">
-          <li><a routerLink="/" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Trang chủ</a></li>
-          <li><a routerLink="/lich-trinh" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Tuyến xe & Lịch trình</a></li>
-          <li><a routerLink="/tra-cuu" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Tra cứu vé</a></li>
+        <h4 class="font-bold mb-5 text-lg">Liên kết nhanh</h4>
+        <ul class="space-y-3">
+          <li><a routerLink="/" class="hover:text-[#BBDEFB] transition">Trang chủ</a></li>
+          <li><a routerLink="/lich-trinh" class="hover:text-[#BBDEFB] transition">Tuyến xe & Lịch trình</a></li>
+          <li><a routerLink="/tra-cuu" class="hover:text-[#BBDEFB] transition">Tra cứu vé</a></li>
+          <li><a routerLink="/khuyen-mai" class="hover:text-[#BBDEFB] transition">Khuyến mãi</a></li>
         </ul>
       </div>
 
+      <!-- Hỗ trợ -->
       <div>
-        <h4 class="font-bold mb-4 text-[#1A1A1A]">Hỗ trợ</h4>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Trung tâm trợ giúp</a></li>
-          <li><a routerLink="/lien-he" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB]">Liên hệ</a></li>
+        <h4 class="font-bold mb-5 text-lg">Hỗ trợ</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-[#BBDEFB] transition">Trung tâm trợ giúp</a></li>
+          <li><a routerLink="/lien-he" class="hover:text-[#BBDEFB] transition">Liên hệ</a></li>
+          <li><a href="#" class="hover:text-[#BBDEFB] transition">Hướng dẫn mua vé</a></li>
+          <li><a href="#" class="hover:text-[#BBDEFB] transition">Chính sách đổi trả</a></li>
         </ul>
       </div>
 
+      <!-- Thông tin liên hệ -->
       <div>
-        <h4 class="font-bold mb-4 text-[#1A1A1A]">Liên hệ</h4>
-        <div class="space-y-3">
+        <h4 class="font-bold mb-5 text-lg">Liên hệ</h4>
+        <div class="space-y-4">
           <div class="flex gap-3 items-start">
-            <div class="text-[#2D9CDB] mt-1">SVG</div>
+            <div class="text-white mt-1">
+              <i class="fa-solid fa-phone"></i>
+            </div>
             <div>
-              <p class="text-sm text-[#1A1A1A]/70">Hotline Đặt vé</p>
+              <p class="text-sm text-white/80">Hotline đặt vé</p>
               <p class="font-semibold">1900 6789</p>
             </div>
           </div>
-
+          <div class="flex gap-3 items-start">
+            <div class="text-white mt-1">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <p class="text-sm text-white/80">Email hỗ trợ</p>
+              <p class="font-semibold">support@cucdung.com</p>
+            </div>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="text-white mt-1">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="text-sm text-white/80">Văn phòng</p>
+              <p class="font-semibold">123 Lê Lợi, TP. HCM</p>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
 
-    <div class="border-t border-[#2D9CDB]/30 pt-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-[#1A1A1A]/70 text-sm">© 2025 Cúc Dũng.</p>
-
-        <div class="flex gap-6">
-          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] text-sm">Sitemap</a>
-          <a href="#" class="text-[#1A1A1A]/70 hover:text-[#2D9CDB] text-sm">Nhà xe đối tác</a>
-        </div>
+    <!-- Bottom -->
+    <div class="border-t border-white/30 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+      <p class="text-white/70">© 2025 Cúc Dũng. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-[#BBDEFB] transition">Sitemap</a>
+        <a href="#" class="hover:text-[#BBDEFB] transition">Nhà xe đối tác</a>
+        <a href="#" class="hover:text-[#BBDEFB] transition">Chính sách bảo mật</a>
       </div>
     </div>
   </div>

@@ -1,141 +1,136 @@
 <main>
-    <section class="slider-container">
-        <div class="slides">
-            <div class="slide fade" *ngFor="let s of slides; let i = index" [class.active]="slide() === i"
-                [style.background-image]="'url(' + s.image + ')'">
-                <div class="slide-caption">
-                    <h2>{{ s.title }}</h2>
-                    <p>{{ s.description }}</p>                
-                </div>
-            </div>
+  <section class="slider-container">
+    <div class="slides">
+      <div class="slide fade" *ngFor="let s of slides; let i = index" [class.active]="slide() === i"
+        [style.background-image]="'url(' + s.image + ')'">
+        <div class="slide-caption">
+          <h2>{{ s.title }}</h2>
+          <p>{{ s.description }}</p>
         </div>
-    </section>
-
-    <!-- SEARCH BOX -->
-    <div class="search-overlay-box enhanced">
-        <div class="search-box">
-            <h2>Đặt vé nhanh chóng</h2>
-
-            <form class="search-form">
-                <div class="input-group">
-                    <label>Điểm đi</label>
-                    <input type="text" placeholder="Chọn điểm khởi hành">
-                </div>
-
-                <div class="input-group">
-                    <label>Điểm đến</label>
-                    <input type="text" placeholder="Chọn điểm đến">
-                </div>
-
-                <div class="input-group">
-                    <label>Ngày đi</label>
-                    <input type="date">
-                </div>
-
-                <button class="btn-search">Tìm chuyến xe</button>
-            </form>
-        </div>
+      </div>
     </div>
+  </section>
 
-  <div class="promote-section mt-10">
-    <h2 class="text-2xl font-bold mb-4 text-center">KHUYẾN MÃI NỔI BẬT</h2>
+  <!-- SEARCH BOX -->
+  <div class="search-overlay-box enhanced">
+    <div class="search-box">
+      <h2>Đặt vé nhanh chóng</h2>
 
-    <div class="promo-slider">
-        <div class="promo-track" 
-             [style.transform]="'translateX(-' + promoIndex * 33.33 + '%)'">
-             
-            <div class="promo-card" *ngFor="let p of promotions">
-                <img [src]="p.image" />
-                <h3>{{ p.title }}</h3>
-                <p>{{ p.description }}</p>
-            </div>
+      <form class="search-form">
+        <div class="input-group">
+          <label>Điểm đi</label>
+          <input type="text" placeholder="Chọn điểm khởi hành">
         </div>
+
+        <div class="input-group">
+          <label>Điểm đến</label>
+          <input type="text" placeholder="Chọn điểm đến">
+        </div>
+
+        <div class="input-group">
+          <label>Ngày đi</label>
+          <input type="date">
+        </div>
+
+        <button class="btn-search">Tìm chuyến xe</button>
+      </form>
     </div>
+  </div>
+
+  <div class="section-white mt-10">
+    <div class="promote-section mt-10">
+      <h2 class="text-2xl font-bold mb-4 text-center">KHUYẾN MÃI NỔI BẬT</h2>
+
+      <div class="promo-slider">
+        <div class="promo-track" [style.transform]="'translateX(-' + promoIndex * 33.33 + '%)'">
+
+          <div class="promo-card" *ngFor="let p of promotions">
+            <img [src]="p.image" />
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.description }}</p>
+          </div>
+        </div>
+      </div>
+  
 
     <!-- BUTTON TRÒN BÊN DƯỚI -->
     <div class="promo-dots">
-        <div 
-            class="dot"
-            *ngFor="let p of promotions; let i = index"
-            [class.active]="i === promoIndex"
-            (click)="goToSlide(i)">
+      <div class="dot" *ngFor="let p of promotions; let i = index" [class.active]="i === promoIndex"
+        (click)="goToSlide(i)">
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="section-gray mt-10">  
+  <div class="route-section mt-14">
+    <h2 class="text-2xl font-bold mb-4 text-center">TUYẾN PHỔ BIẾN</h2>
+
+    <div class="route-slider">
+      <div class="route-track" [style.transform]="'translateX(-' + routeIndex * 33.33 + '%)'">
+
+        <div class="route-card" *ngFor="let r of popularRoutes">
+          <img [src]="r.image" alt="Route Image">
+          <h3>{{ r.name }}</h3>
+          <p>{{ r.description }}</p>
         </div>
-    </div>
-</div>
 
-    <div class="route-section mt-14">
-  <h2 class="text-2xl font-bold mb-4 text-center">TUYẾN PHỔ BIẾN</h2>
-
-  <div class="route-slider">
-    <div class="route-track"
-         [style.transform]="'translateX(-' + routeIndex * 33.33 + '%)'">
-
-      <div class="route-card" *ngFor="let r of popularRoutes">
-        <img [src]="r.image" alt="Route Image">
-        <h3>{{ r.name }}</h3>
-        <p>{{ r.description }}</p>
       </div>
-
     </div>
-  </div>
 
-  <!-- DOTS -->
-  <div class="route-dots">
-    <div *ngFor="let r of popularRoutes; let i = index"
-         class="dot"
-         [class.active]="i === routeIndex"
-         (click)="goToRoute(i)">
-    </div>
-  </div>
-</div>
-
-<div class="intro-banner mt-16">
-  <div class="intro-content">
-    <h2>Đặt Vé Xe Trực Tuyến Nhanh Chóng & Tiện Lợi</h2>
-    <p>
-      Trải nghiệm hệ thống đặt vé thông minh giúp bạn dễ dàng lựa chọn lịch trình,
-      so sánh giá vé và thanh toán an toàn. Chúng tôi cam kết mang đến những chuyến đi
-      an toàn - đúng giờ - chất lượng cao.
-    </p>
-
-    <button class="intro-button" routerLink="/tra-cuu">
-      Đặt vé ngay
-    </button>
-  </div>
-
-  <div class="intro-image">
-    <img src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?w=1200" alt="Bus Image">
-  </div>
-</div>
-
-
-<div class="news-section mt-16">
-  <h2 class="text-2xl font-bold mb-4 text-center">TIN TỨC MỚI NHẤT</h2>
-
-  <div class="news-slider">
-
-    <div class="news-track"
-      [style.transform]="'translateX(-' + newsIndex * 33.33 + '%)'">
-      
-      <div class="news-card" *ngFor="let n of newsList">
-        <img [src]="n.image" />
-        <h3>{{ n.title }}</h3>
-        <p>{{ n.short }}</p>
+    <!-- DOTS -->
+    <div class="route-dots">
+      <div *ngFor="let r of popularRoutes; let i = index" class="dot" [class.active]="i === routeIndex"
+        (click)="goToRoute(i)">
       </div>
+    </div>
+  </div>
+  </div>
 
+
+  <div class="intro-banner mt-16">
+    <div class="intro-content">
+      <h2>Đặt Vé Xe Trực Tuyến Nhanh Chóng & Tiện Lợi</h2>
+      <p>
+        Trải nghiệm hệ thống đặt vé thông minh giúp bạn dễ dàng lựa chọn lịch trình,
+        so sánh giá vé và thanh toán an toàn. Chúng tôi cam kết mang đến những chuyến đi
+        an toàn - đúng giờ - chất lượng cao.
+      </p>
+
+      <button class="intro-button" routerLink="/tra-cuu">
+        Đặt vé ngay
+      </button>
+    </div>
+
+    <div class="intro-image">
+      <img src="https://simg.zalopay.com.vn/zlp-website/assets/vexere_xzalopay_b75f89edf0.jpg" alt="Bus Image">
     </div>
   </div>
 
-  <!-- DOTS -->
-  <div class="news-dots">
-    <div 
-      class="dot"
-      *ngFor="let n of newsList; let i = index"
-      [class.active]="i === newsIndex"
-      (click)="goToNews(i)">
+
+  <div class="news-section mt-16">
+    <h2 class="text-2xl font-bold mb-4 text-center">TIN TỨC MỚI NHẤT</h2>
+
+    <div class="news-slider">
+
+      <div class="news-track" [style.transform]="'translateX(-' + newsIndex * 33.33 + '%)'">
+
+        <div class="news-card" *ngFor="let n of newsList">
+          <img [src]="n.image" />
+          <h3>{{ n.title }}</h3>
+          <p>{{ n.short }}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DOTS -->
+    <div class="news-dots">
+      <div class="dot" *ngFor="let n of newsList; let i = index" [class.active]="i === newsIndex" (click)="goToNews(i)">
+      </div>
     </div>
   </div>
-</div>
 
 
 </main>

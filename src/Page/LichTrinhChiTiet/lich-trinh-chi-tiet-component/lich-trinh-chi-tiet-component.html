@@ -1,0 +1,31 @@
+<div class="detail-container">
+
+  <h1 class="title">
+    Tuyến xe: {{ routeInfo.start }} ⇌ {{ routeInfo.end }}
+  </h1>
+
+  <div class="route-box">
+    <div class="info-row"><strong>Loại xe:</strong> {{ routeInfo.type }}</div>
+    <div class="info-row"><strong>Quãng đường:</strong> {{ routeInfo.distance }}</div>
+    <div class="info-row"><strong>Thời gian hành trình:</strong> {{ routeInfo.duration }}</div>
+    <div class="info-row price">
+      <strong>Giá vé:</strong> {{ routeInfo.price | number }} đ
+    </div>
+  </div>
+
+  <h2 class="sub-title">Giờ xuất bến</h2>
+
+  <div class="schedule-list">
+    <div class="schedule-card" *ngFor="let s of schedules">
+      <div class="left">
+        <div class="time">{{ s.time }}</div>
+        <div class="seats">Còn {{ s.seats }} chỗ</div>
+      </div>
+
+      <button class="book-btn" (click)="selectTrip(s)">
+        Chọn chuyến
+      </button>
+    </div>
+  </div>
+
+</div>

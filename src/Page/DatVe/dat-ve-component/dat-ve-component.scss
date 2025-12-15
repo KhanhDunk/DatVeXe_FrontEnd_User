@@ -1,0 +1,163 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --primary-color: #ff4b3e; // Futa đỏ đặc trưng
+  --secondary-color: #f8f9fa; // Light background
+  --text-color: #212529;
+  --label-color: #495057;
+  --border-color: #ced4da;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.booking-page-futa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1570125909248-b39b06d21884?auto=format&fit=crop&w=1974&q=80') center/cover no-repeat;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+}
+
+.booking-form-futa {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px var(--shadow-color);
+  overflow: hidden;
+}
+
+.form-header {
+  padding: 30px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+
+  h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 5px;
+    color: var(--label-color);
+    font-size: 1rem;
+  }
+}
+
+.form-body {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+
+  .form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group-futa {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 500;
+      color: var(--label-color);
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-right: 8px;
+        color: var(--primary-color);
+      }
+    }
+
+    input {
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s ease-in-out;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(255, 75, 62, 0.2);
+      }
+    }
+  }
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+
+  .btn-submit-futa {
+    padding: 15px 40px;
+    background-color: #3A86FF; // màu xanh mặc định
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #2979ff; // đổi màu xanh đậm khi hover
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
+    }
+  }
+}
+
+.notification-futa {
+  margin: 0 30px 30px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+
+  &.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+  }
+
+  &.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-body {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .booking-form-futa {
+    padding: 0;
+  }
+
+  .form-body {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .btn-submit-futa {
+    width: 100%;
+
+  }
+}

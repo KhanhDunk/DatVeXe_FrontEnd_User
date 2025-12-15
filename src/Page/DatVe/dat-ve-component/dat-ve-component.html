@@ -1,1 +1,45 @@
-<p>dat-ve-component works!</p>
+<div class="booking-page-futa">
+  <div class="booking-form-futa">
+    <div class="form-header">
+      <h2>Đặt Vé Xe</h2>
+      <p>Nhanh chóng - tiện lợi - an toàn</p>
+    </div>
+
+    <div class="form-body">
+      <div class="form-column">
+        <div class="form-group-futa">
+          <label for="tuyenXe"><i class="fas fa-route"></i> Tuyến xe</label>
+          <input id="tuyenXe" type="text" [(ngModel)]="tuyenXe" placeholder="VD: Sài Gòn - Đà Lạt">
+        </div>
+        <div class="form-group-futa">
+          <label for="ngayDi"><i class="fas fa-calendar-alt"></i> Ngày đi</label>
+          <input id="ngayDi" type="date" [(ngModel)]="ngayDi">
+        </div>
+        <div class="form-group-futa">
+          <label for="soLuong"><i class="fas fa-ticket-alt"></i> Số lượng</label>
+          <input id="soLuong" type="number" [(ngModel)]="soLuong" min="1">
+        </div>
+      </div>
+
+      <div class="form-column">
+        <div class="form-group-futa">
+          <label for="hoTen"><i class="fas fa-user"></i> Họ tên</label>
+          <input id="hoTen" type="text" [(ngModel)]="hoTen" placeholder="Họ và tên">
+        </div>
+        <div class="form-group-futa">
+          <label for="soDienThoai"><i class="fas fa-phone"></i> Số điện thoại</label>
+          <input id="soDienThoai" type="tel" [(ngModel)]="soDienThoai" placeholder="0912345678">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-submit-futa" (click)="datVe()">Thanh toán</button>
+    </div>
+
+    <div *ngIf="thongBao" class="notification-futa" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      {{ thongBao }}
+    </div>
+   
+  </div>
+</div>

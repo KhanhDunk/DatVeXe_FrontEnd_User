@@ -40,12 +40,16 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       title: "Khám phá các tuyến đường phổ biến",
       description: "Tìm kiếm và đặt vé cho các tuyến đường được yêu thích nhất",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
-      image: "https://png.pngtree.com/png-clipart/20210323/ourlarge/pngtree-global-holiday-picture-rich-travel-combination-png-image_3131622.jpg",
-
+      image: "https://media.vneconomy.vn/images/upload/2024/05/22/anh-9-1708617688144443081918-171162407510632176926420240426150937.jpg",
+    },
+    {
+      title: "Các vùng biển đẹp nhất",
+      description: "Khám phá những bãi biển tuyệt đẹp với dịch vụ xe chất lượng cao",
+      bg: "bg-gradient-to-br from-accent via-secondary to-primary",
+      image: "https://images2.thanhnien.vn/528068263637045248/2023/12/22/h1-17032164454061990092865.jpg",
     }
-
   ]
-
+  // 
   passengers = [1, 2, 3, 4, 5, 6]
 
   promoIndex = 0;
@@ -54,17 +58,17 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     {
       title: "Giảm 20% tất cả tuyến đường",
       description: "Áp dụng trong tháng này",
-      image: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=1200"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYAo4VEVVFKPTDf4YzRwmOi7ChhovFSCJLg&s"
     },
     {
       title: "Tặng nước suối miễn phí",
       description: "Cho tất cả hành khách đặt online",
-      image: "https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=1200"
+      image: "https://hoangtuanphat.vn/upload/thuexequynhon.jpg"
     },
     {
       title: "Giảm thêm 10% khi thanh toán online",
       description: "Duy nhất cuối tuần",
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200"
+      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
     },
     // ⭐ ITEM 4
     {
@@ -84,8 +88,21 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     {
       title: "Ưu đãi nhóm 4 người",
       description: "Giảm 15% tổng hóa đơn",
-      image: "https://images.unsplash.com/photo-1456072212654-a0990c8313be?w=1200"
-    }
+      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+    },
+    {
+      title: "Ưu đãi nhóm 4 người",
+      description: "Giảm 15% tổng hóa đơn",
+      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+    },
+
+    // ⭐ ITEM 5
+    {
+      title: "Hoàn 50% khi hủy vé",
+      description: "Chỉ áp dụng khi đặt online",
+      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+    },
+
   ];
 
   promoGroupIndex = 0;
@@ -119,85 +136,86 @@ export class TrangChuComponent implements OnInit, OnDestroy {
   }
 
 
-// Slide index
-routeIndex = 0;
+  // Slide index
+  routeIndex = 0;
 
-popularRoutes = [
-  {
-    name: "Sài Gòn → Đà Lạt",
-    description: "Tuyến du lịch được yêu thích",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
-  },
-  {
-    name: "Sài Gòn → Nha Trang",
-    description: "Tuyến biển đẹp nổi tiếng",
-    image: "https://images.unsplash.com/photo-1504608245011-62c9f3801f23?w=1200"
-  },
-  {
-    name: "Sài Gòn → Cần Thơ",
-    description: "Kết nối miền Tây",
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
-  },
-  {
-    name: "Đà Lạt → Nha Trang",
-    description: "Cung đường biển – rừng tuyệt đẹp",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"
-  },
-  {
-    name: "Huế → Đà Nẵng",
-    description: "Cung đường Hải Vân",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200"
-  },
-  {
-    name: "Hà Nội → Sapa",
-    description: "Tuyến du lịch miền Bắc",
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
+  popularRoutes = [
+    {
+      name: "Sài Gòn → Đà Lạt",
+      description: "Tuyến du lịch được yêu thích",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
+    },
+    {
+      name: "Sài Gòn → Nha Trang",
+      description: "Tuyến biển đẹp nổi tiếng",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb--bXGMlKTswGOzX1tLQ92y74oFMK9rMCIA&s"
+    },
+    {
+      name: "Sài Gòn → Cần Thơ",
+      description: "Kết nối miền Tây",
+      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
+    },
+    {
+      name: "Đà Lạt → Nha Trang",
+      description: "Cung đường biển - rừng tuyệt đẹp",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"
+    },
+    {
+      name: "Huế → Đà Nẵng",
+      description: "Cung đường Hải Vân",
+      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200"
+    },
+    {
+      name: "Hà Nội → Sapa",
+      description: "Tuyến du lịch miền Bắc",
+      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
+    }
+  ];
+
+  goToRoute(i: number) {
+    this.routeIndex = i;
   }
-];
-
-goToRoute(i: number) {
-  this.routeIndex = i;
-}
 
 
-newsIndex = 0;
+  newsIndex = 0;
 
-newsList = [
+  newsList = [
   {
-    image: "assets/images/news1.jpg",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",  // ảnh bus general
     title: "Futa Bus khai trương tuyến mới",
     short: "Tuyến mới giúp khách hàng di chuyển nhanh hơn và thuận tiện hơn."
   },
   {
-    image: "assets/images/news2.jpg",
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200",  // ảnh vé, booking hoặc người lên xe
     title: "Giảm giá đặc biệt dịp Lễ",
     short: "Ưu đãi lên đến 40% cho khách hàng đặt vé online."
   },
   {
-    image: "assets/images/news3.jpg",
+    image: "https://images.unsplash.com/photo-1504608245011-62c9f3801f23?w=1200",  // ảnh giao diện / laptop / đặt vé
     title: "Nâng cấp hệ thống đặt vé",
     short: "Giao diện hiện đại, tốc độ nhanh gấp 2 lần."
   },
   {
-    image: "assets/images/news4.jpg",
+    image: "https://images.unsplash.com/photo-1558679908-86f11f2ef7fb?w=1200",  // ảnh tuyến đường, phượt, bus đường dài
     title: "Thêm nhiều trạm trung chuyển",
     short: "Hỗ trợ khách hàng tại nhiều tỉnh thành hơn."
   },
   {
-    image: "assets/images/news5.jpg",
+    image: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?auto=format&fit=crop&w=800",  // ảnh xe phục vụ đông người, dịp đặc biệt
     title: "Tăng cường xe phục vụ Tết",
     short: "Hơn 150 xe chất lượng cao được bổ sung."
   },
   {
-    image: "assets/images/news6.jpg",
+    image: "https://images.unsplash.com/photo-1576144505111-9e92e09157e3?auto=format&fit=crop&w=800",  // ảnh tài xế / bảo đảm an toàn
     title: "Đội ngũ tài xế đạt chứng nhận an toàn",
     short: "Cam kết an toàn là ưu tiên hàng đầu."
   },
 ];
 
-goToNews(i: number) {
-  this.newsIndex = i;
-}
+
+  goToNews(i: number) {
+    this.newsIndex = i;
+  }
 
 
 
@@ -215,9 +233,9 @@ goToNews(i: number) {
   goToPromo(index: number) {
     this.promoIndex = index;
   }
-goToSlide(i: number) {
-  this.promoIndex = i;
-}
+  goToSlide(i: number) {
+    this.promoIndex = i;
+  }
   toggleMenu() {
     this.isOpen.update((val) => !val)
   }

@@ -1,267 +1,233 @@
-@use "sass:color"; // Bắt buộc để dùng color.adjust
+@use "sass:color";
 
 $primary-color: #00613D;
 $secondary-color: #009966;
 $accent-color: #E7302A;
 $text-color: #333;
 $border-color: #ddd;
+$gray-light: #f0f0f0;
+$route-text-color: #E7302A; // Màu đỏ cho điểm đi/đến
 
 .schedule-page {
-  padding: 30px 0;
-  background: #f4f7f6;
+  padding: 0; // Đặt lại padding
+  background: white; // Nền trắng toàn bộ trang theo hình
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
 
 .container {
   width: 95%;
-  max-width: 1200px;
+  max-width: 1200px; // Tăng max-width để giống với bố cục rộng hơn trong hình
   margin: 0 auto;
+  padding-top: 20px;
 }
 
-.page-title {
-  text-align: center;
-  color: $primary-color;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 40px;
+.page-title, .trip-type {
+  display: none; // Ẩn các phần không có trong hình mẫu
 }
 
-/* Trip Type */
-.trip-type {
+/* --- Mô phỏng Menu và Search Bar (Đầu trang) --- */
+
+.top-menu-simulated {
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  border-bottom: 2px solid $border-color;
   margin-bottom: 20px;
 
-  label {
+  .menu-item {
+    padding: 10px 20px;
     font-weight: 600;
-    color: $primary-color;
+    color: #777;
     cursor: pointer;
+    transition: color 0.3s;
+    border-bottom: 2px solid transparent;
 
-    input {
-      margin-right: 8px;
+    &.active {
+      color: $route-text-color; // Màu cam/đỏ cho tab active
+      border-color: $route-text-color;
+    }
+
+    &:hover:not(.active) {
+      color: $text-color;
     }
   }
 }
 
-/* Search Panel */
-.search-panel {
+.search-panel-image-style {
   display: flex;
   gap: 15px;
   background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  padding: 20px 0;
+  align-items: center;
+  border-top: 1px solid #eee; /* Đường kẻ phân cách */
 
-  .input-group {
-    flex: 1 1 200px;
+  .input-search {
+    flex: 1;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: 5px 15px;
 
-    label {
-      font-weight: 600;
-      color: $primary-color;
-      margin-bottom: 5px;
+    i {
+      color: #999;
+      margin-right: 10px;
     }
 
     input {
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 1px solid $border-color;
+      border: none;
+      padding: 8px 0;
       font-size: 16px;
-      transition: border-color 0.3s;
-
-      &:focus {
-        border-color: $secondary-color;
-        outline: none;
-        box-shadow: 0 0 6px rgba($secondary-color, 0.5);
+      width: 100%;
+      outline: none;
+      &::placeholder {
+        color: #999;
       }
     }
   }
 
-  .search-button {
-    padding: 12px 30px;
-    background: $accent-color;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
+  .swap-icon {
+    font-size: 1.5rem;
+    color: $route-text-color;
     cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-
-    i {
-      margin-right: 8px;
-    }
-
-    &:hover {
-      background: color.adjust($accent-color, $lightness: -10%);
-      transform: translateY(-2px);
-    }
   }
 }
 
-/* Results */
-.results-container h2 {
+/* --- Bố cục cho phần Kết quả --- */
+
+.results-container-image-style {
+  margin-top: 20px;
+}
+
+.results-header-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr 1fr 1.5fr; /* Chia cột theo hình */
+  background: $gray-light;
+  padding: 10px 15px;
+  font-weight: 600;
   color: $text-color;
-  margin: 30px 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid $primary-color;
-  font-size: 1.8rem;
+  border-radius: 5px 5px 0 0;
+  border-top: 2px solid $secondary-color; /* Đường kẻ trên đầu */
+
+  .header-col {
+    text-align: left;
+  }
+
+  .type, .distance, .duration, .price {
+    text-align: center;
+  }
 }
 
 .trip-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  border: 1px solid $border-color;
+  border-top: none; // Đã có border ở header
 }
 
-.trip-card {
+.trip-card-image-style {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr 1fr 1.5fr; /* Phải khớp với header */
+  align-items: center;
+  padding: 15px 15px;
+  border-bottom: 1px solid #eee;
   background: white;
-  border-radius: 12px;
-  padding: 20px 25px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-left: 5px solid $secondary-color;
-  transition: transform 0.3s, box-shadow 0.3s;
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  &:last-child {
+    border-bottom: none;
   }
 
-  .card-header {
+  .trip-route-info {
+    font-size: 1rem;
     display: flex;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed $border-color;
-
-    .hang-xe {
-      font-weight: 700;
-      color: $primary-color;
-    }
-
-    .loai-xe {
-      background: $secondary-color;
-      color: white;
-      padding: 3px 10px;
-      border-radius: 5px;
-      font-size: 0.85rem;
-    }
-  }
-
-  .card-body {
-    padding: 10px 0;
-
-    .route-details {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .time-point {
-        text-align: center;
-
-        strong {
-          font-size: 2rem;
-          color: $text-color;
-          display: block;
-        }
-
-        span {
-          font-size: 0.9rem;
-          color: #777;
-          display: block;
-        }
-      }
-
-      .duration {
-        flex: 1;
-        text-align: center;
-
-        span {
-          color: $secondary-color;
-          font-weight: 500;
-          margin-bottom: 5px;
-          display: block;
-        }
-
-        .line {
-          height: 2px;
-          background: $border-color;
-          border-radius: 1px;
-        }
-      }
-    }
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
+    gap: 5px;
 
-    .price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: $accent-color;
-    }
-
-    .booking-button {
-      padding: 10px 25px;
-      background: $accent-color;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    .start-point, .end-point {
+      color: $route-text-color; /* Màu đỏ nổi bật cho tên điểm */
       font-weight: 600;
-      transition: 0.3s;
-
-      &:hover {
-        background: color.adjust($accent-color, $lightness: -10%);
-      }
+      white-space: nowrap;
     }
-  }
-}
 
-/* No results */
-.no-results {
-  text-align: center;
-  padding: 40px;
-  background: #fff3cd;
-  color: #856404;
-  border-radius: 8px;
-  font-weight: 500;
-}
+    .separator {
+      color: #999;
+    }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .search-panel {
-    flex-direction: column;
-    gap: 15px;
-
-    .search-button {
+    .start-point {
+      // Căn chỉnh chữ "An Hữu (Tiền Giang)"
       width: 100%;
     }
+
+    .end-point {
+      font-weight: 400; // TP.HCM thường không in đậm
+    }
   }
 
-  .trip-card {
-    .route-details {
-      flex-direction: column;
-      gap: 15px;
+  .trip-detail {
+    text-align: center;
+    color: $text-color;
+    font-size: 0.95rem;
+  }
+
+  .price {
+    font-weight: 600;
+    color: $route-text-color; /* Giá vé màu đỏ */
+  }
+
+  .find-button {
+    padding: 8px 15px;
+    background: white;
+    color: $route-text-color;
+    border: 1px solid $route-text-color;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    width: 80%;
+    justify-self: center; // Căn giữa cột
+
+    &:hover {
+      background: $route-text-color;
+      color: white;
+    }
+  }
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  .search-panel-image-style {
+    flex-direction: column;
+    .swap-icon {
+      transform: rotate(90deg);
+      margin: 10px 0;
+    }
+  }
+
+  .results-header-row, .trip-card-image-style {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+
+    > * {
+      width: 100%;
+      text-align: left !important;
+      margin-bottom: 5px;
     }
 
-    .card-footer {
-      flex-direction: column;
-      gap: 10px;
-
-      .booking-button {
-        width: 100%;
-      }
+    .trip-route-info {
+      font-size: 1.1rem;
+      justify-content: flex-start;
+      margin-bottom: 10px;
     }
+
+    .find-button {
+      width: 100%;
+      margin-top: 10px;
+      justify-self: auto;
+    }
+  }
+
+  .results-header-row {
+    display: none; /* Ẩn header trên mobile */
   }
 }
