@@ -1,45 +1,267 @@
-<div class="booking-page-futa">
-  <div class="booking-form-futa">
-    <div class="form-header">
-      <h2>Đặt Vé Xe</h2>
-      <p>Nhanh chóng - tiện lợi - an toàn</p>
+<section class="ticket-page">
+  <div class="ticket-container">
+    <div class="primary-column">
+      <article class="card seat-card">
+        <header class="card-head">
+          <h3>Chọn ghế</h3>
+          <a href="#">Thông tin xe</a>
+        </header>
+        <div class="seat-layout">
+          <div class="seat-wrapper">
+            <div class="seat-deck" *ngFor="let deck of seatDecks">
+              <div class="deck-title">{{ deck.name }}</div>
+              <div class="seat-rows">
+                <div class="seat-row" *ngFor="let row of deck.rows">
+                  <ng-container *ngFor="let seat of row">
+                    <button
+                      *ngIf="seat"
+                      type="button"
+                      class="seat"
+                      [ngClass]="seat.status"
+                      (click)="toggleSeat(seat)"
+                      [disabled]="seat.status === 'sold'"
+                    >
+                      <span class="seat-label">{{ seat.code }}</span>
+                    </button>
+                    <div *ngIf="!seat" class="seat-placeholder"></div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="seat-legend">
+            <span><i class="dot sold"></i>Đã bán</span>
+            <span><i class="dot available"></i>Còn trống</span>
+            <span><i class="dot selected"></i>Đang chọn</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card form-card">
+        <header class="card-head">
+          <h3>Thông tin khách hàng</h3>
+        </header>
+        <div class="form-grid">
+          <label>Họ và tên *
+            <input type="text" [(ngModel)]="booking.fullName" placeholder="Nhập họ và tên" />
+          </label>
+          <label>Số điện thoại *
+            <input type="tel" [(ngModel)]="booking.phone" placeholder="0912 345 678" />
+          </label>
+          <label>Email *
+            <input type="email" [(ngModel)]="booking.email" placeholder="email@domain.com" />
+          </label>
+        </div>
+        <div class="terms-block">
+          <h4>Điều khoản & lưu ý</h4>
+          <p class="highlight">Quý khách vui lòng Đăng ký/Đăng nhập tài khoản để nhận chương trình khuyến mãi.</p>
+          <ul>
+            <li>Quý khách vui lòng có mặt tại bến xuất phát của xe trước ít nhất 30 phút để khởi hành, mang theo thông báo đã thanh toán vé.</li>
+            <li>Nếu cần trung chuyển, vui lòng liên hệ tổng đài trung chuyển 1900 6918 trước khi đặt vé.</li>
+            <li>Trường hợp đi các chặng đường ngắn hơn so với hành trình, vui lòng gọi 1900 6067 để được tư vấn giá vé.</li>
+          </ul>
+          <label class="agreement">
+            <input type="checkbox" [(ngModel)]="booking.accept" />
+            <span>Chấp nhận điều khoản đặt vé & chính sách bảo mật thông tin.</span>
+          </label>
+        </div>
+      </article>
+
+      <article class="card transfer-card">
+        <header class="card-head">
+          <h3>Điểm đón trả</h3>
+        </header>
+        <div class="transfer-grid">
+          <div class="transfer-column">
+            <p class="label">Điểm đón</p>
+            <div class="radio-group">
+              <label class="radio">
+                <input type="radio" value="station" name="pickup" [(ngModel)]="booking.pickupMode" />
+                <span>Điểm đón</span>
+              </label>
+              <label class="radio">
+                <input type="radio" value="shuttle" name="pickup" [(ngModel)]="booking.pickupMode" />
+                <span>Đón tận nơi</span>
+              </label>
+            </div>
+            <div class="location-select" *ngIf="booking.pickupMode === 'station'">
+              <div class="select-shell">
+                <select [(ngModel)]="booking.pickupLocation">
+                  <option value="">Chọn điểm đón</option>
+                  <option *ngFor="let option of pickupLocations" [value]="option">{{ option }}</option>
+                </select>
+                <span class="chevron"></span>
+              </div>
+            </div>
+            <div class="shuttle-row" *ngIf="booking.pickupMode === 'shuttle'">
+              <p class="shuttle-status" [class.empty]="!pickupCustomLocation">
+                {{ pickupCustomLocation || 'Chưa chọn vị trí' }}
+              </p>
+              <button
+                type="button"
+                class="map-btn icon-only"
+                (click)="openMap('pickup')"
+                aria-label="Chọn điểm đón trên bản đồ"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" class="pin-icon" aria-hidden="true">
+                  <path d="M12 2C8.686 2 6 4.686 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.314-2.686-6-6-6zm0 8.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+            <p class="note" *ngIf="booking.pickupMode === 'station'">
+              Có mặt tại <strong>{{ booking.pickupLocation || 'điểm đón đã chọn' }}</strong> {{ tripInfo.pickupDeadline }} để được trung chuyển.
+            </p>
+            <p class="note" *ngIf="booking.pickupMode === 'shuttle'">
+              Tài xế sẽ liên hệ xác nhận trước giờ đón.
+            </p>
+          </div>
+          <div class="transfer-column">
+            <p class="label">Điểm trả</p>
+            <div class="radio-group">
+              <label class="radio">
+                <input type="radio" value="station" name="dropoff" [(ngModel)]="booking.dropoffMode" />
+                <span>Điểm trả</span>
+              </label>
+              <label class="radio">
+                <input type="radio" value="shuttle" name="dropoff" [(ngModel)]="booking.dropoffMode" />
+                <span>Trả tận nơi</span>
+              </label>
+            </div>
+            <div class="location-select" *ngIf="booking.dropoffMode === 'station'">
+              <div class="select-shell">
+                <select [(ngModel)]="booking.dropoffLocation">
+                  <option value="">Chọn điểm trả</option>
+                  <option *ngFor="let option of dropoffLocations" [value]="option">{{ option }}</option>
+                </select>
+                <span class="chevron"></span>
+              </div>
+            </div>
+            <div class="shuttle-row" *ngIf="booking.dropoffMode === 'shuttle'">
+              <p class="shuttle-status" [class.empty]="!dropoffCustomLocation">
+                {{ dropoffCustomLocation || 'Chưa chọn vị trí' }}
+              </p>
+              <button
+                type="button"
+                class="map-btn icon-only"
+                (click)="openMap('dropoff')"
+                aria-label="Chọn điểm trả trên bản đồ"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" class="pin-icon" aria-hidden="true">
+                  <path d="M12 2C8.686 2 6 4.686 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.314-2.686-6-6-6zm0 8.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+            <p class="note" *ngIf="booking.dropoffMode === 'station'">
+              Nhà xe sẽ trả khách tại <strong>{{ booking.dropoffLocation || 'điểm trả đã chọn' }}</strong> theo lộ trình.
+            </p>
+            <p class="note" *ngIf="booking.dropoffMode === 'shuttle'">
+              Nhà xe sẽ sắp xếp trả tận nơi theo yêu cầu.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card payment-card">
+        <div class="payment-row">
+          <span>CUCDUNGPAY</span>
+          <strong>{{ formatCurrency(totalAmount) }}</strong>
+        </div>
+        <div class="action-row">
+          <button type="button" class="btn ghost">Hủy</button>
+          <button type="button" class="btn primary" (click)="datVe()">Thanh toán</button>
+        </div>
+        <p class="notice" *ngIf="thongBao" [ngClass]="{ success: isSuccess, error: !isSuccess }">{{ thongBao }}</p>
+      </article>
     </div>
 
-    <div class="form-body">
-      <div class="form-column">
-        <div class="form-group-futa">
-          <label for="tuyenXe"><i class="fas fa-route"></i> Tuyến xe</label>
-          <input id="tuyenXe" type="text" [(ngModel)]="tuyenXe" placeholder="VD: Sài Gòn - Đà Lạt">
+    <aside class="summary-column">
+      <article class="card summary-card">
+        <h4>Thông tin lượt đi</h4>
+        <dl>
+          <div>
+            <dt>Tuyến xe</dt>
+            <dd>{{ tripInfo.route }}</dd>
+          </div>
+          <div>
+            <dt>Thời gian xuất bến</dt>
+            <dd>{{ tripInfo.departTime }}</dd>
+          </div>
+          <div>
+            <dt>Số lượng ghế</dt>
+            <dd>{{ seatCount }}</dd>
+          </div>
+          <div>
+            <dt>Số ghế</dt>
+            <dd>{{ seatLabel }}</dd>
+          </div>
+          <div>
+            <dt>Tổng tiền lượt đi</dt>
+            <dd>{{ formatCurrency(totalAmount) }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="card price-card">
+        <h4>Chi tiết giá</h4>
+        <ul>
+          <li>
+            <span>Giá vé lượt đi</span>
+            <strong>{{ formatCurrency(totalAmount) }}</strong>
+          </li>
+          <li>
+            <span>Phí thanh toán</span>
+            <strong>0đ</strong>
+          </li>
+        </ul>
+        <div class="total-row">
+          <span>Tổng tiền</span>
+          <strong>{{ formatCurrency(totalAmount) }}</strong>
         </div>
-        <div class="form-group-futa">
-          <label for="ngayDi"><i class="fas fa-calendar-alt"></i> Ngày đi</label>
-          <input id="ngayDi" type="date" [(ngModel)]="ngayDi">
-        </div>
-        <div class="form-group-futa">
-          <label for="soLuong"><i class="fas fa-ticket-alt"></i> Số lượng</label>
-          <input id="soLuong" type="number" [(ngModel)]="soLuong" min="1">
+      </article>
+
+      <article class="card hotline-card">
+        <p>Trung tâm tổng đài & CSKH</p>
+        <strong>{{ tripInfo.hotline }}</strong>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<div class="map-modal" *ngIf="mapModal.visible">
+  <div class="modal-backdrop" (click)="closeMapModal()"></div>
+  <div class="modal-panel" role="dialog" aria-modal="true">
+    <header class="modal-head">
+      <h4>Chọn vị trí trên Google Maps</h4>
+      <button type="button" class="icon-button" aria-label="Đóng" (click)="closeMapModal()">×</button>
+    </header>
+    <div class="modal-body">
+      <label class="map-input">
+        <span>Địa chỉ hoặc địa danh</span>
+        <input
+          type="text"
+          [(ngModel)]="mapModal.query"
+          (ngModelChange)="scheduleSearch()"
+          placeholder="Nhập vị trí bạn muốn đón/trả"
+        />
+      </label>
+      <p class="map-feedback" *ngIf="mapModal.error">{{ mapModal.error }}</p>
+      <div class="map-frame">
+        <div class="map-canvas" #mapCanvas></div>
+        <div class="map-overlay" *ngIf="mapModal.loading">
+          <span class="spinner"></span>
+          <p>Đang tải bản đồ...</p>
         </div>
       </div>
-
-      <div class="form-column">
-        <div class="form-group-futa">
-          <label for="hoTen"><i class="fas fa-user"></i> Họ tên</label>
-          <input id="hoTen" type="text" [(ngModel)]="hoTen" placeholder="Họ và tên">
-        </div>
-        <div class="form-group-futa">
-          <label for="soDienThoai"><i class="fas fa-phone"></i> Số điện thoại</label>
-          <input id="soDienThoai" type="tel" [(ngModel)]="soDienThoai" placeholder="0912345678">
-        </div>
-      </div>
     </div>
-
-    <div class="form-footer">
-      <button class="btn-submit-futa" (click)="datVe()">Thanh toán</button>
-    </div>
-
-    <div *ngIf="thongBao" class="notification-futa" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
-      {{ thongBao }}
-    </div>
-   
+    <footer class="modal-actions">
+      <button type="button" class="btn ghost" (click)="closeMapModal()">Hủy</button>
+      <button
+        type="button"
+        class="btn primary"
+        (click)="saveMapSelection()"
+        [disabled]="!pendingLocation || mapModal.loading"
+      >
+        Lưu vị trí
+      </button>
+    </footer>
   </div>
 </div>
