@@ -1,1 +1,73 @@
-<p>quen-mat-khau-component works!</p>
+<section class="forgot-page">
+	<div class="forgot-container">
+		<div class="intro">
+			<p class="eyebrow">Khôi phục tài khoản</p>
+			<h1>Đặt lại mật khẩu trong 2 bước</h1>
+			<p>
+				Chúng tôi sẽ gửi mã OTP đến email đã đăng ký. Nhập mã này cùng mật khẩu mới để hoàn tất đặt lại.
+				Mã OTP có hiệu lực trong 5 phút.
+			</p>
+			<ul>
+				<li>OTP được gửi từ hệ thống Cúc Dũng. Hãy kiểm tra cả hộp thư rác.</li>
+				<li>Không chia sẻ mã cho bất kỳ ai để đảm bảo an toàn tài khoản.</li>
+				<li>Sau khi đổi mật khẩu, bạn sẽ được chuyển đến trang đăng nhập.</li>
+			</ul>
+			<a routerLink="/dang-nhap">Quay lại trang đăng nhập</a>
+		</div>
+
+		<div class="form-stack">
+			<article class="card">
+				<header>
+					<h3>1. Nhận mã OTP</h3>
+					<span>Bước bắt buộc</span>
+				</header>
+				<form [formGroup]="requestForm" (ngSubmit)="submitRequest()">
+					<label [class.invalid]="showRequestError('email')">
+						Email đã đăng ký
+						<input type="email" formControlName="email" placeholder="email@domain.com" />
+						<small *ngIf="showRequestError('email')">Email không hợp lệ.</small>
+					</label>
+					<button type="submit" [disabled]="requestForm.invalid || loadingRequest">
+						{{ loadingRequest ? 'Đang gửi...' : 'Gửi OTP' }}
+					</button>
+				</form>
+			</article>
+
+			<article class="card" [class.disabled]="!otpRequested">
+				<header>
+					<h3>2. Nhập OTP & mật khẩu mới</h3>
+					<span *ngIf="otpRequested">Đã mở khóa</span>
+				</header>
+				<form [formGroup]="resetForm" (ngSubmit)="submitReset()">
+					<label [class.invalid]="showResetError('email')">
+						Email
+						<input type="email" formControlName="email" placeholder="email@domain.com" />
+						<small *ngIf="showResetError('email')">Email chưa chính xác.</small>
+					</label>
+					<label [class.invalid]="showResetError('otp')">
+						Mã OTP
+						<input type="text" formControlName="otp" placeholder="Nhập mã 6 số" />
+						<small *ngIf="showResetError('otp')">Vui lòng kiểm tra lại mã OTP.</small>
+					</label>
+					<label [class.invalid]="showResetError('newPassword')">
+						Mật khẩu mới
+						<input type="password" formControlName="newPassword" placeholder="Tối thiểu 8 ký tự" />
+						<small *ngIf="showResetError('newPassword')">Yêu cầu 8-40 ký tự.</small>
+					</label>
+					<label [class.invalid]="showResetError('confirmPassword') || resetForm.hasError('passwordMismatch')">
+						Xác nhận mật khẩu
+						<input type="password" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu" />
+						<small *ngIf="resetForm.hasError('passwordMismatch')">Mật khẩu nhập lại chưa khớp.</small>
+					</label>
+					<button type="submit" [disabled]="resetForm.invalid || loadingReset || !otpRequested">
+						{{ loadingReset ? 'Đang xử lý...' : 'Đổi mật khẩu' }}
+					</button>
+				</form>
+			</article>
+
+			<p class="status" *ngIf="statusMessage" [class.error]="statusType === 'error'" [class.success]="statusType === 'success'">
+				{{ statusMessage }}
+			</p>
+		</div>
+	</div>
+</section>

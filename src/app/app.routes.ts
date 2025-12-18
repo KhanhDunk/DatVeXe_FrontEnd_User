@@ -11,6 +11,7 @@ import { QuenMatKhauComponent } from '../Auth/QuenMatKhau/quen-mat-khau-componen
 import { LichTrinhChiTietComponent } from '../Page/LichTrinhChiTiet/lich-trinh-chi-tiet-component/lich-trinh-chi-tiet-component';
 import { DatVeComponent } from '../Page/DatVe/dat-ve-component/dat-ve-component';
 import { VeChungToiComponent } from '../Page/VeChungToi/ve-chung-toi-component/ve-chung-toi-component';
+import { ThanhToanComponent } from '../Page/ThanhToan/thanh-toan-component/thanh-toan-component';
 
 
 export const routes: Routes = [
@@ -29,6 +30,7 @@ export const routes: Routes = [
       { path: 'quen-mat-khau', component: QuenMatKhauComponent },
       { path: 'lich-trinh-chi-tiet', component: LichTrinhChiTietComponent },
       { path: 'dat-ve', component: DatVeComponent },
+      { path: 'thanh-toan', component: ThanhToanComponent },
       { path: 've-chung-toi', component: VeChungToiComponent }
     ]
   },

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginRequest } from '../Interface/login-interface';
 import { RegisterRequest } from '../Interface/register-interface';
+import { ForgotPasswordRequest } from '../Interface/forgot-password-interface';
+import { ResetPasswordRequest } from '../Interface/reset-password-interface';
 import { ResponseDTO } from '../Interface/response-model';
 import { environment } from '../environment';
 
@@ -37,6 +39,22 @@ export class AuthService {
     return this.http.post<ResponseDTO<any>>(
       `${this.apiUrl}/register`,
       data
+    );
+  }
+
+  forgotPassword(payload: ForgotPasswordRequest): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}/forgot-password`,
+      payload,
+      { responseType: 'text' as 'json' }
+    );
+  }
+
+  resetPassword(payload: ResetPasswordRequest): Observable<string> {
+    return this.http.post<string>(
+      `${this.apiUrl}/reset-password`,
+      payload,
+      { responseType: 'text' as 'json' }
     );
   }
 

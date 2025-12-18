@@ -1,0 +1,226 @@
+.forgot-page {
+	min-height: 100vh;
+	padding: 96px 24px;
+	background: radial-gradient(circle at 12% 20%, rgba(255, 122, 24, 0.15), transparent 45%),
+		radial-gradient(circle at 80% 0, rgba(255, 210, 155, 0.35), transparent 55%),
+		var(--background);
+
+	.forgot-container {
+		margin: 0 auto;
+		width: min(1180px, 100%);
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		gap: 56px;
+		align-items: center;
+		position: relative;
+	}
+
+	.intro {
+		background: var(--surface);
+		border-radius: var(--radius-xl);
+		padding: 48px;
+		box-shadow: var(--shadow-soft);
+		position: relative;
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 40px -80px 0 auto;
+			width: 220px;
+			background: linear-gradient(135deg, rgba(255, 122, 24, 0.15), rgba(255, 122, 24, 0));
+			border-radius: 40px;
+			transform: rotate(-14deg);
+			pointer-events: none;
+		}
+
+		.eyebrow {
+			font-size: 0.85rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--primary);
+			margin-bottom: 16px;
+		}
+
+		h1 {
+			font-size: clamp(2rem, 3vw, 2.8rem);
+			margin: 0 0 18px;
+		}
+
+		p {
+			margin: 0 0 18px;
+		}
+
+		ul {
+			padding-left: 20px;
+			margin: 0 0 20px;
+			color: var(--text-muted);
+			display: grid;
+			gap: 10px;
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-weight: 600;
+			color: var(--primary);
+			text-decoration: none;
+
+			&:hover {
+				gap: 12px;
+			}
+		}
+	}
+
+	.form-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.card {
+		background: var(--surface);
+		border-radius: var(--radius-lg);
+		padding: 32px;
+		box-shadow: var(--shadow-soft);
+		border: 1px solid rgba(255, 122, 24, 0.08);
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		&.disabled {
+			opacity: 0.55;
+			pointer-events: none;
+			filter: grayscale(0.3);
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+
+			h3 {
+				margin: 0;
+				font-size: 1.2rem;
+			}
+
+			span {
+				padding: 6px 14px;
+				border-radius: var(--radius-pill);
+				background: var(--primary-light);
+				color: var(--primary-dark);
+				font-size: 0.88rem;
+				font-weight: 600;
+			}
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+
+			label {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				font-weight: 600;
+				color: var(--text-primary);
+
+				input {
+					padding: 14px 16px;
+					border-radius: var(--radius-md);
+					border: 1px solid rgba(0, 0, 0, 0.08);
+					font-size: 0.98rem;
+					background: #fff;
+
+					&:focus {
+						outline: 2px solid rgba(255, 122, 24, 0.2);
+						border-color: transparent;
+					}
+				}
+
+				&.invalid input {
+					border-color: #f7544f;
+				}
+
+				small {
+					color: #f7544f;
+					font-weight: 500;
+				}
+			}
+
+			button {
+				margin-top: 4px;
+				padding: 16px;
+				border: none;
+				border-radius: var(--radius-pill);
+				background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+				color: #fff;
+				font-size: 1rem;
+				font-weight: 600;
+				cursor: pointer;
+				box-shadow: 0 15px 30px rgba(255, 122, 24, 0.25);
+
+				&:hover {
+					transform: translateY(-2px);
+				}
+
+				&:disabled {
+					background: rgba(0, 0, 0, 0.08);
+					box-shadow: none;
+					cursor: not-allowed;
+					transform: none;
+				}
+			}
+		}
+	}
+
+	.status {
+		font-weight: 600;
+		text-align: center;
+		padding: 16px;
+		border-radius: var(--radius-md);
+		background: rgba(0, 0, 0, 0.04);
+
+		&.success {
+			color: #2d8a4b;
+			background: rgba(45, 138, 75, 0.08);
+		}
+
+		&.error {
+			color: #c92525;
+			background: rgba(201, 37, 37, 0.08);
+		}
+	}
+
+	@media (max-width: 1080px) {
+		padding: 64px 20px;
+
+		.forgot-container {
+			grid-template-columns: 1fr;
+		}
+
+		.intro {
+			order: 2;
+		}
+
+		.form-stack {
+			order: 1;
+		}
+	}
+
+	@media (max-width: 640px) {
+		padding: 48px 16px;
+
+		.intro,
+		.card {
+			padding: 28px;
+		}
+
+		.forgot-container {
+			gap: 32px;
+		}
+	}
+}
