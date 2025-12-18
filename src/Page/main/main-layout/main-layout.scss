@@ -1,268 +1,398 @@
 /* HEADER */
 .header {
   width: 100%;
-  background: linear-gradient(180deg, #4da8ff, #1e90ff);
-  color: white;
-  padding: 10px 0 20px 0;
+  background: linear-gradient(120deg, #ffb347 0%, #ff8c3f 55%, #ff6a00 100%);
+  color: #fff;
+  padding: 16px 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 25px 40px rgba(255, 138, 76, 0.2);
 }
 
-/* Container cố định */
 .container {
-  max-width: 1300px;
-  margin: auto;
-  padding: 0 20px;
+  width: min(1400px, 100% - clamp(1.5rem, 6vw, 8rem));
+  margin-inline: auto;
 }
 
-/* MAIN BAR */
 .main-bar {
-  position: relative; /* tạo khung để canh vị trí */
-  height: 70px;       /* đảm bảo đủ chỗ cho logo */
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center; /* ĐẶT MENU Ở GIỮA */
+  gap: clamp(1.25rem, 4vw, 3rem);
+  min-height: 90px;
 }
-/* Container cho nút đăng nhập bên phải */
-.login-box {
-  position: absolute;
-  right: 0;
-  display: flex;
+
+.brand {
+  position: relative;
+  isolation: isolate;
+}
+
+.brand__label {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  gap: 0.35rem;
   align-items: center;
+  backdrop-filter: blur(8px);
+  transition: var(--transition-base);
 }
 
-/* Nút đăng nhập */
-.login-btn {
-  background: white;
-  color: #1e90ff;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+.brand__label::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+  animation: pulse 2.6s infinite;
 }
 
-.login-btn:hover {
-  background: #f0f8ff;
-  transform: translateY(-1px);
+.brand__label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
-
-/* LOGO bên trái */
-.logo {
-  position: absolute;
-  left: 0;
-  height: 65px;
-  object-fit: contain;
-}
-
-/* MENU giữa */
 .menu {
   display: flex;
-  gap: 40px;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2.75rem);
 }
 
 .menu a {
-  color: white;
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
   text-decoration: none;
   position: relative;
   padding-bottom: 6px;
+  letter-spacing: 0.03em;
+  transition: var(--transition-base);
 }
 
-/* Active underline */
-.menu a.active::after {
+.menu a::after {
   content: "";
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
   height: 3px;
-  background: white;
-  border-radius: 5px;
+  background: #fff;
+  border-radius: 999px;
+  transition: var(--transition-base);
 }
 
+.menu a:hover,
+.menu a.active {
+  color: #fff;
+}
 
+.menu a:hover::after,
+.menu a.active::after {
+  width: 100%;
+  left: 0;
+}
 
+.login-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-btn {
+  background: #fff;
+  color: var(--primary-dark);
+  padding: 0.65rem 1.65rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 18px 30px rgba(255, 255, 255, 0.2);
+  transition: var(--transition-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.login-btn:hover {
+  color: #fff;
+  background: linear-gradient(120deg, #ff9d4f, var(--primary-dark));
+  transform: translateY(-2px) scale(1.01);
+}
 
 main {
   flex: 1;
   width: 100%;
+  background: var(--background);
+  padding-top: 0;
+  padding-bottom: clamp(1.5rem, 4vw, 3.5rem);
 }
 
-/* --- Biến màu Thương hiệu Cúc Dũng (Đã định nghĩa ở lần trước) --- */
-
-$brand-red: #E7302A; // Accent/Primary
-$text-light: #f4f4f4; // Primary-Foreground
-
-/* --- Định nghĩa SCSS cho các class Tailwind trong Footer --- */
-
-
-footer {
-    // Giả lập class bg-foreground (Nền Footer)
-  background: var(--primary);
-  color: var(--foreground);
-    
-    // Giả lập class text-primary-foreground (Màu chữ chính trên nền tối)
-    color: $text-light;
-    padding-top: 4rem; // pt-16
-    padding-bottom: 2rem; // pb-8
+/* FOOTER */
+.site-footer {
+  background: linear-gradient(180deg, var(--primary-light), #ffe3cc);
+  color: var(--text-primary, #2d2d2d);
+  margin-top: clamp(2rem, 8vw, 5rem);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -20px 50px rgba(255, 154, 60, 0.15);
 }
 
-.max-w-7xl {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem; // px-4
-    padding-right: 1rem; // px-4
+.footer-shell {
+  padding-block: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
 }
 
-/* --- Grid và Column Styling --- */
-.grid-cols-1 {
-    grid-template-columns: 1fr;
-}
-@media (min-width: 768px) {
-    .md\:grid-cols-4 {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
-.gap-8 {
-    gap: 2rem;
-}
-.mb-12 {
-    margin-bottom: 3rem;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.5rem, 5vw, 3rem);
+  align-items: flex-start;
 }
 
-/* --- Logo & Info Section --- */
-.logo .w-8.h-8 {
-    background-color: $brand-red; // Màu đỏ cho icon bus
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    i.fa-bus {
-        color: $text-light;
-        font-size: 1.1rem;
-    }
+.footer-brand {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 30px rgba(255, 165, 96, 0.25);
 }
 
-p.text-primary-foreground\/70 {
-    opacity: 0.8;
-    line-height: 1.6;
+.footer-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary), #ff9d4f);
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
-/* --- Social Icons & Links --- */
-.flex.gap-4 a, .space-y-2 a {
-    color: rgba($text-light, 0.7); // text-primary-foreground/70
-    text-decoration: none;
-    transition: color 0.3s, transform 0.3s;
-    
-    // Icon Mạng xã hội
-    svg {
-        fill: currentColor; // Đảm bảo icon lấy màu từ thẻ <a>
-    }
-
-    &:hover {
-        color: $brand-red; // hover:text-primary (Màu đỏ)
-        transform: translateX(3px); // Thêm hiệu ứng di chuyển nhẹ
-    }
+.footer-brand__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
 }
 
-.slider-container {
+.footer-brand__desc {
+  color: var(--text-muted, #5c5c5c);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-links a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--primary-dark);
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(255, 132, 61, 0.25);
+  transition: var(--transition-base);
+}
+
+.social-links a:hover {
+  transform: translateY(-4px);
+  color: #fff;
+  background: var(--primary-dark);
+}
+
+.footer-column h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary, #2d2d2d);
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: var(--text-muted, #5c5c5c);
+  transition: var(--transition-base);
+}
+
+.footer-column a:hover {
+  color: var(--primary-dark);
+  padding-left: 6px;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: center;
+}
+
+.contact-icon {
+  color: var(--primary-dark);
+  font-size: 1rem;
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.15), #fff);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 20px rgba(255, 145, 77, 0.22);
+}
+
+.contact-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.contact-list p {
+  margin: 0;
+  color: var(--text-muted, #5c5c5c);
+}
+
+.contact-list strong {
+  color: var(--text-primary, #2d2d2d);
+}
+
+.footer-bottom {
+  margin-top: clamp(1.25rem, 4vw, 2.3rem);
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted, #5c5c5c);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
   position: relative;
-  width: 100%;
-  height: 450px;
-  overflow: hidden;
 }
 
-.slides {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
+.footer-links a::after {
+  content: "";
   position: absolute;
-  top: 0;
   left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition-base);
+}
+
+.footer-links a:hover::after {
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity .8s ease-in-out;
 }
 
-.slide.active {
-  opacity: 1;
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+  100% { opacity: 0.4; transform: scale(1); }
 }
 
-.font-bold {
-    font-weight: 700;
+@media (max-width: 900px) {
+  .main-bar {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .brand {
+    justify-self: center;
+  }
+
+  .login-box {
+    justify-content: center;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-/* --- Contact Section --- */
-.flex.gap-3.items-start {
-    .text-primary {
-        color: $brand-red; // Icons liên hệ (Màu đỏ)
-    }
-    p {
-        color: rgba($text-light, 0.7);
-    }
-    p.font-semibold {
-        color: $text-light; // Số điện thoại, Email, Địa chỉ đậm
-        font-weight: 600;
-    }
+@media (max-width: 640px) {
+  .footer-links {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-/* --- Copyright Section --- */
-.border-t {
-    border-top: 1px solid rgba($text-light, 0.2); // border-primary-foreground/20
-    padding-top: 2rem; // pt-8
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.4rem 0.4rem 0.4rem 0.55rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
 }
-.text-sm {
-    font-size: 0.875rem;
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--primary-dark);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
 }
 
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
 
+.user-meta span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.7);
+}
 
+.user-meta strong {
+  color: #fff;
+  font-size: 0.95rem;
+}
 
-/* --- Responsive adjustments --- */
-@media (max-width: 768px) {
-    .md\:flex-row {
-        flex-direction: column;
-    }
-    .justify-between {
-        justify-content: center;
-    }
-    .items-center {
-        align-items: center;
-    }
-    .gap-4 {
-        gap: 1rem;
-    }
-    
-    // Canh giữa nội dung các cột trên mobile
-    .grid > div {
-        text-align: center;
-    }
-    
-    .grid > div:first-child .flex {
-        justify-content: center;
-    }
-    .grid > div:first-child .flex.gap-4 {
-        justify-content: center;
-    }
-    
-    .space-y-2 {
-        ul {
-            padding-left: 0;
-        }
-        li {
-            padding-left: 0;
-        }
-    }
+.logout-btn {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  color: #fff;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
 }

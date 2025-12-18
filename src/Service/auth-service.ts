@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginRequest } from '../Interface/login-interface';
+import { RegisterRequest } from '../Interface/register-interface';
 import { ResponseDTO } from '../Interface/response-model';
 import { environment } from '../environment';
 
@@ -11,7 +12,9 @@ import { environment } from '../environment';
 })
 export class AuthService {
 
-  private apiUrl = `${environment.apiUrl}/auth`;
+  private apiUrl = `${environment.apiUrl}/Auth`;
+  private currentUserSubject = new BehaviorSubject<string | null>(this.getStoredUsername());
+  readonly authState$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -23,14 +26,14 @@ export class AuthService {
     ).pipe(
       tap(res => {
         if (res.success && res.data) {
-          localStorage.setItem('token', res.data);
+          this.setSession(res.data, data.username);
         }
       })
     );
   }
 
   // 📝 REGISTER
-  register(data: any): Observable<ResponseDTO<any>> {
+  register(data: RegisterRequest): Observable<ResponseDTO<any>> {
     return this.http.post<ResponseDTO<any>>(
       `${this.apiUrl}/register`,
       data
@@ -39,16 +42,50 @@ export class AuthService {
 
   // 🔓 LOGOUT
   logout(): void {
-    localStorage.removeItem('token');
+    this.clearSession();
   }
 
   // 🔑 GET TOKEN
   getToken(): string | null {
+    if (!this.isBrowser()) {
+      return null;
+    }
     return localStorage.getItem('token');
+  }
+
+  getCurrentUser(): string | null {
+    return this.currentUserSubject.value;
   }
 
   // ✅ CHECK LOGIN
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  private setSession(token: string, username: string): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('username', username);
+    }
+    this.currentUserSubject.next(username);
+  }
+
+  private clearSession(): void {
+    if (this.isBrowser()) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+    }
+    this.currentUserSubject.next(null);
+  }
+
+  private getStoredUsername(): string | null {
+    if (!this.isBrowser()) {
+      return null;
+    }
+    return localStorage.getItem('username');
+  }
+
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }

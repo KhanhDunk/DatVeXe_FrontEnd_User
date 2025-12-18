@@ -1,54 +1,199 @@
-.ticket-wrapper {
-  width: 100%;
+.lookup-page {
   min-height: 100vh;
-  background: #f4f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: radial-gradient(circle at top, rgba(255, 187, 120, 0.35), transparent 55%), var(--background);
+  padding: clamp(2rem, 5vw, 4rem) 0;
 }
 
-.ticket-box {
-  width: 100%;
-  max-width: 500px;
+.lookup-grid {
+  width: min(1100px, 100% - 40px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.lookup-card {
   background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-shadow: var(--shadow-soft);
 }
 
-.title {
-  text-align: center;
-  font-weight: 700;
-  color: #0d6efd;
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 0.4rem;
+  display: inline-block;
 }
 
-.search-box {
+.lookup-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 0.75rem;
+}
+
+.lookup-header p {
+  color: var(--text-muted);
+}
+
+.lookup-form {
+  margin: 2rem 0;
+}
+
+.lookup-form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.input-row {
   display: flex;
-  gap: 10px;
-
-  input {
-    flex: 1;
-  }
+  gap: 0.75rem;
 }
 
-.info-card {
-  margin-top: 20px;
+.input-row input {
+  flex: 1;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  font-size: 1rem;
+  transition: var(--transition-base);
+}
 
-  .card-header {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
+.input-row input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 122, 24, 0.15);
+  outline: none;
+}
+
+.input-row button {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 18px 30px rgba(255, 153, 85, 0.35);
+  transition: var(--transition-base);
+}
+
+.input-row button:hover {
+  transform: translateY(-2px);
+}
+
+.lookup-form small {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+}
+
+.lookup-result {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.08), rgba(255, 241, 227, 0.8));
+}
+
+.result-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.status-pill {
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.result-grid span {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.lookup-alert {
+  margin-top: 1rem;
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  background: rgba(255, 122, 24, 0.1);
+  color: var(--primary-dark);
+}
+
+.lookup-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.aside-card {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.aside-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.aside-card li {
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.aside-card li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+}
+
+.aside-card.tone {
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.12), #fff);
+  color: var(--text-primary);
 }
 
 .status-active {
-  color: #198754;
-  font-weight: 600;
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
 }
+
 .status-pending {
-  color: #ffc107;
-  font-weight: 600;
+  background: rgba(255, 193, 7, 0.15);
+  color: #c98500;
 }
+
 .status-cancelled {
-  color: #dc3545;
-  font-weight: 600;
+  background: rgba(231, 76, 60, 0.15);
+  color: #c0392b;
+}
+
+@media (max-width: 900px) {
+  .lookup-grid {
+    grid-template-columns: 1fr;
+  }
 }

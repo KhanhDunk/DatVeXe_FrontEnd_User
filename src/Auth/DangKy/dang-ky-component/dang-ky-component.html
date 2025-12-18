@@ -1,1 +1,66 @@
-<p>dang-ky-component works!</p>
+<section class="auth-page">
+	<div class="auth-illustration">
+		<p class="eyebrow">Gia nhập Cúc Dũng</p>
+		<h1>Tạo tài khoản để giữ chỗ nhanh hơn</h1>
+		<p>
+			Theo dõi vé, lưu thông tin hành khách và nhận thông báo khuyến mãi độc quyền. Chỉ mất chưa đầy một phút để bắt đầu.
+		</p>
+		<ul>
+			<li>Giữ chỗ tự động trong 30 phút</li>
+			<li>Quản lý thông tin hành khách trong một chạm</li>
+			<li>Nhận thông báo về lịch trình và ưu đãi</li>
+		</ul>
+		<a routerLink="/dang-nhap">Đã có tài khoản? Đăng nhập</a>
+	</div>
+
+	<div class="auth-card">
+		<form [formGroup]="form" (ngSubmit)="submit()">
+			<h2>Đăng ký tài khoản</h2>
+
+			<div class="form-grid">
+				<label [class.invalid]="showError('username')">
+					Tên đăng nhập
+					<input type="text" formControlName="username" placeholder="vd: cuuulong_oi" autocomplete="username" />
+					<small *ngIf="showError('username')">6-20 ký tự, chỉ chứa chữ, số và dấu gạch dưới.</small>
+				</label>
+
+				<label [class.invalid]="showError('email')">
+					Email
+					<input type="email" formControlName="email" placeholder="email@domain.com" autocomplete="email" />
+					<small *ngIf="showError('email')">Email chưa hợp lệ.</small>
+				</label>
+
+				<label [class.invalid]="showError('phone')">
+					Số điện thoại
+					<input type="tel" formControlName="phone" placeholder="0xxxxxxxxx" autocomplete="tel" />
+					<small *ngIf="showError('phone')">Vui lòng nhập đúng số điện thoại.</small>
+				</label>
+
+				<label [class.invalid]="showError('password')">
+					Mật khẩu
+					<input type="password" formControlName="password" placeholder="Ít nhất 8 ký tự" autocomplete="new-password" />
+					<small *ngIf="showError('password')">8-40 ký tự và phải có chữ hoa, chữ thường, chữ số.</small>
+				</label>
+
+				<label [class.invalid]="showError('confirmPassword') || form.hasError('passwordMismatch')">
+					Xác nhận mật khẩu
+					<input type="password" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />
+					<small *ngIf="form.hasError('passwordMismatch')">Mật khẩu nhập lại chưa khớp.</small>
+				</label>
+			</div>
+
+			<label class="agree" [class.invalid]="showError('agree')">
+				<input type="checkbox" formControlName="agree" />
+				<span>Tôi đồng ý với điều khoản và chính sách bảo mật.</span>
+			</label>
+
+			<button type="submit" [disabled]="form.invalid || loading">
+				{{ loading ? 'Đang xử lý...' : 'Tạo tài khoản' }}
+			</button>
+
+			<p class="server-message" *ngIf="serverMessage">
+				{{ serverMessage }}
+			</p>
+		</form>
+	</div>
+</section>

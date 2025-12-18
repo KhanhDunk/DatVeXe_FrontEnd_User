@@ -1,12 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #1877F2;         /* Facebook Blue */
-  --primary-dark: #0E5AAB;    /* Darker FB Blue */
-  --primary-light: #E7F3FF;   /* Light FB Blue */
-  --accent: #42B72A;          /* Facebook Green Button */
-  --background: #F0F2F5;      /* FB background */
-  --foreground: #1C1E21;      /* Text color */
-  
+  --primary: #ff7a18;
+  --primary-dark: #cc5c00;
+  --primary-light: #fff4e6;
+  --accent: #ffd29b;
+  --background: #fffdf8;
+  --surface: #ffffff;
+  --text-primary: #2d2d2d;
+  --text-muted: #5f6065;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-soft: 0 25px 60px rgba(255, 138, 76, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a,
+button,
+input,
+textarea {
+  transition: var(--transition-base);
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: rgba(255, 122, 24, 0.2);
+  color: var(--text-primary);
 }
