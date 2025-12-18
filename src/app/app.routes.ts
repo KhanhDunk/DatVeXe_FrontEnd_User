@@ -6,8 +6,11 @@ import { LichTrinhComponent } from '../Page/LichTrinh/lich-trinh-component/lich-
 import { TinTucComponent } from '../Page/TinTuc/tin-tuc-component/tin-tuc-component';
 import { LienHeComponent } from '../Page/LienHe/lien-he-component';
 import { DangNhapComponent } from '../Auth/DangNhap/dang-nhap-component/dang-nhap-component';
+import { DangKyComponent } from '../Auth/DangKy/dang-ky-component/dang-ky-component';
+import { QuenMatKhauComponent } from '../Auth/QuenMatKhau/quen-mat-khau-component/quen-mat-khau-component';
 import { LichTrinhChiTietComponent } from '../Page/LichTrinhChiTiet/lich-trinh-chi-tiet-component/lich-trinh-chi-tiet-component';
 import { DatVeComponent } from '../Page/DatVe/dat-ve-component/dat-ve-component';
+import { VeChungToiComponent } from '../Page/VeChungToi/ve-chung-toi-component/ve-chung-toi-component';
 
 
 export const routes: Routes = [
@@ -15,14 +18,18 @@ export const routes: Routes = [
     path: '',
     component: MainLayout,
     children: [
-      { path: 'trang-chu', component: TrangChuComponent },
+      { path: '', component: TrangChuComponent },
+      { path: 'trang-chu', redirectTo: '', pathMatch: 'full' },
       { path: 'tra-cuu', component: TraCuuComponent },
       { path: 'lich-trinh', component: LichTrinhComponent },
       { path: 'tin-tuc', component: TinTucComponent },
       { path: 'lien-he', component: LienHeComponent },
       { path: 'dang-nhap', component: DangNhapComponent },
+      { path: 'dang-ky', component: DangKyComponent },
+      { path: 'quen-mat-khau', component: QuenMatKhauComponent },
       { path: 'lich-trinh-chi-tiet', component: LichTrinhChiTietComponent },
-      { path: 'dat-ve', component: DatVeComponent }
+      { path: 'dat-ve', component: DatVeComponent },
+      { path: 've-chung-toi', component: VeChungToiComponent }
     ]
   },
   { path: '**', redirectTo: '' }

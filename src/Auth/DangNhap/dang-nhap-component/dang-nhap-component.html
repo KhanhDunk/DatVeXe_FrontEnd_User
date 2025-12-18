@@ -16,10 +16,21 @@
         <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Nhập mật khẩu" required>
       </div>
 
-      <button type="submit" class="btn-login">Đăng nhập</button>
+      <div class="forgot-password">
+        <a routerLink="/quen-mat-khau">Quên mật khẩu?</a>
+      </div>
 
-      <div class="login-footer">
-        <a href="#">Quên mật khẩu?</a>
+      <button type="submit" class="btn-login" [disabled]="loading">
+        {{ loading ? 'Đang xử lý...' : 'Đăng nhập' }}
+      </button>
+
+      <p class="status-message" [class.error]="hasError" *ngIf="statusMessage">
+        {{ statusMessage }}
+      </p>
+
+      <div class="register-callout">
+        <span>Chưa có tài khoản?</span>
+        <a routerLink="/dang-ky" class="primary-link">Đăng ký</a>
       </div>
     </form>
   </div>

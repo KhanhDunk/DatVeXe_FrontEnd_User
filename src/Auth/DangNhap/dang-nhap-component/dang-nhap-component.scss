@@ -1,14 +1,14 @@
-$primary-color: #1877F2 ;
-$accent-color: #E7302A;
-$text-color: #333;
-$input-border: #ccc;
+$primary-color: var(--primary);
+$accent-color: #ff914d;
+$text-color: var(--text-primary);
+$input-border: rgba(0,0,0,0.1);
 
 .login-wrapper {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f4f7f6;
+  background: var(--background);
   padding: 20px;
 }
 
@@ -55,38 +55,77 @@ $input-border: #ccc;
       input {
         padding: 10px 15px;
         border: 1px solid $input-border;
-        border-radius: 6px;
+        border-radius: 10px;
         font-size: 1rem;
-        transition: border-color 0.3s;
+        transition: var(--transition-base);
 
         &:focus {
           border-color: $primary-color;
+          box-shadow: 0 0 0 4px rgba(255, 122, 24, 0.2);
           outline: none;
+        }
+      }
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-top: -10px;
+
+      a {
+        font-size: 0.85rem;
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
 
     .btn-login {
       padding: 12px;
-      background: $primary-color;
+      background: linear-gradient(120deg, var(--primary), $accent-color);
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 999px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: var(--transition-base);
+      box-shadow: 0 18px 30px rgba(255, 145, 77, 0.3);
 
       &:hover {
-        background: $accent-color;
+        transform: translateY(-2px);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
       }
     }
 
-    .login-footer {
+    .status-message {
       margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
 
-      a {
-        font-size: 0.9rem;
+      &.error {
+        color: #c0392b;
+      }
+    }
+
+    .register-callout {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+
+      .primary-link {
         color: $primary-color;
+        font-weight: 600;
         text-decoration: none;
 
         &:hover {

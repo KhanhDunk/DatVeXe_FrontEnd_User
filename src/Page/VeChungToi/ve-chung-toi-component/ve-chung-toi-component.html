@@ -1,0 +1,88 @@
+<section class="about-page">
+  <div class="about-hero">
+    <div class="about-hero__content">
+      <p class="eyebrow">Về chúng tôi</p>
+      <h1>Cúc Dũng - đồng hành trên mọi hành trình đường dài</h1>
+      <p>
+        Chúng tôi khởi đầu bằng niềm tin rằng mỗi chuyến đi phải thật êm ái, đúng giờ và chứa đựng sự tử tế.
+        Đội ngũ hơn 1.200 thành viên đang không ngừng hoàn thiện trải nghiệm đặt vé, đón tiếp và chăm sóc khách
+        hàng ở mọi điểm chạm.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/dat-ve" class="btn primary">Đặt vé ngay</a>
+        <a routerLink="/tra-cuu" class="btn ghost">Tra cứu hành trình</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat" *ngFor="let stat of stats">
+          <span class="stat__value">{{ stat.value }}</span>
+          <p class="stat__label">{{ stat.label }}</p>
+          <small>{{ stat.description }}</small>
+        </div>
+      </div>
+    </div>
+    <div class="about-hero__media" aria-hidden="true">
+      <div class="media-card">
+        <img src="Assets/images/anhxe1.jpg" alt="Nội thất xe Cúc Dũng" />
+      </div>
+      <div class="media-card floating">
+        <img src="Assets/images/anhxe2.jpg" alt="Đội xe chất lượng cao" />
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <div class="section-header">
+      <p class="eyebrow">Hành trình phát triển</p>
+      <h2>Từ chuyến xe đầu tiên đến hệ sinh thái dịch vụ số</h2>
+      <p>
+        Những cột mốc quan trọng giúp chúng tôi định hình bản sắc phục vụ: luôn trung thực, kỷ luật và sẻ chia với
+        cộng đồng.
+      </p>
+    </div>
+    <div class="timeline">
+      <article class="timeline-item" *ngFor="let item of milestones">
+        <div class="timeline-item__year">{{ item.year }}</div>
+        <div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="values-grid">
+    <article class="value-card" *ngFor="let value of values">
+      <div class="value-icon" [ngSwitch]="value.icon" aria-hidden="true">
+        <svg *ngSwitchCase="'safety'" viewBox="0 0 24 24">
+          <path d="M12 2l7 3v5c0 5-3 9.5-7 12-4-2.5-7-7-7-12V5l7-3zm0 3.1L7 6.7V10c0 3.7 2.2 7.6 5 9.8 2.8-2.2 5-6.1 5-9.8V6.7l-5-1.6zm0 2.4a2.5 2.5 0 11-2.5 2.5A2.5 2.5 0 0112 7.5z" />
+        </svg>
+        <svg *ngSwitchCase="'care'" viewBox="0 0 24 24">
+          <path d="M12 21s-7-4.35-7-10a4 4 0 017-2.65A4 4 0 0119 11c0 5.65-7 10-7 10zm0-10.75A2.25 2.25 0 109.75 8 2.25 2.25 0 0012 10.25z" />
+          <path d="M17.75 4.5a2.25 2.25 0 00-2.1 1.48 4.3 4.3 0 011.12 2.9 4.28 4.28 0 01-.32 1.6A2.25 2.25 0 0020.5 8 2.25 2.25 0 0017.75 4.5z" opacity=".4" />
+        </svg>
+        <svg *ngSwitchCase="'green'" viewBox="0 0 24 24">
+          <path d="M12 2c5 3 8 6.5 8 10.5 0 4.76-3.5 7.89-8 9.5-4.5-1.61-8-4.74-8-9.5C4 8.5 7 5 12 2zm0 4.2c-2.77 1.9-4.33 3.9-4.59 6.17A3.54 3.54 0 0011 15.58v-2.8a1 1 0 011-1 1 1 0 011 1v2.8a3.54 3.54 0 003.6-3.21C16.33 10.1 14.77 8.1 12 6.2z" />
+        </svg>
+      </div>
+      <h3>{{ value.title }}</h3>
+      <p>{{ value.description }}</p>
+    </article>
+  </div>
+
+  <div class="about-section">
+    <div class="section-header">
+      <p class="eyebrow">Khoảnh khắc đáng nhớ</p>
+      <h2>Những thước phim ghi lại sự tận tâm</h2>
+      <p>
+        Từ khoang xe êm ái đến trung tâm điều hành thông minh, mọi chi tiết đều được thiết kế để chuyến đi của bạn
+        luôn trọn vẹn.
+      </p>
+    </div>
+    <div class="gallery">
+      <figure class="gallery-item" *ngFor="let photo of gallery">
+        <img [src]="photo.src" [alt]="photo.caption" />
+        <figcaption>{{ photo.caption }}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

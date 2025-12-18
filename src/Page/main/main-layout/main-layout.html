@@ -1,28 +1,37 @@
 <header class="header">
   <div class="container">
-
     <div class="main-bar">
+      <div class="brand" aria-label="Cúc Dũng">
+        <span class="brand__label">Cúc Dũng</span>
+      </div>
 
-      <!-- LOGO BÊN TRÁI -->
-      <img class="logo" src="Assets/images/Logo.jpg" alt="Logo" />
-
-      <!-- MENU Ở GIỮA -->
-      <nav class="menu">
-        <a routerLink="/trang-chu" routerLinkActive="active">Trang chủ</a>
+      <nav class="menu" aria-label="Điều hướng chính">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Trang chủ</a>
         <a routerLink="/tra-cuu" routerLinkActive="active">Tra cứu</a>
         <a routerLink="/lich-trinh" routerLinkActive="active">Lịch trình</a>
         <a routerLink="/tin-tuc" routerLinkActive="active">Tin tức</a>
         <a routerLink="/lien-he" routerLinkActive="active">Liên hệ</a>
+        <a routerLink="/ve-chung-toi" routerLinkActive="active">Về chúng tôi</a>
       </nav>
 
-      <!-- ĐĂNG NHẬP BÊN PHẢI -->
       <div class="login-box">
-        <a class="login-btn" routerLink="/dang-nhap" routerLinkActive="active">Đăng nhập</a>
+        <ng-container *ngIf="authState$ | async as username; else loginLink">
+          <div class="user-box" aria-label="Tài khoản hiện tại">
+            <div class="user-avatar" aria-hidden="true">
+              {{ getInitial(username) }}
+            </div>
+            <div class="user-meta">
+              <span>Xin chào</span>
+              <strong>{{ username }}</strong>
+            </div>
+            <button type="button" class="logout-btn" (click)="logout()">Đăng xuất</button>
+          </div>
+        </ng-container>
+        <ng-template #loginLink>
+          <a class="login-btn" routerLink="/dang-nhap" routerLinkActive="active">Đăng nhập</a>
+        </ng-template>
       </div>
-
-
     </div>
-
   </div>
 </header>
 
@@ -33,103 +42,93 @@
 </main>
 
 
-
-
-
-
-<footer class="bg-facebook text-white pt-16 pb-10">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-
-      <!-- Logo & Giới thiệu -->
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-            <i class="fa-solid fa-bus text-[#1877F2] text-xl"></i>
-          </div>
-          <span class="font-bold text-xl">Cúc Dũng</span>
+<footer class="site-footer">
+  <div class="container footer-shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fa-solid fa-bus"></i>
         </div>
-        <p class="text-white/80 mb-4">
-          Dịch vụ xe khách uy tín, kết nối các tuyến đường giữa các tỉnh thành lớn, đảm bảo an toàn và tiện lợi.
-        </p>
-        <div class="flex gap-4 mt-2">
-          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="#" class="p-2 rounded-full bg-white text-[#1877F2] hover:bg-[#145DBF] hover:text-white transition">
-            <i class="fa-brands fa-twitter"></i>
-          </a>
+        <div>
+          <p class="footer-brand__title">Cúc Dũng</p>
+          <p class="footer-brand__desc">
+            Dịch vụ xe khách uy tín, kết nối các tuyến đường giữa các tỉnh thành lớn, đảm bảo an toàn và tiện lợi.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          </div>
         </div>
       </div>
 
-      <!-- Liên kết nhanh -->
-      <div>
-        <h4 class="font-bold mb-5 text-lg">Liên kết nhanh</h4>
-        <ul class="space-y-3">
-          <li><a routerLink="/" class="hover:text-[#BBDEFB] transition">Trang chủ</a></li>
-          <li><a routerLink="/lich-trinh" class="hover:text-[#BBDEFB] transition">Tuyến xe & Lịch trình</a></li>
-          <li><a routerLink="/tra-cuu" class="hover:text-[#BBDEFB] transition">Tra cứu vé</a></li>
-          <li><a routerLink="/khuyen-mai" class="hover:text-[#BBDEFB] transition">Khuyến mãi</a></li>
+      <div class="footer-column">
+        <h4>Liên kết nhanh</h4>
+        <ul>
+          <li><a routerLink="/">Trang chủ</a></li>
+          <li><a routerLink="/lich-trinh">Tuyến xe & Lịch trình</a></li>
+          <li><a routerLink="/tra-cuu">Tra cứu vé</a></li>
+          <li><a routerLink="/khuyen-mai">Khuyến mãi</a></li>
+          <li><a routerLink="/ve-chung-toi">Về chúng tôi</a></li>
         </ul>
       </div>
 
-      <!-- Hỗ trợ -->
-      <div>
-        <h4 class="font-bold mb-5 text-lg">Hỗ trợ</h4>
-        <ul class="space-y-3">
-          <li><a href="#" class="hover:text-[#BBDEFB] transition">Trung tâm trợ giúp</a></li>
-          <li><a routerLink="/lien-he" class="hover:text-[#BBDEFB] transition">Liên hệ</a></li>
-          <li><a href="#" class="hover:text-[#BBDEFB] transition">Hướng dẫn mua vé</a></li>
-          <li><a href="#" class="hover:text-[#BBDEFB] transition">Chính sách đổi trả</a></li>
+      <div class="footer-column">
+        <h4>Hỗ trợ</h4>
+        <ul>
+          <li><a href="#">Trung tâm trợ giúp</a></li>
+          <li><a routerLink="/lien-he">Liên hệ</a></li>
+          <li><a href="#">Hướng dẫn mua vé</a></li>
+          <li><a href="#">Chính sách đổi trả</a></li>
         </ul>
       </div>
 
-      <!-- Thông tin liên hệ -->
-      <div>
-        <h4 class="font-bold mb-5 text-lg">Liên hệ</h4>
-        <div class="space-y-4">
-          <div class="flex gap-3 items-start">
-            <div class="text-white mt-1">
-              <i class="fa-solid fa-phone"></i>
-            </div>
+      <div class="footer-column">
+        <h4>Liên hệ</h4>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.55.57 1 1 0 011 1v3.58a1 1 0 01-1 1A17.96 17.96 0 013 5a1 1 0 011-1h3.58a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.01z" />
+              </svg>
+            </span>
             <div>
-              <p class="text-sm text-white/80">Hotline đặt vé</p>
-              <p class="font-semibold">1900 6789</p>
+              <p>Hotline đặt vé</p>
+              <strong>1900 6789</strong>
             </div>
-          </div>
-          <div class="flex gap-3 items-start">
-            <div class="text-white mt-1">
-              <i class="fa-solid fa-envelope"></i>
-            </div>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M4 5h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2zm0 2v.15l8 5.33 8-5.33V7zm16 10V9.4l-7.4 4.93a1 1 0 01-1.2 0L4 9.4V17z" />
+              </svg>
+            </span>
             <div>
-              <p class="text-sm text-white/80">Email hỗ trợ</p>
-              <p class="font-semibold">support@cucdung.com</p>
+              <p>Email hỗ trợ</p>
+              <strong>support@cucdung.com</strong>
             </div>
-          </div>
-          <div class="flex gap-3 items-start">
-            <div class="text-white mt-1">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M12 2a7 7 0 00-7 7c0 4.78 6.18 12.17 6.45 12.48a.75.75 0 001.1 0C12.82 21.17 19 13.78 19 9a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z" />
+              </svg>
+            </span>
             <div>
-              <p class="text-sm text-white/80">Văn phòng</p>
-              <p class="font-semibold">123 Lê Lợi, TP. HCM</p>
+              <p>Văn phòng</p>
+              <strong>123 Lê Lợi, TP. HCM</strong>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
-
     </div>
 
-    <!-- Bottom -->
-    <div class="border-t border-white/30 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-      <p class="text-white/70">© 2025 Cúc Dũng. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-[#BBDEFB] transition">Sitemap</a>
-        <a href="#" class="hover:text-[#BBDEFB] transition">Nhà xe đối tác</a>
-        <a href="#" class="hover:text-[#BBDEFB] transition">Chính sách bảo mật</a>
+    <div class="footer-bottom">
+      <p>© 2025 Cúc Dũng. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Sitemap</a>
+        <a href="#">Nhà xe đối tác</a>
+        <a href="#">Chính sách bảo mật</a>
       </div>
     </div>
   </div>

@@ -12,23 +12,24 @@
 html, body {
     width: 100%;
     overflow-x: hidden; /* Ẩn scroll ngang toàn trang */
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
 }
 
 /* ====================================== */
 /* 2. MAIN & SECTIONS                     */
 /* ====================================== */
 main {
-    padding-bottom: 40px;
+    padding: 0 0 40px 0;
 }
 .section-white {
-    background: #ffffff;
+    background: var(--surface);
     padding: 50px 0;
 }
 
 .section-gray {
-    background: #e5e5e5;
+    background: linear-gradient(180deg, #fff4e6, #fffaf3);
     padding: 50px 0;
 }
 
@@ -48,6 +49,7 @@ main {
     overflow: hidden;
     position: relative;
     margin-bottom: 20px;
+    margin-top: -4px;
     background: #ddd;
 }
 
@@ -121,14 +123,14 @@ main {
     max-width: 900px;
     width: 90%;
     text-align: center;
-    border: 2px solid #1877F2;
+    border: 2px solid var(--primary-light);
 }
 
 .search-box h2 {
     font-size: 1.6rem;
     margin-bottom: 15px;
     font-weight: bold;
-    color: #1877F2;
+    color: var(--primary);
 }
 
 .search-form {
@@ -148,44 +150,44 @@ main {
 
 .input-group label {
     margin-bottom: 5px;
-    font-weight: bold;
-    color: #1877F2;
+    font-weight: 600;
+    color: var(--text-primary);
     font-size: 0.9em;
 }
 
 .input-group input[type="text"],
 .input-group input[type="date"] {
     padding: 10px 15px;
-    border: 2px solid #1877F2;
-    border-radius: 6px;
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 10px;
     font-size: 1em;
     width: 100%;
-    transition: 0.25s ease;
+    transition: var(--transition-base);
 }
 
 .input-group input:focus {
-    border-color: #0d5bd7;
-    box-shadow: 0 0 8px rgba(24,119,242,0.4);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(255, 122, 24, 0.2);
     outline: none;
 }
 
 .btn-search {
     padding: 12px 25px;
-    background-color: #1877F2;
+    background: linear-gradient(120deg, var(--primary), #ff914d);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius-pill);
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     flex-grow: 1;
     min-width: 200px;
-    transition: 0.25s ease;
+    transition: var(--transition-base);
+    box-shadow: 0 20px 35px rgba(255, 145, 77, 0.35);
 }
 
 .btn-search:hover {
-    background-color: #0d5bd7;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.01);
 }
 
 /* ====================================== */
@@ -225,7 +227,7 @@ main {
 }
 
 .promo-card h3 { font-size: 1.2rem; font-weight: bold; margin: 8px 0 4px; }
-.promo-card p { color: #555; font-size: 14px; }
+.promo-card p { color: var(--text-muted); font-size: 14px; }
 
 .promo-dots {
     display: flex;
@@ -244,7 +246,7 @@ main {
 }
 
 .promo-dots .dot.active {
-    background: #ff0000;
+    background: var(--primary);
     transform: scale(1.2);
 }
 
@@ -304,7 +306,7 @@ main {
 }
 
 .route-dots .dot.active {
-    background: #1e90ff;
+    background: var(--primary);
     transform: scale(1.2);
 }
 
@@ -336,7 +338,7 @@ main {
 .intro-content h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #1e90ff;
+    color: var(--primary);
     margin-bottom: 15px;
 }
 
@@ -349,18 +351,18 @@ main {
 
 .intro-button {
     padding: 12px 28px;
-    background: #1e90ff;
+    background: linear-gradient(120deg, var(--primary), #ff914d);
     color: white;
-    border-radius: 8px;
+    border-radius: 999px;
     font-size: 17px;
     font-weight: 600;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition-base);
+    box-shadow: 0 20px 30px rgba(255, 145, 77, 0.35);
 }
 
 .intro-button:hover {
-    background: #0d6cd2;
     transform: translateY(-2px);
 }
 
@@ -452,7 +454,7 @@ main {
 }
 
 .news-dots .dot.active {
-    background: #1e90ff;
+    background: var(--primary);
     transform: scale(1.2);
 }
 

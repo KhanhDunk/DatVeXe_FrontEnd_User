@@ -1,38 +1,59 @@
-<div class="ticket-wrapper d-flex justify-content-center align-items-center px-3 py-5">
-  <div class="ticket-box">
-
-    <h2 class="title mb-4">Tra Cứu Vé Xe</h2>
-
-    <div class="search-box mb-4">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Nhập mã vé (VD: CD2025-0001)"
-        [(ngModel)]="ticketCode"
-      />
-      <button class="btn btn-primary" (click)="onLookup()">Tra cứu</button>
-    </div>
-
-    <div *ngIf="ticketInfo" class="card info-card shadow-sm">
-      <div class="card-header bg-primary text-white">
-        <h5 class="mb-0">Chi tiết vé: {{ ticketCode }}</h5>
+<section class="lookup-page">
+  <div class="lookup-grid">
+    <div class="lookup-card">
+      <div class="lookup-header">
+        <p class="eyebrow">Trung tâm hỗ trợ</p>
+        <h1>Tra cứu thông tin vé chỉ trong vài giây</h1>
+        <p>Nhập mã vé được gửi qua email/SMS để xem nhanh tình trạng và thông tin hành trình.</p>
       </div>
-      <div class="card-body">
-        <p><strong>Hành khách:</strong> {{ ticketInfo.customerName }}</p>
-        <p><strong>Tuyến:</strong> {{ ticketInfo.route }}</p>
-        <p><strong>Ngày đi:</strong> {{ ticketInfo.departDate }}</p>
-        <p><strong>Ghế:</strong> {{ ticketInfo.seat }}</p>
-        <p><strong>Trạng thái:</strong>
-          <span [ngClass]="statusClass(ticketInfo.status)">
-            {{ ticketInfo.status }}
-          </span>
-        </p>
+
+      <div class="lookup-form">
+        <label for="ticketCode">Mã vé</label>
+        <div class="input-row">
+          <input
+            id="ticketCode"
+            type="text"
+            placeholder="VD: CD2025-0001"
+            [(ngModel)]="ticketCode"
+          />
+          <button type="button" (click)="onLookup()">Tra cứu</button>
+        </div>
+        <small>Mã vé gồm chữ CD + năm khởi hành + 4 chữ số cuối.</small>
+      </div>
+
+      <div *ngIf="ticketInfo" class="lookup-result">
+        <div class="result-head">
+          <h2>Chi tiết vé: {{ ticketCode }}</h2>
+          <span class="status-pill" [ngClass]="statusClass(ticketInfo.status)">{{ ticketInfo.status }}</span>
+        </div>
+        <div class="result-grid">
+          <p><span>Hành khách</span>{{ ticketInfo.customerName }}</p>
+          <p><span>Tuyến</span>{{ ticketInfo.route }}</p>
+          <p><span>Ngày đi</span>{{ ticketInfo.departDate }}</p>
+          <p><span>Ghế</span>{{ ticketInfo.seat }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="!ticketInfo && lookedUp" class="lookup-alert">
+        <strong>Không tìm thấy mã "{{ ticketCode }}".</strong>
+        <span>Vui lòng kiểm tra lại hoặc liên hệ hotline 1900 6789.</span>
       </div>
     </div>
 
-    <div *ngIf="!ticketInfo && lookedUp" class="alert alert-warning mt-3 text-center">
-      Không tìm thấy vé với mã "{{ ticketCode }}"
-    </div>
+    <aside class="lookup-aside">
+      <div class="aside-card">
+        <h3>Gợi ý nhập mã nhanh</h3>
+        <ul>
+          <li>Kiểm tra hộp thư "Khuyến mãi" hoặc "Spam" nếu không thấy email.</li>
+          <li>Mã vé trên SMS luôn viết hoa và có dấu gạch nối.</li>
+          <li>Liên hệ tổng đài 24/7 để được cấp lại mã miễn phí.</li>
+        </ul>
+      </div>
 
+      <div class="aside-card tone">
+        <h4>Ưu tiên phục vụ</h4>
+        <p>Khách đặt vé online được giữ chỗ 30 phút và miễn phí đổi vé 1 lần trước giờ xuất bến 6 tiếng.</p>
+      </div>
+    </aside>
   </div>
-</div>
+</section>
