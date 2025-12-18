@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, Validati
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Service/auth-service';
 import { RegisterRequest } from '../../../Interface/register-interface';
-import Swal from 'sweetalert2';
+import type { SweetAlertOptions } from 'sweetalert2';
 
 @Component({
   selector: 'app-dang-ky-component',
@@ -67,29 +67,35 @@ export class DangKyComponent {
 
     this.loading = true;
     this.authService.register(payload).subscribe({
-      next: (res) => {
+      next: async (res) => {
         this.loading = false;
         this.serverMessage = res.message || 'Đăng ký thành công';
 
         if (res.success) {
-          Swal.fire({
+          await this.showAlert({
             icon: 'success',
             title: 'Đăng ký thành công',
             text: 'Bạn có thể đăng nhập để trải nghiệm đầy đủ tính năng.',
             confirmButtonText: 'Đăng nhập ngay'
-          }).then(() => this.router.navigate(['/dang-nhap']));
+          });
+          this.router.navigate(['/dang-nhap']);
         }
       },
-      error: (err) => {
+      error: async (err) => {
         this.loading = false;
         this.serverMessage = err?.error?.message || 'Không thể đăng ký. Vui lòng thử lại.';
-        Swal.fire({
+        await this.showAlert({
           icon: 'error',
           title: 'Đăng ký thất bại',
           text: this.serverMessage
         });
       }
     });
+  }
+
+  private async showAlert(options: SweetAlertOptions) {
+    const { default: Swal } = await import('sweetalert2');
+    return Swal.fire(options);
   }
 
   showError(controlName: string): boolean {

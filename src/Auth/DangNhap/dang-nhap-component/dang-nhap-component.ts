@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Service/auth-service';
 import { LoginRequest } from '../../../Interface/login-interface';
 import { HttpClientModule } from '@angular/common/http';
-import Swal from 'sweetalert2';
+import type { SweetAlertOptions } from 'sweetalert2';
 
 @Component({
   selector: 'app-dang-nhap-component',
@@ -27,7 +27,7 @@ export class DangNhapComponent {
     private router: Router
   ) {}
 
-  login() {
+  async login() {
     this.statusMessage = '';
     this.hasError = false;
 
@@ -45,39 +45,44 @@ export class DangNhapComponent {
     this.loading = true;
 
     this.authService.login(payload).subscribe({
-      next: (res) => {
+      next: async (res) => {
         this.loading = false;
 
         if (res.success) {
           this.statusMessage = 'Đăng nhập thành công! Đang chuyển hướng...';
           this.hasError = false;
-          Swal.fire({
+          await this.showAlert({
             icon: 'success',
             title: 'Đăng nhập thành công',
             text: `Chào mừng trở lại, ${this.username}!`,
-            timer: 1800,
-            showConfirmButton: false
-          }).then(() => this.router.navigate(['/']));
+            confirmButtonText: 'Đi tới trang chủ'
+          });
+          this.router.navigate(['/']);
         } else {
           this.statusMessage = res.message || 'Đăng nhập thất bại.';
           this.hasError = true;
-          Swal.fire({
+          await this.showAlert({
             icon: 'error',
             title: 'Đăng nhập thất bại',
             text: this.statusMessage
           });
         }
       },
-      error: (err) => {
+      error: async (err) => {
         this.loading = false;
         this.statusMessage = err?.error?.message || 'Đăng nhập thất bại. Vui lòng thử lại.';
         this.hasError = true;
-        Swal.fire({
+        await this.showAlert({
           icon: 'error',
           title: 'Đăng nhập thất bại',
           text: this.statusMessage
         });
       }
     });
+  }
+
+  private async showAlert(options: SweetAlertOptions) {
+    const { default: Swal } = await import('sweetalert2');
+    return Swal.fire(options);
   }
 }
