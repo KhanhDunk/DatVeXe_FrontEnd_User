@@ -302,7 +302,7 @@ export class DatVeComponent implements OnDestroy {
         this.searchCache.set(normalized, { lat: latNum, lng: lonNum, label: display_name });
         if (this.searchCache.size > 25) {
           const oldestKey = this.searchCache.keys().next().value;
-          this.searchCache.delete(oldestKey);
+          // this.searchCache.delete(oldestKey);
         }
       } else {
         this.mapModal.error = 'Không tìm thấy vị trí phù hợp.';
