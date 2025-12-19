@@ -64,25 +64,24 @@
 	gap: 1.5rem;
 }
 
-.method-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 1rem;
-
-	h2 {
-		margin: 0;
-		font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-		color: #1f1d2b;
-	}
+.method-icon {
+	width: 46px;
+	height: 46px;
+	border-radius: 12px;
+	background: rgba(245, 146, 93, 0.08);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	display: grid;
+	place-items: center;
+	font-weight: 700;
+	font-size: 1.05rem;
 }
 
-.chip {
-	background: #fff0e4;
-	color: #ff7a18;
-	border-radius: 999px;
-	padding: 0.35rem 1rem;
-	font-weight: 600;
+.method-icon img {
+	width: 70%;
+	height: 70%;
+	object-fit: contain;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(17, 17, 17, 0.08);
 }
 
 .method-list {
@@ -128,18 +127,6 @@
 	inset: 3px;
 	background: #ff7a18;
 	border-radius: 50%;
-}
-
-.method-icon {
-	width: 40px;
-	height: 40px;
-	border-radius: 12px;
-	border: 2px solid currentColor;
-	display: grid;
-	place-items: center;
-	font-weight: 700;
-	font-size: 1.05rem;
-	background: #fff;
 }
 
 .method-info {

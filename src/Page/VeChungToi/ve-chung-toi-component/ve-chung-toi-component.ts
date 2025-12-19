@@ -36,7 +36,7 @@ interface GalleryImage {
 })
 export class VeChungToiComponent {
   stats: Stat[] = [
-    { label: 'Hành khách hài lòng', value: '2,5M+', description: 'mỗi năm tin tưởng Cúc Dũng' },
+    { label: 'Hành khách hài lòng', value: '2,5M+', description: 'mỗi năm tin tưởng Dũng Cúc' },
     { label: 'Tuyến đường hoạt động', value: '180+', description: 'kết nối toàn quốc' },
     { label: 'Giờ xuất bến đúng hẹn', value: '98%', description: 'kiểm soát và giám sát realtime' }
   ];
