@@ -301,8 +301,10 @@ export class DatVeComponent implements OnDestroy {
         await this.updateMarker(latNum, lonNum, display_name);
         this.searchCache.set(normalized, { lat: latNum, lng: lonNum, label: display_name });
         if (this.searchCache.size > 25) {
-          const oldestKey = this.searchCache.keys().next().value;
-          this.searchCache.delete(oldestKey);
+          const iterator = this.searchCache.keys().next();
+          if (!iterator.done) {
+            this.searchCache.delete(iterator.value);
+          }
         }
       } else {
         this.mapModal.error = 'Không tìm thấy vị trí phù hợp.';
