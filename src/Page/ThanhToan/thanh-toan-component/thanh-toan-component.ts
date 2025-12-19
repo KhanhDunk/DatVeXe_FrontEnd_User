@@ -7,8 +7,9 @@ interface PaymentMethod {
   name: string;
   subtitle?: string;
   extra?: string;
-  accent: string;
-  code: string;
+  accent?: string;
+  code?: string;
+  logo?: string;
 }
 
 interface PaymentPayload {
@@ -40,11 +41,9 @@ export class ThanhToanComponent {
   private readonly state = this.resolveState();
 
   readonly paymentMethods: PaymentMethod[] = [
-    { id: 'futa', name: 'CUCDUNGPAY', subtitle: '500.000đ', extra: 'Nạp thêm', accent: '#0f7b3e', code: 'C' },
-    { id: 'zalopay', name: 'ZaloPay', accent: '#0068ff', code: 'Z' },
-    { id: 'momo', name: 'MoMo', accent: '#c2185b', code: 'M' },
-    { id: 'vnpay', name: 'VNPAY', accent: '#0f3b95', code: 'V' },
-    { id: 'airpay', name: 'AirPay', accent: '#0a83ff', code: 'A' }
+    { id: 'zalopay', name: 'ZaloPay', logo: 'Assets/images/zalopay.png', code: 'ZP' },
+    { id: 'momo', name: 'MoMo', logo: 'Assets/images/momopay.png', code: 'MM' },
+    { id: 'vnpay', name: 'VNPAY', logo: 'Assets/images/vnpay.png', code: 'VN' }
   ];
 
   selectedMethodId = 'zalopay';

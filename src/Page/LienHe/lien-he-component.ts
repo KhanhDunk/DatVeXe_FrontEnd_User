@@ -47,7 +47,7 @@ export class LienHeComponent {
     {
       icon: 'mail',
       title: 'Email CSKH',
-      value: 'support@cucdung.com',
+      value: 'support@dungcuc.com',
       note: 'Trả lời trong vòng 4 giờ làm việc'
     },
     {
