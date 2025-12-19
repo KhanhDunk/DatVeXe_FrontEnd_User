@@ -34,19 +34,19 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       title: "Đặt vé xe an toàn, nhanh chóng, tiện lợi",
       description: "Hơn 1 triệu khách hàng tin tưởng chúng tôi mỗi năm",
       bg: "bg-gradient-to-br from-primary via-secondary to-accent",
-      image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1200&h=600&fit=crop",
+      image: "/Assets/images/anhxe1.jpg",
     },
     {
       title: "Khám phá các tuyến đường phổ biến",
       description: "Tìm kiếm và đặt vé cho các tuyến đường được yêu thích nhất",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
-      image: "https://media.vneconomy.vn/images/upload/2024/05/22/anh-9-1708617688144443081918-171162407510632176926420240426150937.jpg",
+      image: "/Assets/images/anhxe2.jpg",
     },
     {
       title: "Các vùng biển đẹp nhất",
       description: "Khám phá những bãi biển tuyệt đẹp với dịch vụ xe chất lượng cao",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
-      image: "https://images2.thanhnien.vn/528068263637045248/2023/12/22/h1-17032164454061990092865.jpg",
+      image: "/Assets/images/anhxe3.jpg",
     }
   ]
   // 
