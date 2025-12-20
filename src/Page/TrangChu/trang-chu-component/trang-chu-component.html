@@ -41,11 +41,17 @@
     <div class="promote-section mt-10">
       <h2 class="text-2xl font-bold mb-4 text-center">DỊCH VỤ NỔI BẬT</h2>
 
-      <div class="promo-slider">
+      <div
+        class="promo-slider"
+        (pointerdown)="onSwipeStart($event, 'promo')"
+        (pointermove)="onSwipeMove($event)"
+        (pointerup)="onSwipeEnd($event)"
+        (pointercancel)="onSwipeEnd($event)"
+      >
         <div class="promo-track" [style.transform]="'translateX(-' + (promoIndex * 100) + '%)'">
-          <div class="promo-page" *ngFor="let page of promotionPages">
+          <div class="promo-page" *ngFor="let page of promotionPages()">
             <div class="promo-card" *ngFor="let item of page">
-              <img [src]="item.image" loading="lazy" alt="Dịch vụ" (error)="onCardImageError($event)" />
+              <img [src]="item.image" alt="Dịch vụ" (error)="onCardImageError($event)" />
               <h3>{{ item.title }}</h3>
               <p>{{ item.description }}</p>
             </div>
@@ -56,7 +62,7 @@
 
     <!-- BUTTON TRÒN BÊN DƯỚI -->
     <div class="promo-dots">
-      <div class="dot" *ngFor="let p of promotionPages; let i = index" [class.active]="i === promoIndex"
+      <div class="dot" *ngFor="let p of promotionPages(); let i = index" [class.active]="i === promoIndex"
         (click)="goToSlide(i)">
       </div>
     </div>
@@ -68,11 +74,17 @@
   <div class="route-section mt-14">
     <h2 class="text-2xl font-bold mb-4 text-center">TUYẾN PHỔ BIẾN</h2>
 
-    <div class="route-slider">
+    <div
+      class="route-slider"
+      (pointerdown)="onSwipeStart($event, 'route')"
+      (pointermove)="onSwipeMove($event)"
+      (pointerup)="onSwipeEnd($event)"
+      (pointercancel)="onSwipeEnd($event)"
+    >
       <div class="route-track" [style.transform]="'translateX(-' + (routeIndex * 100) + '%)'">
-        <div class="route-page" *ngFor="let page of routePages">
+        <div class="route-page" *ngFor="let page of routePages()">
           <div class="route-card" *ngFor="let item of page">
-            <img [src]="item.image" loading="lazy" alt="Tuyến xe" (error)="onCardImageError($event)">
+            <img [src]="item.image" alt="Tuyến xe" (error)="onCardImageError($event)">
             <h3>{{ item.name }}</h3>
             <p>{{ item.description }}</p>
           </div>
@@ -82,7 +94,7 @@
 
     <!-- DOTS -->
     <div class="route-dots">
-      <div *ngFor="let r of routePages; let i = index" class="dot" [class.active]="i === routeIndex"
+      <div *ngFor="let r of routePages(); let i = index" class="dot" [class.active]="i === routeIndex"
         (click)="goToRoute(i)">
       </div>
     </div>
@@ -98,7 +110,7 @@
         Lịch trình rõ ràng – đúng tuyến – đúng giờ.
       </p>
 
-      <button class="intro-button" routerLink="/tra-cuu">
+      <button class="intro-button" routerLink="/dat-ve">
         Đặt vé ngay
       </button>
     </div>
@@ -112,12 +124,18 @@
   <div class="news-section mt-16">
     <h2 class="text-2xl font-bold mb-4 text-center">TIN TỨC MỚI NHẤT</h2>
 
-    <div class="news-slider">
+    <div
+      class="news-slider"
+      (pointerdown)="onSwipeStart($event, 'news')"
+      (pointermove)="onSwipeMove($event)"
+      (pointerup)="onSwipeEnd($event)"
+      (pointercancel)="onSwipeEnd($event)"
+    >
 
       <div class="news-track" [style.transform]="'translateX(-' + (newsIndex * 100) + '%)'">
-        <div class="news-page" *ngFor="let page of newsPages">
+        <div class="news-page" *ngFor="let page of newsPages()">
           <div class="news-card" *ngFor="let item of page">
-            <img [src]="item.image" loading="lazy" alt="Tin tức" (error)="onCardImageError($event)" />
+            <img [src]="item.image" alt="Tin tức" (error)="onCardImageError($event)" />
             <h3>{{ item.title }}</h3>
             <p>{{ item.short }}</p>
           </div>
@@ -127,7 +145,7 @@
 
     <!-- DOTS -->
     <div class="news-dots">
-      <div class="dot" *ngFor="let n of newsPages; let i = index" [class.active]="i === newsIndex" (click)="goToNews(i)">
+      <div class="dot" *ngFor="let n of newsPages(); let i = index" [class.active]="i === newsIndex" (click)="goToNews(i)">
       </div>
     </div>
   </div>

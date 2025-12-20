@@ -2,10 +2,24 @@
   <div class="container">
     <div class="main-bar">
 
-      <div class="brand" aria-label="DŨNG CÚC AUTO">
+      <a class="brand" routerLink="/" aria-label="DŨNG CÚC AUTO">
         <span class="brand__label">DŨNG CÚC AUTO</span>
+      </a>
 
-      </div>
+      <button
+        type="button"
+        class="menu-toggle"
+        (click)="toggleMobileMenu()"
+        aria-controls="mobile-menu"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        [attr.aria-label]="isMobileMenuOpen ? 'Đóng menu' : 'Mở menu'"
+      >
+        <span class="menu-toggle__bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
 
       <nav class="menu" aria-label="Điều hướng chính">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Trang chủ</a>
@@ -17,25 +31,112 @@
       </nav>
 
       <div class="login-box">
-        <ng-container *ngIf="authState$ | async as username; else loginLink">
-          <div class="user-box" aria-label="Tài khoản hiện tại">
-            <div class="user-avatar" aria-hidden="true">
-              {{ getInitial(username) }}
-            </div>
-            <div class="user-meta">
-              <span>Xin chào</span>
-              <strong>{{ username }}</strong>
-            </div>
-            <button type="button" class="logout-btn" (click)="logout()">Đăng xuất</button>
-          </div>
-        </ng-container>
-        <ng-template #loginLink>
-          <a class="login-btn" routerLink="/dang-nhap" routerLinkActive="active">Đăng nhập</a>
-        </ng-template>
+        <ng-container *ngTemplateOutlet="authActions"></ng-container>
       </div>
     </div>
   </div>
 </header>
+
+<ng-template #authActions>
+  <ng-container *ngIf="authState$ | async as username; else loginLink">
+    <div class="user-box" aria-label="Tài khoản hiện tại">
+      <div class="user-avatar" aria-hidden="true">
+        {{ getInitial(username) }}
+      </div>
+      <div class="user-meta">
+        <span>Xin chào</span>
+        <strong>{{ username }}</strong>
+      </div>
+      <button type="button" class="logout-btn" (click)="logout()">Đăng xuất</button>
+    </div>
+  </ng-container>
+  <ng-template #loginLink>
+    <a class="login-btn" routerLink="/dang-nhap" routerLinkActive="active">Đăng nhập</a>
+  </ng-template>
+</ng-template>
+
+<ng-template #mobileAuth>
+  <ng-container *ngIf="authState$ | async as username; else mobileLogin">
+    <div class="mobile-user" aria-label="Tài khoản hiện tại">
+      <div class="mobile-user__avatar" aria-hidden="true">{{ getInitial(username) }}</div>
+      <div class="mobile-user__meta">
+        <span>Xin chào</span>
+        <strong>{{ username }}</strong>
+      </div>
+      <button type="button" class="mobile-user__logout" (click)="logout()">Đăng xuất</button>
+    </div>
+  </ng-container>
+  <ng-template #mobileLogin>
+    <div class="mobile-auth">
+      <a class="mobile-auth__primary" routerLink="/dang-nhap" (click)="closeMobileMenu()">Đăng nhập</a>
+      <div class="mobile-auth__links">
+        <a routerLink="/dang-ky" (click)="closeMobileMenu()">Đăng ký</a>
+        <a routerLink="/quen-mat-khau" (click)="closeMobileMenu()">Quên mật khẩu</a>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>
+
+<div
+  class="mobile-menu-backdrop"
+  [class.open]="isMobileMenuOpen"
+  (click)="closeMobileMenu()"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="mobile-menu"
+  class="mobile-drawer"
+  [class.open]="isMobileMenuOpen"
+  [attr.aria-hidden]="!isMobileMenuOpen"
+>
+  <div class="mobile-drawer__header">
+    <span class="mobile-drawer__title">Menu</span>
+    <button type="button" class="mobile-drawer__close" (click)="closeMobileMenu()" aria-label="Đóng menu">
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M18.3 5.71a1 1 0 00-1.41 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.42 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.42L13.41 12l4.9-4.89a1 1 0 000-1.4z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-drawer__top">
+    <ng-container *ngTemplateOutlet="mobileAuth"></ng-container>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Điều hướng di động">
+    <div class="mobile-nav__section">Chung</div>
+    <a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" (click)="closeMobileMenu()">Trang chủ</a>
+    <a routerLink="/dat-ve" routerLinkActive="active" (click)="closeMobileMenu()">Đặt vé</a>
+    <a routerLink="/tra-cuu" routerLinkActive="active" (click)="closeMobileMenu()">Tra cứu</a>
+    <a routerLink="/lich-trinh" routerLinkActive="active" (click)="closeMobileMenu()">Lịch trình</a>
+    <a routerLink="/tin-tuc" routerLinkActive="active" (click)="closeMobileMenu()">Tin tức</a>
+    <a routerLink="/khuyen-mai" routerLinkActive="active" (click)="closeMobileMenu()">Khuyến mãi</a>
+    <a routerLink="/lien-he" routerLinkActive="active" (click)="closeMobileMenu()">Liên hệ</a>
+    <a routerLink="/ve-chung-toi" routerLinkActive="active" (click)="closeMobileMenu()">Về chúng tôi</a>
+
+    <div class="mobile-nav__section">Hỗ trợ</div>
+    <a routerLink="/trung-tam-tro-giup" routerLinkActive="active" (click)="closeMobileMenu()">Trung tâm trợ giúp</a>
+    <a routerLink="/huong-dan-mua-ve" routerLinkActive="active" (click)="closeMobileMenu()">Hướng dẫn mua vé</a>
+    <a routerLink="/chinh-sach-doi-tra" routerLinkActive="active" (click)="closeMobileMenu()">Chính sách đổi trả</a>
+    <a routerLink="/cong-tuyen-dung" routerLinkActive="active" (click)="closeMobileMenu()">Cổng tuyển dụng</a>
+
+    <div class="mobile-nav__section">Khác</div>
+    <a href="#" (click)="closeMobileMenu()">Sitemap</a>
+    <a href="#" (click)="closeMobileMenu()">Chính sách bảo mật</a>
+  </nav>
+</aside>
+
+<button
+  type="button"
+  class="scroll-top"
+  [class.show]="showScrollTop"
+  (click)="scrollToTop()"
+  aria-label="Lên đầu trang"
+>
+  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+    <path d="M12 5l7 7-1.41 1.41L13 8.83V20h-2V8.83L6.41 13.41 5 12l7-7z" />
+  </svg>
+</button>
 
 
 
@@ -52,7 +153,7 @@
         <p class="footer-brand__desc">An tâm di chuyển – Hưởng trọn hành trình</p>
       </div>
 
-      <div class="footer-column">
+      <div class="footer-column footer-column--quick-links">
         <h4>Liên kết nhanh</h4>
         <ul>
           <li><a routerLink="/">Trang chủ</a></li>
@@ -63,7 +164,7 @@
         </ul>
       </div>
 
-      <div class="footer-column">
+      <div class="footer-column footer-column--support-links">
         <h4>Hỗ trợ</h4>
         <ul>
           <li><a routerLink="/trung-tam-tro-giup">Trung tâm trợ giúp</a></li>
@@ -116,7 +217,7 @@
 
     <div class="footer-bottom">
       <p>© 2025 DŨNG CÚC AUTO. All rights reserved.</p>
-      <div class="footer-links">
+      <div class="footer-links footer-links--aux">
         <a href="#">Sitemap</a>
         <a href="#">Chính sách bảo mật</a>
       </div>

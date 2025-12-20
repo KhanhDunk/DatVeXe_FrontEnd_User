@@ -1,6 +1,7 @@
-import { Component, type OnInit, type OnDestroy, signal } from "@angular/core"
-import { CommonModule } from "@angular/common"
+import { CommonModule, isPlatformBrowser } from "@angular/common"
+import { Component, type OnInit, type OnDestroy, Inject, PLATFORM_ID, signal, computed } from "@angular/core"
 import { FormsModule } from "@angular/forms"
+import { RouterLink } from "@angular/router"
 
 
 interface Slide {
@@ -13,7 +14,7 @@ interface Slide {
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: "./trang-chu-component.html",
   styleUrls: ["./trang-chu-component.scss"],
 })
@@ -21,6 +22,16 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   isOpen = signal(false)
   private intervalId: any
+  private routeInterval: any
+  private newsInterval: any
+  private readonly isBrowser: boolean
+  private resizeUnlisten?: () => void
+  private mediaUnlisten?: () => void
+  private pageSize = signal(3)
+
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId)
+  }
 
   formData = signal({
     from: "",
@@ -61,6 +72,11 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   promoIndex = 0;
   promoInterval: any;
+  private swipeActive: 'promo' | 'route' | 'news' | null = null;
+  private swipeStartX = 0;
+  private swipeStartY = 0;
+  private swipeDeltaX = 0;
+  private swipeMoved = false;
   promotions = [
     {
       title: "Vận chuyển hành khách tuyến cố định",
@@ -109,22 +125,63 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     },
   ];
 
+  readonly promotionPages = computed(() => this.chunkArray(this.promotions, this.pageSize()));
+
   slide = signal(0);
 
   ngOnInit() {
-    setInterval(() => {
+    if (this.isBrowser) {
+      // After hydration/initial paint, ensure the page size matches the viewport.
+      requestAnimationFrame(() => this.updatePageSize());
+      requestAnimationFrame(() => this.updatePageSize());
+
+      const resizeHandler = () => this.updatePageSize();
+      window.addEventListener("resize", resizeHandler, { passive: true });
+      this.resizeUnlisten = () => window.removeEventListener("resize", resizeHandler);
+
+      // Some mobile browsers don't reliably fire resize; listen to media query changes too.
+      const mqHandler = () => this.updatePageSize();
+      const mqlPhone = window.matchMedia?.('(max-width: 600px)');
+      const mqlTablet = window.matchMedia?.('(max-width: 1024px)');
+
+      const unsubs: Array<() => void> = [];
+      for (const mql of [mqlPhone, mqlTablet]) {
+        if (!mql) continue;
+        try {
+          mql.addEventListener('change', mqHandler);
+          unsubs.push(() => mql.removeEventListener('change', mqHandler));
+        } catch {
+          // Safari < 14
+          (mql as any).addListener(mqHandler);
+          unsubs.push(() => (mql as any).removeListener(mqHandler));
+        }
+      }
+      if (unsubs.length) {
+        this.mediaUnlisten = () => {
+          for (const unsub of unsubs) unsub();
+        };
+      }
+    }
+
+    this.intervalId = setInterval(() => {
       this.slide.update(v => (v + 1) % this.slides.length);
     }, 4000);
 
 
     this.promoInterval = setInterval(() => {
-      const pages = this.promotionPages.length;
+      const pages = this.promotionPages().length;
       if (pages > 0) this.promoIndex = (this.promoIndex + 1) % pages;
-    }, 5000);
-  }
+    }, 8000);
 
-  get promotionPages(): Array<Array<(typeof this.promotions)[number]>> {
-    return this.chunkArray(this.promotions, 3);
+    this.routeInterval = setInterval(() => {
+      const pages = this.routePages().length;
+      if (pages > 0) this.routeIndex = (this.routeIndex + 1) % pages;
+    }, 8500);
+
+    this.newsInterval = setInterval(() => {
+      const pages = this.newsPages().length;
+      if (pages > 0) this.newsIndex = (this.newsIndex + 1) % pages;
+    }, 9000);
   }
 
 
@@ -179,9 +236,7 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     }
   ];
 
-  get routePages(): Array<Array<(typeof this.popularRoutes)[number]>> {
-    return this.chunkArray(this.popularRoutes, 3);
-  }
+  readonly routePages = computed(() => this.chunkArray(this.popularRoutes, this.pageSize()));
 
   goToRoute(i: number) {
     this.routeIndex = i;
@@ -236,7 +291,9 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     title: "Dịch vụ phù hợp nhiều đối tượng",
     short: "Đi công tác – du lịch – thăm người thân đều thuận tiện."
   },
-];
+  ];
+
+  readonly newsPages = computed(() => this.chunkArray(this.newsList, this.pageSize()));
 
   onCardImageError(event: Event): void {
     const img = event.target as HTMLImageElement | null
@@ -248,13 +305,77 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     img.src = fallback
   }
 
-  get newsPages(): Array<Array<(typeof this.newsList)[number]>> {
-    return this.chunkArray(this.newsList, 3);
-  }
-
-
   goToNews(i: number) {
     this.newsIndex = i;
+  }
+
+  onSwipeStart(event: PointerEvent, slider: 'promo' | 'route' | 'news'): void {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+    const el = event.currentTarget as HTMLElement | null;
+    if (el?.setPointerCapture) {
+      try {
+        el.setPointerCapture(event.pointerId);
+      } catch {
+        // ignore
+      }
+    }
+
+    this.swipeActive = slider;
+    this.swipeStartX = event.clientX;
+    this.swipeStartY = event.clientY;
+    this.swipeDeltaX = 0;
+    this.swipeMoved = false;
+  }
+
+  onSwipeMove(event: PointerEvent): void {
+    if (!this.swipeActive) return;
+
+    const dx = event.clientX - this.swipeStartX;
+    const dy = event.clientY - this.swipeStartY;
+    this.swipeDeltaX = dx;
+
+    if (!this.swipeMoved) {
+      if (Math.abs(dx) < 10) return;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        // User is scrolling vertically; don't hijack.
+        this.swipeActive = null;
+        return;
+      }
+      this.swipeMoved = true;
+    }
+
+    // Prevent image dragging / accidental text selection while swiping.
+    event.preventDefault();
+  }
+
+  onSwipeEnd(_event: PointerEvent): void {
+    if (!this.swipeActive) return;
+
+    const threshold = 55;
+    const dx = this.swipeDeltaX;
+    const slider = this.swipeActive;
+    this.swipeActive = null;
+
+    if (!this.swipeMoved || Math.abs(dx) < threshold) return;
+
+    if (slider === 'promo') {
+      const pages = this.promotionPages().length;
+      if (pages <= 1) return;
+      this.promoIndex = dx < 0 ? (this.promoIndex + 1) % pages : (this.promoIndex - 1 + pages) % pages;
+      return;
+    }
+
+    if (slider === 'route') {
+      const pages = this.routePages().length;
+      if (pages <= 1) return;
+      this.routeIndex = dx < 0 ? (this.routeIndex + 1) % pages : (this.routeIndex - 1 + pages) % pages;
+      return;
+    }
+
+    const pages = this.newsPages().length;
+    if (pages <= 1) return;
+    this.newsIndex = dx < 0 ? (this.newsIndex + 1) % pages : (this.newsIndex - 1 + pages) % pages;
   }
 
 
@@ -268,6 +389,18 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     }
 
     if (this.promoInterval) clearInterval(this.promoInterval);
+    if (this.routeInterval) clearInterval(this.routeInterval);
+    if (this.newsInterval) clearInterval(this.newsInterval);
+
+    if (this.resizeUnlisten) {
+      this.resizeUnlisten();
+      this.resizeUnlisten = undefined;
+    }
+
+    if (this.mediaUnlisten) {
+      this.mediaUnlisten();
+      this.mediaUnlisten = undefined;
+    }
   }
 
   goToPromo(index: number) {
@@ -283,6 +416,28 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       result.push(items.slice(i, i + size))
     }
     return result;
+  }
+
+  private updatePageSize(): void {
+    if (!this.isBrowser) return;
+
+    const width = window.innerWidth;
+    const isPhone = window.matchMedia?.('(max-width: 600px)').matches ?? width <= 600;
+    const isTablet = window.matchMedia?.('(max-width: 1024px)').matches ?? width <= 1024;
+
+    const next = isPhone ? 1 : (isTablet ? 2 : 3);
+    if (next === this.pageSize()) return;
+
+    this.pageSize.set(next);
+
+    const promoPages = this.promotionPages().length;
+    if (promoPages > 0 && this.promoIndex >= promoPages) this.promoIndex = promoPages - 1;
+
+    const routePages = this.routePages().length;
+    if (routePages > 0 && this.routeIndex >= routePages) this.routeIndex = routePages - 1;
+
+    const newsPages = this.newsPages().length;
+    if (newsPages > 0 && this.newsIndex >= newsPages) this.newsIndex = newsPages - 1;
   }
   toggleMenu() {
     this.isOpen.update((val) => !val)

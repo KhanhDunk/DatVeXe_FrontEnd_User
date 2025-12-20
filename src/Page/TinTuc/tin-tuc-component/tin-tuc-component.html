@@ -3,7 +3,11 @@
 
   <!-- Bài nổi bật -->
   <div class="featured-news" *ngIf="newsItems.length">
-    <a class="featured-link" [routerLink]="['/tin-tuc', newsItems[0].id]">
+    <a
+      class="featured-link"
+      [routerLink]="['/tin-tuc', newsItems[0].id]"
+      [attr.id]="'news-' + newsItems[0].id"
+    >
       <img [src]="newsItems[0].image" alt="{{ newsItems[0].title }}" class="featured-image">
       <div class="featured-text">
         <h3>{{ newsItems[0].title }}</h3>
@@ -15,7 +19,12 @@
 
   <!-- Các bài khác -->
   <div class="news-grid">
-    <a class="news-card" *ngFor="let news of newsItems.slice(1)" [routerLink]="['/tin-tuc', news.id]">
+    <a
+      class="news-card"
+      *ngFor="let news of newsItems.slice(1)"
+      [routerLink]="['/tin-tuc', news.id]"
+      [attr.id]="'news-' + news.id"
+    >
       <img [src]="news.image" alt="{{ news.title }}">
       <div class="card-text">
         <h4>{{ news.title }}</h4>
