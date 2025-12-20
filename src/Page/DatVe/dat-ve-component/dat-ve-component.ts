@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnDestroy, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgClass, isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import type * as Leaflet from 'leaflet';
 
 type SeatStatus = 'sold' | 'available' | 'selected';
@@ -26,8 +26,9 @@ interface SeatDeck {
   templateUrl: './dat-ve-component.html',
   styleUrls: ['./dat-ve-component.scss'],
 })
-export class DatVeComponent implements OnDestroy {
+export class DatVeComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly seatRowTemplate: (number | null)[][] = [
     [1, null, 2],
@@ -50,8 +51,8 @@ export class DatVeComponent implements OnDestroy {
     accept: false,
     pickupMode: 'station',
     dropoffMode: 'station',
-    pickupLocation: 'BX Miền Tây',
-    dropoffLocation: 'DA LAT'
+    pickupLocation: 'TP.HCM',
+    dropoffLocation: 'Bến Xe Hà Nội'
   };
 
   pickupCustomLocation = '';
@@ -63,7 +64,7 @@ export class DatVeComponent implements OnDestroy {
     loading: false,
     error: ''
   };
-  readonly defaultMapCenter = { lat: 11.940419, lng: 108.458313 };
+  readonly defaultMapCenter = { lat: 10.8231, lng: 106.6297 };
 
   @ViewChild('mapCanvas') mapCanvas?: ElementRef<HTMLDivElement>;
 
@@ -79,19 +80,44 @@ export class DatVeComponent implements OnDestroy {
     return isPlatformBrowser(this.platformId);
   }
 
-  readonly pickupLocations = ['BX Miền Tây', 'VP Quận 5', 'VP Quận 10'];
-  readonly dropoffLocations = ['DA LAT', 'BẢO LỘC', 'ĐỨC TRỌNG'];
+  readonly pickupLocations = ['TP.HCM'];
+  readonly dropoffLocations = ['Bến Xe Hà Nội', 'Bến Xe Cà Mau', 'Bến Xe Trà Vinh', 'Bến Xe Vũng Tàu'];
 
   readonly tripInfo = {
-    route: 'Miền Tây - Đà Lạt',
-    departTime: '13:00 18/12/2025',
-    pickupDeadline: 'Trước 12:45 18/12/2025',
-    baseFare: 320000,
-    hotline: '1900 6067'
+    route: 'TP.HCM → Bến Xe Hà Nội',
+    departTime: 'Đang cập nhật',
+    pickupDeadline: 'Đang cập nhật',
+    baseFare: 350000,
+    hotline: 'Đang cập nhật'
   };
 
   thongBao = '';
   isSuccess = false;
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      const diemDi = (params.get('diemDi') ?? '').trim();
+      const diemDen = (params.get('diemDen') ?? '').trim();
+      const thoiGian = (params.get('thoiGian') ?? '').trim();
+
+      const fareRaw = (params.get('gia') ?? params.get('baseFare') ?? '').toString();
+      const fareNumber = Number(fareRaw.replace(/[^0-9]/g, ''));
+
+      if (diemDi && diemDen) {
+        this.tripInfo.route = `${diemDi} → ${diemDen}`;
+        this.booking.pickupLocation = diemDi;
+        this.booking.dropoffLocation = diemDen;
+      }
+
+      if (thoiGian) {
+        this.tripInfo.departTime = thoiGian;
+      }
+
+      if (Number.isFinite(fareNumber) && fareNumber > 0) {
+        this.tripInfo.baseFare = fareNumber;
+      }
+    });
+  }
 
   toggleSeat(seat: Seat): void {
     if (seat.status === 'sold') {

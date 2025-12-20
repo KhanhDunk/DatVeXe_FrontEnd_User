@@ -26,14 +26,14 @@ export class TraCuuComponent {
     const mockDatabase: Record<string, any> = {
       'CD2025-0001': {
         customerName: 'Nguyễn Văn A',
-        route: 'Hồ Chí Minh → Đà Lạt',
+        route: 'TP.HCM → Bến Xe Hà Nội',
         departDate: '2025-12-10',
         seat: '12B',
         status: 'Đã xác nhận'
       },
       'CD2025-0002': {
         customerName: 'Trần Thị B',
-        route: 'Hà Nội → Sapa',
+        route: 'TP.HCM → Bến Xe Cà Mau',
         departDate: '2025-12-12',
         seat: '05A',
         status: 'Chờ'

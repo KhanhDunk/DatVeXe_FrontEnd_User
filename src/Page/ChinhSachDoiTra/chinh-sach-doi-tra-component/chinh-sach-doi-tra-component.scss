@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  background: var(--page-muted, #fff8f3);
+}
+
+.policy__container {
+  width: min(980px, 100% - 32px);
+  margin: clamp(0.75rem, 2vw, 1.5rem) auto clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background: #fff;
+  border-radius: var(--radius-xl, 28px);
+  box-shadow: 0 25px 60px rgba(255, 138, 76, 0.12);
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+}
+
+.policy__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-primary, #221e1b);
+}
+
+.policy__subtitle {
+  margin: 0.75rem 0 1.75rem;
+  text-align: center;
+  color: var(--text-muted, #6b6662);
+}
+
+.policy__card {
+  border-radius: var(--radius-lg, 24px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1.2rem 1.25rem;
+}
+
+.policy__card h2 {
+  margin: 0 0 0.85rem;
+  color: var(--primary-dark, #b04b00);
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-primary, #2d2d2d);
+  line-height: 1.7;
+}
+
+.muted {
+  margin-top: 0.9rem;
+  color: var(--text-muted, #6b6662);
+}

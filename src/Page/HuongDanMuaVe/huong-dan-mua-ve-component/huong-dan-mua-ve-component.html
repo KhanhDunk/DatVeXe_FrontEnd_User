@@ -1,0 +1,20 @@
+<section class="doc">
+  <div class="doc__container">
+    <h1 class="doc__title">Hướng dẫn mua vé</h1>
+    <p class="doc__subtitle">Các bước đặt vé đơn giản dành cho khách hàng DŨNG CÚC AUTO.</p>
+
+    <div class="doc__card">
+      <h2>Các bước thực hiện</h2>
+      <ol>
+        <li *ngFor="let s of steps">{{ s }}</li>
+      </ol>
+    </div>
+
+    <div class="doc__card">
+      <h2>Lưu ý</h2>
+      <ul>
+        <li *ngFor="let n of notes">{{ n }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
