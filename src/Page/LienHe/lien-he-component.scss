@@ -108,16 +108,20 @@
 .info-list li {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .info-icon {
   width: 48px;
   height: 48px;
+  flex: 0 0 48px;
+  flex-shrink: 0;
   border-radius: var(--radius-lg);
   background: rgba(255, 122, 24, 0.12);
   display: grid;
   place-items: center;
   color: var(--primary-dark);
+  align-self: center;
 }
 
 .info-icon svg {
@@ -134,10 +138,21 @@
 .info-list strong {
   font-size: 1.1rem;
   color: var(--text-primary);
+  display: block;
+  margin-top: 0.15rem;
+  word-break: break-word;
 }
 
 .info-list small {
   color: var(--text-muted);
+  white-space: normal;
+  display: block;
+  margin-top: 0.35rem;
+  line-height: 1.45;
+}
+
+.info-list li > div {
+  min-width: 0;
 }
 
 .form-card form {

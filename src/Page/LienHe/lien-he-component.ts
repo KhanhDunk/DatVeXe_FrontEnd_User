@@ -40,33 +40,33 @@ export class LienHeComponent {
   supportChannels: SupportChannel[] = [
     {
       icon: 'phone',
-      title: 'Hotline 24/7',
-      value: '1900 6789',
-      note: 'Hỗ trợ đặt vé & giải đáp mọi thắc mắc'
+      title: 'Hotline',
+      value: 'Đang cập nhật',
+      note: 'Hỗ trợ đặt vé & lịch trình'
     },
     {
       icon: 'mail',
       title: 'Email CSKH',
-      value: 'support@dungcuc.com',
-      note: 'Trả lời trong vòng 4 giờ làm việc'
+      value: 'Đang cập nhật',
+      note: 'Tiếp nhận phản hồi và hỗ trợ'
     },
     {
       icon: 'map',
       title: 'Văn phòng chính',
-      value: '123 Lê Lợi, Q.1, TP.HCM',
-      note: 'Mở cửa mỗi ngày từ 06:00 - 22:00'
+      value: 'Số 22/2A Ấp 18 - Xã Hóc Môn - TP.Hồ Chí Minh',
+      note: 'Địa chỉ chi tiết đang cập nhật'
     }
   ];
 
   heroStats: HeroStat[] = [
-    { label: 'Điểm đón trả', value: '120+' },
-    { label: 'Tư vấn/giờ', value: '450+' },
-    { label: 'Đội hỗ trợ', value: '60 người' }
+    { label: 'Tuyến cố định', value: 'TP.HCM' },
+    { label: 'Dòng xe', value: 'Cao cấp' },
+    { label: 'Cam kết', value: 'Đúng giờ' }
   ];
 
   officeHours: OfficeHour[] = [
-    { day: 'Thứ 2 - Thứ 6', time: '06:00 - 22:00' },
-    { day: 'Thứ 7 - Chủ nhật', time: '07:00 - 21:00' }
+    { day: 'Khung giờ hỗ trợ', time: 'Đang cập nhật' },
+    { day: 'Ngoài giờ', time: 'Vui lòng để lại tin nhắn' }
   ];
 
   onSubmit(form: NgForm) {

@@ -39,15 +39,16 @@
 
   <div class="section-white mt-10">
     <div class="promote-section mt-10">
-      <h2 class="text-2xl font-bold mb-4 text-center">KHUYẾN MÃI NỔI BẬT</h2>
+      <h2 class="text-2xl font-bold mb-4 text-center">DỊCH VỤ NỔI BẬT</h2>
 
       <div class="promo-slider">
-        <div class="promo-track" [style.transform]="'translateX(-' + promoIndex * 33.33 + '%)'">
-
-          <div class="promo-card" *ngFor="let p of promotions">
-            <img [src]="p.image" />
-            <h3>{{ p.title }}</h3>
-            <p>{{ p.description }}</p>
+        <div class="promo-track" [style.transform]="'translateX(-' + (promoIndex * 100) + '%)'">
+          <div class="promo-page" *ngFor="let page of promotionPages">
+            <div class="promo-card" *ngFor="let item of page">
+              <img [src]="item.image" loading="lazy" alt="Dịch vụ" (error)="onCardImageError($event)" />
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +56,7 @@
 
     <!-- BUTTON TRÒN BÊN DƯỚI -->
     <div class="promo-dots">
-      <div class="dot" *ngFor="let p of promotions; let i = index" [class.active]="i === promoIndex"
+      <div class="dot" *ngFor="let p of promotionPages; let i = index" [class.active]="i === promoIndex"
         (click)="goToSlide(i)">
       </div>
     </div>
@@ -68,20 +69,20 @@
     <h2 class="text-2xl font-bold mb-4 text-center">TUYẾN PHỔ BIẾN</h2>
 
     <div class="route-slider">
-      <div class="route-track" [style.transform]="'translateX(-' + routeIndex * 33.33 + '%)'">
-
-        <div class="route-card" *ngFor="let r of popularRoutes">
-          <img [src]="r.image" alt="Route Image">
-          <h3>{{ r.name }}</h3>
-          <p>{{ r.description }}</p>
+      <div class="route-track" [style.transform]="'translateX(-' + (routeIndex * 100) + '%)'">
+        <div class="route-page" *ngFor="let page of routePages">
+          <div class="route-card" *ngFor="let item of page">
+            <img [src]="item.image" loading="lazy" alt="Tuyến xe" (error)="onCardImageError($event)">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
         </div>
-
       </div>
     </div>
 
     <!-- DOTS -->
     <div class="route-dots">
-      <div *ngFor="let r of popularRoutes; let i = index" class="dot" [class.active]="i === routeIndex"
+      <div *ngFor="let r of routePages; let i = index" class="dot" [class.active]="i === routeIndex"
         (click)="goToRoute(i)">
       </div>
     </div>
@@ -91,11 +92,10 @@
 
   <div class="intro-banner mt-16">
     <div class="intro-content">
-      <h2>Đặt Vé Xe Trực Tuyến Nhanh Chóng & Tiện Lợi</h2>
+      <h2>DŨNG CÚC AUTO – An tâm di chuyển, hưởng trọn hành trình</h2>
       <p>
-        Trải nghiệm hệ thống đặt vé thông minh giúp bạn dễ dàng lựa chọn lịch trình,
-        so sánh giá vé và thanh toán an toàn. Chúng tôi cam kết mang đến những chuyến đi
-        an toàn - đúng giờ - chất lượng cao.
+        Dịch vụ xe khách tuyến cố định chất lượng cao, ưu tiên an toàn – uy tín – trải nghiệm khách hàng.
+        Lịch trình rõ ràng – đúng tuyến – đúng giờ.
       </p>
 
       <button class="intro-button" routerLink="/tra-cuu">
@@ -104,7 +104,7 @@
     </div>
 
     <div class="intro-image">
-      <img src="https://simg.zalopay.com.vn/zlp-website/assets/vexere_xzalopay_b75f89edf0.jpg" alt="Bus Image">
+      <img src="https://simg.zalopay.com.vn/zlp-website/assets/vexere_xzalopay_b75f89edf0.jpg" loading="lazy" alt="Xe khách" (error)="onCardImageError($event)">
     </div>
   </div>
 
@@ -114,20 +114,20 @@
 
     <div class="news-slider">
 
-      <div class="news-track" [style.transform]="'translateX(-' + newsIndex * 33.33 + '%)'">
-
-        <div class="news-card" *ngFor="let n of newsList">
-          <img [src]="n.image" />
-          <h3>{{ n.title }}</h3>
-          <p>{{ n.short }}</p>
+      <div class="news-track" [style.transform]="'translateX(-' + (newsIndex * 100) + '%)'">
+        <div class="news-page" *ngFor="let page of newsPages">
+          <div class="news-card" *ngFor="let item of page">
+            <img [src]="item.image" loading="lazy" alt="Tin tức" (error)="onCardImageError($event)" />
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.short }}</p>
+          </div>
         </div>
-
       </div>
     </div>
 
     <!-- DOTS -->
     <div class="news-dots">
-      <div class="dot" *ngFor="let n of newsList; let i = index" [class.active]="i === newsIndex" (click)="goToNews(i)">
+      <div class="dot" *ngFor="let n of newsPages; let i = index" [class.active]="i === newsIndex" (click)="goToNews(i)">
       </div>
     </div>
   </div>

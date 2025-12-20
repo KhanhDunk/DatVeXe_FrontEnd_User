@@ -31,22 +31,22 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   slides: Slide[] = [
     {
-      title: "Đặt vé xe an toàn, nhanh chóng, tiện lợi",
-      description: "Hơn 1 triệu khách hàng tin tưởng chúng tôi mỗi năm",
+      title: "DŨNG CÚC AUTO",
+      description: "An tâm di chuyển – Hưởng trọn hành trình",
       bg: "bg-gradient-to-br from-primary via-secondary to-accent",
-      image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1200&h=600&fit=crop",
+      image: "Assets/images/anhxe1.jpg",
     },
     {
-      title: "Khám phá các tuyến đường phổ biến",
-      description: "Tìm kiếm và đặt vé cho các tuyến đường được yêu thích nhất",
+      title: "Tuyến cố định rõ ràng",
+      description: "TP.HCM → Bến Xe Hà Nội · Bến Xe Cà Mau · Bến Xe Trà Vinh · Bến Xe Vũng Tàu",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
-      image: "https://media.vneconomy.vn/images/upload/2024/05/22/anh-9-1708617688144443081918-171162407510632176926420240426150937.jpg",
+      image: "Assets/images/anhxe3.jpg",
     },
     {
-      title: "Các vùng biển đẹp nhất",
-      description: "Khám phá những bãi biển tuyệt đẹp với dịch vụ xe chất lượng cao",
+      title: "Xe chất lượng cao – limousine",
+      description: "Xe đời mới, sạch sẽ, bảo dưỡng định kỳ; tài xế kinh nghiệm, phục vụ tận tâm.",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
-      image: "https://images2.thanhnien.vn/528068263637045248/2023/12/22/h1-17032164454061990092865.jpg",
+      image: "Assets/images/anhxe2.jpg",
     }
   ]
   // 
@@ -56,57 +56,51 @@ export class TrangChuComponent implements OnInit, OnDestroy {
   promoInterval: any;
   promotions = [
     {
-      title: "Giảm 20% tất cả tuyến đường",
-      description: "Áp dụng trong tháng này",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYAo4VEVVFKPTDf4YzRwmOi7ChhovFSCJLg&s"
+      title: "Vận chuyển hành khách tuyến cố định",
+      description: "Lịch trình rõ ràng – đúng tuyến – đúng giờ",
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      title: "Tặng nước suối miễn phí",
-      description: "Cho tất cả hành khách đặt online",
-      image: "https://hoangtuanphat.vn/upload/thuexequynhon.jpg"
+      title: "Xe chất lượng cao – xe limousine",
+      description: "Xe xịn – sạch sẽ – bảo dưỡng định kỳ",
+      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      title: "Giảm thêm 10% khi thanh toán online",
-      description: "Duy nhất cuối tuần",
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
-    },
-    // ⭐ ITEM 4
-    {
-      title: "Mua 1 tặng 1 vé lượt về",
-      description: "Áp dụng cho tuyến dài trên 300km",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200"
-    },
-
-    // ⭐ ITEM 5
-    {
-      title: "Hoàn 50% khi hủy vé",
-      description: "Chỉ áp dụng khi đặt online",
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
-    },
-
-    // ⭐ ITEM 6
-    {
-      title: "Ưu đãi nhóm 4 người",
-      description: "Giảm 15% tổng hóa đơn",
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+      title: "Nhận hợp đồng xe gia đình, du lịch",
+      description: "Theo nhu cầu – ưu tiên an toàn và trải nghiệm",
+      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      title: "Ưu đãi nhóm 4 người",
-      description: "Giảm 15% tổng hóa đơn",
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+      title: "Đón/trả đúng điểm – đúng giờ",
+      description: "Ưu tiên trải nghiệm khách hàng và an toàn hành trình",
+      image: "Assets/images/anhxe2.jpg"
     },
-
-    // ⭐ ITEM 5
     {
-      title: "Hoàn 50% khi hủy vé",
-      description: "Chỉ áp dụng khi đặt online",
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200"
+      title: "Khoang ghế êm – không gian sạch sẽ",
+      description: "Vệ sinh xe định kỳ, hành trình thoải mái",
+      image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&h=700&fit=crop&auto=format"
     },
-
+    {
+      title: "Hỗ trợ đổi/hoàn theo chính sách",
+      description: "Rõ ràng – minh bạch – hỗ trợ nhanh",
+      image: "https://images.unsplash.com/photo-1522661067900-ab829854a57f?w=1200&h=700&fit=crop&auto=format"
+    },
+    {
+      title: "Thanh toán linh hoạt",
+      description: "Nhiều phương thức thanh toán, thao tác nhanh",
+      image: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&h=700&fit=crop&auto=format"
+    },
+    {
+      title: "Tư vấn lịch trình",
+      description: "Chọn chuyến phù hợp, gợi ý tuyến nhanh",
+      image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&h=700&fit=crop&auto=format"
+    },
+    {
+      title: "Cam kết phục vụ tận tâm",
+      description: "Thái độ chuyên nghiệp – hỗ trợ chu đáo",
+      image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&h=700&fit=crop&auto=format"
+    },
   ];
-
-  promoGroupIndex = 0;
-  groupedPromotions: any[][] = [];
 
   slide = signal(0);
 
@@ -117,22 +111,13 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
 
     this.promoInterval = setInterval(() => {
-      this.promoIndex = (this.promoIndex + 1) % this.promotions.length;
-    }, 5000);
-
-
-    this.groupPromotions();
-
-    this.promoInterval = setInterval(() => {
-      this.promoGroupIndex =
-        (this.promoGroupIndex + 1) % this.groupedPromotions.length;
+      const pages = this.promotionPages.length;
+      if (pages > 0) this.promoIndex = (this.promoIndex + 1) % pages;
     }, 5000);
   }
-  groupPromotions() {
-    const size = 3;
-    for (let i = 0; i < this.promotions.length; i += size) {
-      this.groupedPromotions.push(this.promotions.slice(i, i + size));
-    }
+
+  get promotionPages(): Array<Array<(typeof this.promotions)[number]>> {
+    return this.chunkArray(this.promotions, 3);
   }
 
 
@@ -141,36 +126,55 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   popularRoutes = [
     {
-      name: "Sài Gòn → Đà Lạt",
-      description: "Tuyến du lịch được yêu thích",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200"
+      name: "TP.HCM → Bến Xe Hà Nội",
+      description: "Tuyến cố định",
+      image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      name: "Sài Gòn → Nha Trang",
-      description: "Tuyến biển đẹp nổi tiếng",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb--bXGMlKTswGOzX1tLQ92y74oFMK9rMCIA&s"
+      name: "TP.HCM → Bến Xe Cà Mau",
+      description: "Tuyến cố định",
+      image: "Assets/images/anhxe3.jpg"
     },
     {
-      name: "Sài Gòn → Cần Thơ",
-      description: "Kết nối miền Tây",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
+      name: "TP.HCM → Bến Xe Trà Vinh",
+      description: "Tuyến cố định",
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      name: "Đà Lạt → Nha Trang",
-      description: "Cung đường biển - rừng tuyệt đẹp",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"
+      name: "TP.HCM → Bến Xe Vũng Tàu",
+      description: "Tuyến cố định",
+      image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      name: "Huế → Đà Nẵng",
-      description: "Cung đường Hải Vân",
-      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200"
+      name: "Bến Xe Hà Nội → TP.HCM",
+      description: "Chiều về",
+      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format"
     },
     {
-      name: "Hà Nội → Sapa",
-      description: "Tuyến du lịch miền Bắc",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200"
+      name: "Bến Xe Cà Mau → TP.HCM",
+      description: "Chiều về",
+      image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format"
+    },
+    {
+      name: "Bến Xe Trà Vinh → TP.HCM",
+      description: "Chiều về",
+      image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format"
+    },
+    {
+      name: "Bến Xe Vũng Tàu → TP.HCM",
+      description: "Chiều về",
+      image: "Assets/images/anhxe1.jpg"
+    },
+    {
+      name: "TP.HCM → Bến Xe Hà Nội (tăng cường)",
+      description: "Chuyến tăng cường",
+      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format"
     }
   ];
+
+  get routePages(): Array<Array<(typeof this.popularRoutes)[number]>> {
+    return this.chunkArray(this.popularRoutes, 3);
+  }
 
   goToRoute(i: number) {
     this.routeIndex = i;
@@ -181,36 +185,65 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   newsList = [
   {
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200",  // ảnh bus general
-    title: "Futa Bus khai trương tuyến mới",
-    short: "Tuyến mới giúp khách hàng di chuyển nhanh hơn và thuận tiện hơn."
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format",
+    title: "DŨNG CÚC AUTO – Tuyến cố định",
+    short: "Lịch trình rõ ràng – đúng tuyến – đúng giờ."
   },
   {
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200",  // ảnh vé, booking hoặc người lên xe
-    title: "Giảm giá đặc biệt dịp Lễ",
-    short: "Ưu đãi lên đến 40% cho khách hàng đặt vé online."
+    image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format",
+    title: "Xe xịn – sạch sẽ – bảo dưỡng định kỳ",
+    short: "Nâng cao chất lượng phục vụ để mỗi chuyến đi thoải mái và an tâm."
   },
   {
-    image: "https://images.unsplash.com/photo-1504608245011-62c9f3801f23?w=1200",  // ảnh giao diện / laptop / đặt vé
-    title: "Nâng cấp hệ thống đặt vé",
-    short: "Giao diện hiện đại, tốc độ nhanh gấp 2 lần."
+    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format",
+    title: "Giá vé minh bạch – không phát sinh",
+    short: "Luôn lắng nghe và cải thiện dịch vụ mỗi ngày."
   },
   {
-    image: "https://images.unsplash.com/photo-1558679908-86f11f2ef7fb?w=1200",  // ảnh tuyến đường, phượt, bus đường dài
-    title: "Thêm nhiều trạm trung chuyển",
-    short: "Hỗ trợ khách hàng tại nhiều tỉnh thành hơn."
+    image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format",
+    title: "Gợi ý chọn chuyến theo nhu cầu",
+    short: "Chọn tuyến – chọn giờ – đặt vé nhanh chóng."
   },
   {
-    image: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?auto=format&fit=crop&w=800",  // ảnh xe phục vụ đông người, dịp đặc biệt
-    title: "Tăng cường xe phục vụ Tết",
-    short: "Hơn 150 xe chất lượng cao được bổ sung."
+    image: "Assets/images/anhxe2.jpg",
+    title: "Quy trình lên xe gọn gàng",
+    short: "Ưu tiên trật tự, hỗ trợ khách hàng trong suốt hành trình."
   },
   {
-    image: "https://images.unsplash.com/photo-1576144505111-9e92e09157e3?auto=format&fit=crop&w=800",  // ảnh tài xế / bảo đảm an toàn
-    title: "Đội ngũ tài xế đạt chứng nhận an toàn",
-    short: "Cam kết an toàn là ưu tiên hàng đầu."
+    image: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1200&h=700&fit=crop&auto=format",
+    title: "An toàn là ưu tiên số 1",
+    short: "Tài xế kinh nghiệm – tuân thủ quy định – chạy đúng tốc độ."
+  },
+  {
+    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format",
+    title: "Chăm sóc xe định kỳ",
+    short: "Bảo dưỡng thường xuyên giúp hành trình êm ái và ổn định."
+  },
+  {
+    image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&h=700&fit=crop&auto=format",
+    title: "Phục vụ tận tâm",
+    short: "Lắng nghe phản hồi và cải thiện chất lượng mỗi ngày."
+  },
+  {
+    image: "Assets/images/anhxe3.jpg",
+    title: "Dịch vụ phù hợp nhiều đối tượng",
+    short: "Đi công tác – du lịch – thăm người thân đều thuận tiện."
   },
 ];
+
+  onCardImageError(event: Event): void {
+    const img = event.target as HTMLImageElement | null
+    if (!img) return
+
+    const fallback = "Assets/images/anhxe1.jpg"
+    if (img.src.includes(fallback)) return
+
+    img.src = fallback
+  }
+
+  get newsPages(): Array<Array<(typeof this.newsList)[number]>> {
+    return this.chunkArray(this.newsList, 3);
+  }
 
 
   goToNews(i: number) {
@@ -235,6 +268,14 @@ export class TrangChuComponent implements OnInit, OnDestroy {
   }
   goToSlide(i: number) {
     this.promoIndex = i;
+  }
+
+  private chunkArray<T>(items: T[], size: number): T[][] {
+    const result: T[][] = [];
+    for (let i = 0; i < items.length; i += size) {
+      result.push(items.slice(i, i + size))
+    }
+    return result;
   }
   toggleMenu() {
     this.isOpen.update((val) => !val)

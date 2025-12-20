@@ -1,1 +1,40 @@
-<p>tin-tuc-chi-tiet-component works!</p>
+<section class="detail">
+	<div class="detail__container" *ngIf="news$ | async as news; else notFound">
+		<a class="detail__back" routerLink="/tin-tuc">← Quay lại Tin tức</a>
+
+		<h1 class="detail__title">{{ news.title }}</h1>
+		<p class="detail__date">{{ news.date }}</p>
+
+		<img class="detail__image" [src]="news.image" [alt]="news.title" />
+
+		<div class="detail__content">
+			<p *ngFor="let para of news.content.split('\n\n')">{{ para }}</p>
+		</div>
+
+		<section class="related" *ngIf="relatedNews$ | async as related">
+			<h2 class="related__title">Tin liên quan</h2>
+			<div class="related__grid">
+				<a
+					class="related__card"
+					*ngFor="let item of related"
+					[routerLink]="['/tin-tuc', item.id]"
+				>
+					<img class="related__image" [src]="item.image" [alt]="item.title" />
+					<div class="related__text">
+						<h3>{{ item.title }}</h3>
+						<p>{{ item.description }}</p>
+						<span>{{ item.date }}</span>
+					</div>
+				</a>
+			</div>
+		</section>
+	</div>
+
+	<ng-template #notFound>
+		<div class="detail__container">
+			<a class="detail__back" routerLink="/tin-tuc">← Quay lại Tin tức</a>
+			<h1 class="detail__title">Không tìm thấy bài viết</h1>
+			<p class="detail__date">Bài viết không tồn tại hoặc đã được cập nhật.</p>
+		</div>
+	</ng-template>
+</section>
