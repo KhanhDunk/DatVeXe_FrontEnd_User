@@ -34,19 +34,26 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       title: "DŨNG CÚC AUTO",
       description: "An tâm di chuyển – Hưởng trọn hành trình",
       bg: "bg-gradient-to-br from-primary via-secondary to-accent",
-      image: "Assets/images/anhxe1.jpg",
+
+      image: "/Assets/images/anhxe1.jpg",
+
     },
     {
       title: "Tuyến cố định rõ ràng",
       description: "TP.HCM → Bến Xe Hà Nội · Bến Xe Cà Mau · Bến Xe Trà Vinh · Bến Xe Vũng Tàu",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
+
       image: "Assets/images/anhxe3.jpg",
+
     },
     {
       title: "Xe chất lượng cao – limousine",
       description: "Xe đời mới, sạch sẽ, bảo dưỡng định kỳ; tài xế kinh nghiệm, phục vụ tận tâm.",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
+
       image: "Assets/images/anhxe2.jpg",
+
+  
     }
   ]
   // 
