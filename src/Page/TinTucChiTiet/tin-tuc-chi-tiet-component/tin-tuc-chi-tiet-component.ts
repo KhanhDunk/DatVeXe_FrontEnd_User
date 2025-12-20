@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -14,11 +14,22 @@ import { NEWS_ITEMS, type NewsItem } from '../../TinTuc/news-data';
 })
 export class TinTucChiTietComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly platformId = inject(PLATFORM_ID);
 
   readonly news$ = this.route.paramMap.pipe(
     map((params) => {
       const id = Number(params.get('id'));
       if (!Number.isFinite(id)) return null;
+
+       // Save the id so the list page can scroll back to this article.
+       if (isPlatformBrowser(this.platformId)) {
+         try {
+           sessionStorage.setItem('returnToNewsId', String(id));
+         } catch {
+           // ignore
+         }
+       }
+
       return (NEWS_ITEMS as NewsItem[]).find((n) => n.id === id) ?? null;
     })
   );

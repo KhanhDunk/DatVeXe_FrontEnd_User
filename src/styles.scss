@@ -41,6 +41,10 @@ body {
   position: relative;
 }
 
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
 app-root,
 main {
   max-width: 100%;

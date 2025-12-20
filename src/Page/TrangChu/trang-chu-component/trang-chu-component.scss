@@ -258,6 +258,13 @@ main {
     width: 100%;
     max-width: 950px;
     margin: 0 auto;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+}
+
+.promo-slider:active {
+    cursor: grabbing;
 }
 
 .promo-track {
@@ -275,6 +282,12 @@ main {
     padding: 0 10px;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .promo-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .promo-card {
     padding: 10px;
     text-align: center;
@@ -285,6 +298,7 @@ main {
     height: 160px;
     object-fit: cover;
     border-radius: 10px;
+    -webkit-user-drag: none;
 }
 
 .promo-card h3 { font-size: 1.2rem; font-weight: bold; margin: 8px 0 4px; }
@@ -331,6 +345,13 @@ main {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+}
+
+.route-slider:active {
+    cursor: grabbing;
 }
 
 .route-track {
@@ -348,6 +369,12 @@ main {
     padding: 0 10px;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .route-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .route-card {
     padding: 10px;
     text-align: center;
@@ -358,6 +385,7 @@ main {
     height: 180px;
     object-fit: cover;
     border-radius: 12px;
+    -webkit-user-drag: none;
 }
 
 .route-dots {
@@ -475,6 +503,13 @@ main {
     overflow: hidden;
     max-width: 1200px;
     margin: 0 auto;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+}
+
+.news-slider:active {
+    cursor: grabbing;
 }
 
 .news-track {
@@ -492,6 +527,12 @@ main {
     padding: 0 10px;
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    .news-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .news-card {
     padding: 10px;
     text-align: center;
@@ -503,6 +544,7 @@ main {
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 10px;
+    -webkit-user-drag: none;
 }
 
 .news-card h3 {
