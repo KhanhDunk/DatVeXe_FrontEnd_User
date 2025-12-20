@@ -50,24 +50,24 @@ export class ThanhToanComponent {
   readonly holdTime = '09:40';
 
   readonly bookingInfo = this.state?.booking ?? {
-    fullName: 'Nguyễn Hoàng Quỳnh Lam',
-    phone: '0912345678',
-    email: 'hanhbvnt@gmail.com'
+    fullName: '',
+    phone: '',
+    email: ''
   };
 
   readonly tripInfo = {
-    route: this.state?.tripInfo?.route ?? 'BX An Sương - Đà Lạt',
-    departTime: this.state?.tripInfo?.departTime ?? '21:00 05/10/2025',
-    pickup: this.state?.tripInfo?.pickup ?? 'BX An Sương',
-    dropoff: this.state?.tripInfo?.dropoff ?? 'Đà Lạt',
+    route: this.state?.tripInfo?.route ?? 'TP.HCM → Bến Xe Hà Nội',
+    departTime: this.state?.tripInfo?.departTime ?? 'Đang cập nhật',
+    pickup: this.state?.tripInfo?.pickup ?? 'TP.HCM',
+    dropoff: this.state?.tripInfo?.dropoff ?? 'Bến Xe Hà Nội',
     seatLabel: this.state?.selectedSeats?.length
       ? this.state.selectedSeats.join(', ')
-      : 'A02, A03, A04, A05',
-    seatCount: this.state?.selectedSeats?.length ?? 4
+      : 'Chưa chọn',
+    seatCount: this.state?.selectedSeats?.length ?? 0
   };
 
   readonly paymentSummary = {
-    fare: this.state?.totalAmount ?? 1_000_000,
+    fare: this.state?.totalAmount ?? 0,
     fee: 0
   };
 

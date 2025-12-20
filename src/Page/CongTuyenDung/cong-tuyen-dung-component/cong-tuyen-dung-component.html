@@ -1,0 +1,17 @@
+<section class="career">
+  <div class="career__container">
+    <h1 class="career__title">Cổng tuyển dụng</h1>
+    <p class="career__subtitle">Cơ hội nghề nghiệp tại DŨNG CÚC AUTO (đang cập nhật theo thời điểm).</p>
+
+    <div class="career__grid">
+      <div class="opening" *ngFor="let o of openings">
+        <h2>{{ o.title }}</h2>
+        <p>{{ o.desc }}</p>
+      </div>
+    </div>
+
+    <div class="career__note">
+      <p class="muted">Thông tin ứng tuyển: Đang cập nhật</p>
+    </div>
+  </div>
+</section>

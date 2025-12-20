@@ -36,50 +36,55 @@ interface GalleryImage {
 })
 export class VeChungToiComponent {
   stats: Stat[] = [
-    { label: 'Hành khách hài lòng', value: '2,5M+', description: 'mỗi năm tin tưởng Dũng Cúc' },
-    { label: 'Tuyến đường hoạt động', value: '180+', description: 'kết nối toàn quốc' },
-    { label: 'Giờ xuất bến đúng hẹn', value: '98%', description: 'kiểm soát và giám sát realtime' }
+    { label: 'Tuyến cố định', value: 'TP.HCM', description: 'kết nối các bến xe theo tuyến' },
+    { label: 'Dòng xe', value: 'Cao cấp', description: 'xe chất lượng cao – limousine' },
+    { label: 'Cam kết', value: 'Đúng giờ', description: 'đúng tuyến – đúng điểm' }
   ];
 
   milestones: Milestone[] = [
     {
-      year: '2010',
-      title: 'Khởi hành từ sứ mệnh đơn giản',
-      description: 'Mang đến trải nghiệm di chuyển an toàn và tử tế cho từng hành khách tuyến Sài Gòn - Đà Lạt.'
+      year: '🚍',
+      title: 'Vận chuyển hành khách tuyến cố định',
+      description: 'TP.HCM → Bến Xe Hà Nội · TP.HCM → Bến Xe Cà Mau · TP.HCM → Bến Xe Trà Vinh · TP.HCM → Bến Xe Vũng Tàu'
     },
     {
-      year: '2016',
-      title: 'Mở rộng đội xe cao cấp',
-      description: 'Đầu tư dòng xe limousine và ứng dụng đặt vé trực tuyến, giúp khách hàng chủ động lịch trình.'
+      year: '🚐',
+      title: 'Xe chất lượng cao – xe limousine',
+      description: 'Xe đời mới, sạch sẽ, bảo dưỡng định kỳ để hành trình êm ái và an tâm.'
     },
     {
-      year: '2022',
-      title: 'Chuyển đổi số toàn diện',
-      description: 'Hợp tác với các đối tác công nghệ, triển khai trung tâm điều hành thông minh và ví điện tử.'
+      year: '🧳',
+      title: 'Nhận hợp đồng xe gia đình, du lịch, tham quan',
+      description: 'Linh hoạt theo nhu cầu, ưu tiên an toàn và trải nghiệm khách hàng.'
+    },
+    {
+      year: '📍',
+      title: 'Lịch trình rõ ràng – đúng tuyến – đúng giờ',
+      description: 'Minh bạch thông tin, đón trả đúng điểm và luôn lắng nghe để cải thiện mỗi ngày.'
     }
   ];
 
   values: ValueCard[] = [
     {
       icon: 'safety',
-      title: 'An toàn là ưu tiên',
-      description: 'Kiểm tra xe đa lớp, đào tạo tài xế định kỳ và bảo hiểm chuyến đi rõ ràng.'
+      title: 'Xe xịn – sạch sẽ – bảo dưỡng định kỳ',
+      description: 'Chú trọng chất lượng xe và an toàn vận hành trên mọi cung đường.'
     },
     {
       icon: 'care',
-      title: 'Trải nghiệm tận tâm',
-      description: 'Chăm sóc khách hàng 24/7, hỗ trợ linh hoạt và đồng hành trong suốt hành trình.'
+      title: 'Tài xế kinh nghiệm, phục vụ tận tâm',
+      description: 'Phục vụ lịch sự, hỗ trợ hành khách chu đáo trong suốt hành trình.'
     },
     {
       icon: 'green',
-      title: 'Bền vững & trách nhiệm',
-      description: 'Áp dụng tiêu chuẩn khí thải Euro 5, tối ưu nhiên liệu và đóng góp cho cộng đồng địa phương.'
+      title: 'Giá vé minh bạch – không phát sinh',
+      description: 'Thông tin rõ ràng, đúng điểm – đúng giờ và luôn cải thiện chất lượng dịch vụ.'
     }
   ];
 
   gallery: GalleryImage[] = [
-    { src: 'Assets/images/anhxe1.jpg', caption: 'Khoang nội thất hạng thương gia' },
-    { src: 'Assets/images/anhxe2.jpg', caption: 'Đội xe giám sát hành trình 24/7' },
-    { src: 'Assets/images/anhxe3.jpg', caption: 'Trung chuyển tận nhà tại 25 tỉnh thành' }
+    { src: 'Assets/images/anhxe1.jpg', caption: 'Khoang xe sạch sẽ, thoải mái' },
+    { src: 'Assets/images/anhxe2.jpg', caption: 'Xe đời mới – vận hành ổn định' },
+    { src: 'Assets/images/anhxe3.jpg', caption: 'Phục vụ đúng tuyến – đúng giờ' }
   ];
 }
