@@ -1,0 +1,30 @@
+<section class="promo">
+  <div class="promo__container">
+    <div class="promo__header">
+      <p class="eyebrow">Ưu đãi</p>
+      <h1>Khuyến mãi</h1>
+      <p class="promo__subtitle">Dữ liệu hiển thị demo để minh hoạ giao diện.</p>
+    </div>
+
+    <div class="promo__grid">
+      <article class="promo-card" *ngFor="let p of promotions">
+        <div class="promo-card__media">
+          <img [src]="p.image" [alt]="p.title" loading="lazy" />
+          <span class="promo-card__badge">{{ p.badge }}</span>
+        </div>
+
+        <div class="promo-card__body">
+          <h2 class="promo-card__title">{{ p.title }}</h2>
+          <p class="promo-card__desc">{{ p.description }}</p>
+
+          <div class="promo-card__meta">
+            <span class="meta-label">Thời gian</span>
+            <span class="meta-value">{{ p.validRange }}</span>
+          </div>
+
+          <button type="button" class="promo-card__cta">Xem chi tiết</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

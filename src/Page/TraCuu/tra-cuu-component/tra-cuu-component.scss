@@ -52,10 +52,12 @@
 .input-row {
   display: flex;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .input-row input {
   flex: 1;
+  min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius-md);
   padding: 0.85rem 1.1rem;
@@ -195,5 +197,24 @@
 @media (max-width: 900px) {
   .lookup-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .lookup-page {
+    padding: 1.5rem 0;
+  }
+
+  .lookup-grid {
+    width: min(1100px, 100% - 24px);
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-row button {
+    width: 100%;
   }
 }

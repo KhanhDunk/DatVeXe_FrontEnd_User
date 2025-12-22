@@ -432,6 +432,11 @@ main {
     box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
 }
 
+/* Space between consecutive intro banners (avoid "sticking" together). */
+.intro-banner + .intro-banner {
+    margin-top: 32px;
+}
+
 .intro-content {
     flex: 1;
 }
