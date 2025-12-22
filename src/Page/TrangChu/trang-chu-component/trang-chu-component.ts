@@ -54,7 +54,7 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       description: "TP.HCM → Bến Xe Hà Nội · Bến Xe Cà Mau · Bến Xe Trà Vinh · Bến Xe Vũng Tàu",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
 
-      image: "Assets/images/anhxe3.jpg",
+      image: "/Assets/images/anhxe3.jpg",
 
     },
     {
@@ -62,7 +62,7 @@ export class TrangChuComponent implements OnInit, OnDestroy {
       description: "Xe đời mới, sạch sẽ, bảo dưỡng định kỳ; tài xế kinh nghiệm, phục vụ tận tâm.",
       bg: "bg-gradient-to-br from-accent via-secondary to-primary",
 
-      image: "Assets/images/anhxe2.jpg",
+      image: "/Assets/images/anhxe2.jpg",
 
   
     }
@@ -81,47 +81,47 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     {
       title: "Vận chuyển hành khách tuyến cố định",
       description: "Lịch trình rõ ràng – đúng tuyến – đúng giờ",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       title: "Xe chất lượng cao – xe limousine",
       description: "Xe xịn – sạch sẽ – bảo dưỡng định kỳ",
-      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe2.jpg"
     },
     {
       title: "Nhận hợp đồng xe gia đình, du lịch",
       description: "Theo nhu cầu – ưu tiên an toàn và trải nghiệm",
-      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe3.jpg"
     },
     {
       title: "Đón/trả đúng điểm – đúng giờ",
       description: "Ưu tiên trải nghiệm khách hàng và an toàn hành trình",
-      image: "Assets/images/anhxe2.jpg"
+      image: "/Assets/images/anhxe2.jpg"
     },
     {
       title: "Khoang ghế êm – không gian sạch sẽ",
       description: "Vệ sinh xe định kỳ, hành trình thoải mái",
-      image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       title: "Hỗ trợ đổi/hoàn theo chính sách",
       description: "Rõ ràng – minh bạch – hỗ trợ nhanh",
-      image: "https://images.unsplash.com/photo-1522661067900-ab829854a57f?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe3.jpg"
     },
     {
       title: "Thanh toán linh hoạt",
       description: "Nhiều phương thức thanh toán, thao tác nhanh",
-      image: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe2.jpg"
     },
     {
       title: "Tư vấn lịch trình",
       description: "Chọn chuyến phù hợp, gợi ý tuyến nhanh",
-      image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       title: "Cam kết phục vụ tận tâm",
       description: "Thái độ chuyên nghiệp – hỗ trợ chu đáo",
-      image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe3.jpg"
     },
   ];
 
@@ -192,47 +192,47 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     {
       name: "TP.HCM → Bến Xe Hà Nội",
       description: "Tuyến cố định",
-      image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       name: "TP.HCM → Bến Xe Cà Mau",
       description: "Tuyến cố định",
-      image: "Assets/images/anhxe3.jpg"
+      image: "/Assets/images/anhxe3.jpg"
     },
     {
       name: "TP.HCM → Bến Xe Trà Vinh",
       description: "Tuyến cố định",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe2.jpg"
     },
     {
       name: "TP.HCM → Bến Xe Vũng Tàu",
       description: "Tuyến cố định",
-      image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe3.jpg"
     },
     {
       name: "Bến Xe Hà Nội → TP.HCM",
       description: "Chiều về",
-      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       name: "Bến Xe Cà Mau → TP.HCM",
       description: "Chiều về",
-      image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe2.jpg"
     },
     {
       name: "Bến Xe Trà Vinh → TP.HCM",
       description: "Chiều về",
-      image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe3.jpg"
     },
     {
       name: "Bến Xe Vũng Tàu → TP.HCM",
       description: "Chiều về",
-      image: "Assets/images/anhxe1.jpg"
+      image: "/Assets/images/anhxe1.jpg"
     },
     {
       name: "TP.HCM → Bến Xe Hà Nội (tăng cường)",
       description: "Chuyến tăng cường",
-      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format"
+      image: "/Assets/images/anhxe2.jpg"
     }
   ];
 
@@ -247,47 +247,47 @@ export class TrangChuComponent implements OnInit, OnDestroy {
 
   newsList = [
   {
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe1.jpg",
     title: "DŨNG CÚC AUTO – Tuyến cố định",
     short: "Lịch trình rõ ràng – đúng tuyến – đúng giờ."
   },
   {
-    image: "https://images.unsplash.com/photo-1520409364224-63400afe26e5?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe2.jpg",
     title: "Xe xịn – sạch sẽ – bảo dưỡng định kỳ",
     short: "Nâng cao chất lượng phục vụ để mỗi chuyến đi thoải mái và an tâm."
   },
   {
-    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe3.jpg",
     title: "Giá vé minh bạch – không phát sinh",
     short: "Luôn lắng nghe và cải thiện dịch vụ mỗi ngày."
   },
   {
-    image: "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe1.jpg",
     title: "Gợi ý chọn chuyến theo nhu cầu",
     short: "Chọn tuyến – chọn giờ – đặt vé nhanh chóng."
   },
   {
-    image: "Assets/images/anhxe2.jpg",
+    image: "/Assets/images/anhxe2.jpg",
     title: "Quy trình lên xe gọn gàng",
     short: "Ưu tiên trật tự, hỗ trợ khách hàng trong suốt hành trình."
   },
   {
-    image: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe3.jpg",
     title: "An toàn là ưu tiên số 1",
     short: "Tài xế kinh nghiệm – tuân thủ quy định – chạy đúng tốc độ."
   },
   {
-    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe1.jpg",
     title: "Chăm sóc xe định kỳ",
     short: "Bảo dưỡng thường xuyên giúp hành trình êm ái và ổn định."
   },
   {
-    image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&h=700&fit=crop&auto=format",
+    image: "/Assets/images/anhxe2.jpg",
     title: "Phục vụ tận tâm",
     short: "Lắng nghe phản hồi và cải thiện chất lượng mỗi ngày."
   },
   {
-    image: "Assets/images/anhxe3.jpg",
+    image: "/Assets/images/anhxe3.jpg",
     title: "Dịch vụ phù hợp nhiều đối tượng",
     short: "Đi công tác – du lịch – thăm người thân đều thuận tiện."
   },
@@ -299,7 +299,7 @@ export class TrangChuComponent implements OnInit, OnDestroy {
     const img = event.target as HTMLImageElement | null
     if (!img) return
 
-    const fallback = "Assets/images/anhxe1.jpg"
+    const fallback = "/Assets/images/anhxe1.jpg"
     if (img.src.includes(fallback)) return
 
     img.src = fallback

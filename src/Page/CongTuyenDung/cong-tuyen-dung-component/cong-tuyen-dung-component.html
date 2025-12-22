@@ -1,17 +1,76 @@
 <section class="career">
   <div class="career__container">
-    <h1 class="career__title">Cổng tuyển dụng</h1>
-    <p class="career__subtitle">Cơ hội nghề nghiệp tại DŨNG CÚC AUTO (đang cập nhật theo thời điểm).</p>
+    <header class="career__header">
+      <p class="eyebrow">Tuyển dụng</p>
+      <h1 class="career__title">Cơ hội nghề nghiệp tại DŨNG CÚC AUTO</h1>
+      <p class="career__subtitle">Dữ liệu hiển thị demo để minh hoạ giao diện tuyển dụng.</p>
+    </header>
 
     <div class="career__grid">
-      <div class="opening" *ngFor="let o of openings">
-        <h2>{{ o.title }}</h2>
-        <p>{{ o.desc }}</p>
-      </div>
-    </div>
+      <main class="job-list" aria-label="Danh sách vị trí">
+        <article class="job-card" *ngFor="let o of openings">
+          <div class="job-card__top">
+            <div class="job-card__title">
+              <h2>{{ o.title }}</h2>
+              <p class="job-card__summary">{{ o.summary }}</p>
+            </div>
 
-    <div class="career__note">
-      <p class="muted">Thông tin ứng tuyển: Đang cập nhật</p>
+            <div class="job-card__badges" aria-label="Thông tin nhanh">
+              <span class="pill">{{ o.type }}</span>
+              <span class="pill pill--muted">{{ o.level }}</span>
+            </div>
+          </div>
+
+          <div class="job-card__meta">
+            <div class="meta-item">
+              <span class="meta-label">Khu vực</span>
+              <strong class="meta-value">{{ o.location }}</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Thu nhập</span>
+              <strong class="meta-value">{{ o.salary }}</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Hạn nộp</span>
+              <strong class="meta-value">{{ o.deadline }}</strong>
+            </div>
+          </div>
+
+          <div class="job-card__cols">
+            <div class="job-col">
+              <h3>Yêu cầu</h3>
+              <ul>
+                <li *ngFor="let r of o.requirements">{{ r }}</li>
+              </ul>
+            </div>
+            <div class="job-col">
+              <h3>Quyền lợi</h3>
+              <ul>
+                <li *ngFor="let b of o.benefits">{{ b }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <button type="button" class="job-card__cta">Ứng tuyển ngay</button>
+        </article>
+      </main>
+
+      <aside class="career-aside" aria-label="Thông tin ứng tuyển">
+        <div class="aside-card">
+          <h3>Quy trình ứng tuyển</h3>
+          <ol class="steps">
+            <li>Chọn vị trí phù hợp</li>
+            <li>Chuẩn bị hồ sơ cơ bản</li>
+            <li>Liên hệ để đặt lịch phỏng vấn</li>
+          </ol>
+        </div>
+
+        <div class="aside-card tone">
+          <h3>Thông tin liên hệ</h3>
+          <p class="muted">Hotline/Email: Đang cập nhật</p>
+          <p class="muted">Văn phòng: 22/2A Ấp 18 - Xã Hóc Môn - TP.Hồ Chí Minh</p>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
