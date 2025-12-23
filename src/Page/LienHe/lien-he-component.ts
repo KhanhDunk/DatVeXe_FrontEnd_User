@@ -41,7 +41,7 @@ export class LienHeComponent {
     {
       icon: 'phone',
       title: 'Hotline',
-      value: 'Đang cập nhật',
+      value: '0904627908 - 0931172385',
       note: 'Hỗ trợ đặt vé & lịch trình'
     },
     {
