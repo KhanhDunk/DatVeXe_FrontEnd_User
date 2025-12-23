@@ -88,7 +88,7 @@ export class DatVeComponent implements OnInit, OnDestroy {
     departTime: 'Đang cập nhật',
     pickupDeadline: 'Đang cập nhật',
     baseFare: 350000,
-    hotline: 'Đang cập nhật'
+    hotline: '0904627908 - 0931172385'
   };
 
   thongBao = '';
