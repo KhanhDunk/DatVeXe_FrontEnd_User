@@ -1,9 +1,11 @@
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { filter, Observable, Subscription } from 'rxjs';
 import type { SweetAlertOptions } from 'sweetalert2';
 import { AuthService } from '../../../Service/auth-service';
+import { StaticPageService } from '../../../Service/static-page.service';
+import { StaticPageModel } from '../../../Interface/static-page.interface';
 
 @Component({
   selector: 'app-main-layout',
@@ -12,10 +14,13 @@ import { AuthService } from '../../../Service/auth-service';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
-export class MainLayout implements OnDestroy {
+export class MainLayout implements OnDestroy, OnInit {
   readonly authState$: Observable<string | null>;
   isMobileMenuOpen = false;
   showScrollTop = false;
+  policiesLoading = false;
+  policiesError?: string;
+  staticPages: StaticPageModel[] = [];
 
   private readonly subscriptions = new Subscription();
   private readonly isBrowser: boolean;
@@ -25,6 +30,7 @@ export class MainLayout implements OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private staticPageService: StaticPageService,
     @Inject(PLATFORM_ID) platformId: object,
     @Inject(DOCUMENT) private document: Document
   ) {
@@ -46,6 +52,10 @@ export class MainLayout implements OnDestroy {
       this.unlistenResize = () => window.removeEventListener('resize', onResize);
       this.updateScrollTopVisibility();
     }
+  }
+
+  ngOnInit(): void {
+    this.loadPublishedPages();
   }
 
   ngOnDestroy(): void {
@@ -104,6 +114,10 @@ export class MainLayout implements OnDestroy {
     return username ? username.charAt(0).toUpperCase() : '?';
   }
 
+  trackPolicyBySlug(_index: number, page: StaticPageModel): string {
+    return page.slug;
+  }
+
   private async presentAlert(options: SweetAlertOptions) {
     const { default: Swal } = await import('sweetalert2');
     return Swal.fire(options);
@@ -123,5 +137,22 @@ export class MainLayout implements OnDestroy {
     const isMobile = window.innerWidth <= 768;
     const y = window.scrollY || this.document.documentElement.scrollTop || 0;
     this.showScrollTop = isMobile && y >= 650;
+  }
+
+  private loadPublishedPages(): void {
+    this.policiesLoading = true;
+    this.policiesError = undefined;
+    const sub = this.staticPageService.getPublishedPages().subscribe({
+      next: (pages) => {
+        this.staticPages = pages;
+        this.policiesLoading = false;
+      },
+      error: () => {
+        this.staticPages = [];
+          this.policiesError = 'Khong the tai danh sach chinh sach';
+        this.policiesLoading = false;
+      }
+    });
+    this.subscriptions.add(sub);
   }
 }

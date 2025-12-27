@@ -204,6 +204,13 @@
   color: var(--primary-dark);
 }
 
+.mobile-nav__empty {
+  padding: 0.5rem 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
 .mobile-user {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -515,6 +522,12 @@ main {
 .footer-column a:hover {
   color: var(--primary-dark);
   padding-left: 6px;
+}
+
+.footer-empty {
+  margin: 0;
+  color: var(--text-muted, #5c5c5c);
+  font-style: italic;
 }
 
 .contact-list li {
