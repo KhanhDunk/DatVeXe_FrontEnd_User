@@ -15,9 +15,9 @@ import { VeChungToiComponent } from '../Page/VeChungToi/ve-chung-toi-component/v
 import { ThanhToanComponent } from '../Page/ThanhToan/thanh-toan-component/thanh-toan-component';
 import { TrungTamTroGiupComponent } from '../Page/TrungTamTroGiup/trung-tam-tro-giup-component/trung-tam-tro-giup-component';
 import { HuongDanMuaVeComponent } from '../Page/HuongDanMuaVe/huong-dan-mua-ve-component/huong-dan-mua-ve-component';
-import { ChinhSachDoiTraComponent } from '../Page/ChinhSachDoiTra/chinh-sach-doi-tra-component/chinh-sach-doi-tra-component';
 import { CongTuyenDungComponent } from '../Page/CongTuyenDung/cong-tuyen-dung-component/cong-tuyen-dung-component';
 import { KhuyenMaiComponent } from '../Page/KhuyenMai/khuyen-mai-component/khuyen-mai-component';
+import { StaticPageComponent } from '../Page/StaticPage/static-page-component/static-page-component';
 
 
 export const routes: Routes = [
@@ -41,9 +41,9 @@ export const routes: Routes = [
       { path: 've-chung-toi', component: VeChungToiComponent },
       { path: 'trung-tam-tro-giup', component: TrungTamTroGiupComponent },
       { path: 'huong-dan-mua-ve', component: HuongDanMuaVeComponent },
-      { path: 'chinh-sach-doi-tra', component: ChinhSachDoiTraComponent },
       { path: 'cong-tuyen-dung', component: CongTuyenDungComponent },
-      { path: 'khuyen-mai', component: KhuyenMaiComponent }
+      { path: 'khuyen-mai', component: KhuyenMaiComponent },
+      { path: 'chinh-sach/:slug', component: StaticPageComponent }
     ]
   },
   { path: '**', redirectTo: '' }

@@ -117,14 +117,29 @@
     <div class="mobile-nav__section">Hỗ trợ</div>
     <a routerLink="/trung-tam-tro-giup" routerLinkActive="active" (click)="closeMobileMenu()">Trung tâm trợ giúp</a>
     <a routerLink="/huong-dan-mua-ve" routerLinkActive="active" (click)="closeMobileMenu()">Hướng dẫn mua vé</a>
-    <a routerLink="/chinh-sach-doi-tra" routerLinkActive="active" (click)="closeMobileMenu()">Chính sách đổi trả</a>
     <a routerLink="/cong-tuyen-dung" routerLinkActive="active" (click)="closeMobileMenu()">Cổng tuyển dụng</a>
+
+    <div class="mobile-nav__section">Chính sách</div>
+    <ng-container *ngIf="staticPages.length; else mobilePoliciesFallback">
+      <a
+        *ngFor="let page of staticPages; trackBy: trackPolicyBySlug"
+        [routerLink]="['/chinh-sach', page.slug]"
+        routerLinkActive="active"
+        (click)="closeMobileMenu()"
+      >
+        {{ page.title }}
+      </a>
+    </ng-container>
 
     <div class="mobile-nav__section">Khác</div>
     <a href="#" (click)="closeMobileMenu()">Sitemap</a>
     <a href="#" (click)="closeMobileMenu()">Chính sách bảo mật</a>
   </nav>
 </aside>
+
+<ng-template #mobilePoliciesFallback>
+  <span class="mobile-nav__empty">Đang cập nhật...</span>
+</ng-template>
 
 <button
   type="button"
@@ -170,9 +185,19 @@
           <li><a routerLink="/trung-tam-tro-giup">Trung tâm trợ giúp</a></li>
           <li><a routerLink="/lien-he">Liên hệ</a></li>
           <li><a routerLink="/huong-dan-mua-ve">Hướng dẫn mua vé</a></li>
-          <li><a routerLink="/chinh-sach-doi-tra">Chính sách đổi trả</a></li>
           <li><a routerLink="/cong-tuyen-dung">Cổng tuyển dụng</a></li>
         </ul>
+      </div>
+
+      <div class="footer-column footer-column--policy-links">
+        <h4>Chính sách</h4>
+        <ng-container *ngIf="staticPages.length; else policiesFallback">
+          <ul>
+            <li *ngFor="let page of staticPages; trackBy: trackPolicyBySlug">
+              <a [routerLink]="['/chinh-sach', page.slug]">{{ page.title }}</a>
+            </li>
+          </ul>
+        </ng-container>
       </div>
 
       <div class="footer-column">
@@ -224,3 +249,9 @@
     </div>
   </div>
 </footer>
+
+<ng-template #policiesFallback>
+  <p class="footer-empty">
+    {{ policiesLoading ? 'Đang tải...' : (policiesError ?? 'Đang cập nhật dữ liệu') }}
+  </p>
+</ng-template>

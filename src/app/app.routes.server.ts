@@ -9,6 +9,10 @@ export const serverRoutes: ServerRoute[] = [
       NEWS_ITEMS.map((item) => ({ id: String(item.id) }))
   },
   {
+    path: 'chinh-sach/:slug',
+    renderMode: RenderMode.Server
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }
