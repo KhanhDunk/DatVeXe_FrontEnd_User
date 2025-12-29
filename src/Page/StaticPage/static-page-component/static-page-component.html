@@ -1,0 +1,32 @@
+<section class="policy-shell">
+  <div class="container">
+    <div class="policy-card" *ngIf="!isLoading && page; else loadingOrEmpty">
+      <div class="policy-header">
+        <p class="policy-eyebrow">Chính sách &amp; Điều khoản</p>
+        <h1>{{ page.title }}</h1>
+        <p class="policy-meta" *ngIf="page.updatedAt as updated">
+          Cập nhật {{ updated | date: 'dd/MM/yyyy' }}
+        </p>
+      </div>
+      <div class="policy-content" [innerHTML]="safeContent"></div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loadingOrEmpty>
+  <div class="container">
+    <div class="policy-card policy-card--empty" *ngIf="!isLoading && errorMessage; else loadingState">
+      <h1>Không tìm thấy nội dung</h1>
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loadingState>
+  <div class="container">
+    <div class="policy-card policy-card--loading">
+      <div class="skeleton skeleton--title"></div>
+      <div class="skeleton skeleton--line" *ngFor="let _ of [1,2,3,4,5]"></div>
+    </div>
+  </div>
+</ng-template>
