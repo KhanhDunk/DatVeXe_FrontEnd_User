@@ -41,7 +41,7 @@ export class LienHeComponent {
     {
       icon: 'phone',
       title: 'Hotline',
-      value: '0904627908 - 0931172385',
+      value: '0931172385',
       note: 'Hỗ trợ đặt vé & lịch trình'
     },
     {
@@ -53,8 +53,8 @@ export class LienHeComponent {
     {
       icon: 'map',
       title: 'Văn phòng chính',
-      value: 'Số 22/2A Ấp 18 - Xã Hóc Môn - TP.Hồ Chí Minh',
-      note: 'Địa chỉ chi tiết đang cập nhật'
+      value: 'Số 22/2A Ấp 18, Xã Hóc Môn, Thành phố Hồ Chí Minh, Việt Nam',
+      note: 'Nhà xe DŨNG CÚC AUTO'
     }
   ];
 

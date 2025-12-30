@@ -18,6 +18,8 @@ import { HuongDanMuaVeComponent } from '../Page/HuongDanMuaVe/huong-dan-mua-ve-c
 import { CongTuyenDungComponent } from '../Page/CongTuyenDung/cong-tuyen-dung-component/cong-tuyen-dung-component';
 import { KhuyenMaiComponent } from '../Page/KhuyenMai/khuyen-mai-component/khuyen-mai-component';
 import { StaticPageComponent } from '../Page/StaticPage/static-page-component/static-page-component';
+import { UserProfileComponent } from '../Page/HoSoNguoiDung/user-profile-component/user-profile-component';
+import { authGuard } from './core/auth.guard';
 
 
 export const routes: Routes = [
@@ -43,7 +45,8 @@ export const routes: Routes = [
       { path: 'huong-dan-mua-ve', component: HuongDanMuaVeComponent },
       { path: 'cong-tuyen-dung', component: CongTuyenDungComponent },
       { path: 'khuyen-mai', component: KhuyenMaiComponent },
-      { path: 'chinh-sach/:slug', component: StaticPageComponent }
+      { path: 'chinh-sach/:slug', component: StaticPageComponent },
+      { path: 'ho-so', component: UserProfileComponent, canActivate: [authGuard] }
     ]
   },
   { path: '**', redirectTo: '' }

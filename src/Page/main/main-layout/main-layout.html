@@ -41,13 +41,21 @@
 <ng-template #authActions>
   <ng-container *ngIf="authState$ | async as username; else loginLink">
     <div class="user-box" aria-label="Tài khoản hiện tại">
-      <div class="user-avatar" aria-hidden="true">
-        {{ getInitial(username) }}
-      </div>
-      <div class="user-meta">
-        <span>Xin chào</span>
-        <strong>{{ username }}</strong>
-      </div>
+      <button
+        type="button"
+        class="user-profile-trigger"
+        (click)="goToProfile()"
+        (keydown.enter)="goToProfile()"
+        (keydown.space)="$event.preventDefault(); goToProfile()"
+      >
+        <div class="user-avatar" aria-hidden="true">
+          {{ getInitial(username) }}
+        </div>
+        <div class="user-meta">
+          <span>Xin chào</span>
+          <strong>{{ username }}</strong>
+        </div>
+      </button>
       <button type="button" class="logout-btn" (click)="logout()">Đăng xuất</button>
     </div>
   </ng-container>
@@ -59,11 +67,13 @@
 <ng-template #mobileAuth>
   <ng-container *ngIf="authState$ | async as username; else mobileLogin">
     <div class="mobile-user" aria-label="Tài khoản hiện tại">
-      <div class="mobile-user__avatar" aria-hidden="true">{{ getInitial(username) }}</div>
-      <div class="mobile-user__meta">
-        <span>Xin chào</span>
-        <strong>{{ username }}</strong>
-      </div>
+      <button type="button" class="mobile-user__profile" (click)="goToProfile()">
+        <div class="mobile-user__avatar" aria-hidden="true">{{ getInitial(username) }}</div>
+        <div class="mobile-user__meta">
+          <span>Xin chào</span>
+          <strong>{{ username }}</strong>
+        </div>
+      </button>
       <button type="button" class="mobile-user__logout" (click)="logout()">Đăng xuất</button>
     </div>
   </ng-container>
@@ -211,7 +221,7 @@
             </span>
             <div>
               <p>Hotline đặt vé</p>
-              <strong>0904627908 - 0931172385</strong>
+              <strong>0931172385</strong>
             </div>
           </li>
           <li>

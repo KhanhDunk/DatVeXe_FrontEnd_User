@@ -110,6 +110,11 @@ export class MainLayout implements OnDestroy, OnInit {
     this.router.navigate(['/']);
   }
 
+  goToProfile(): void {
+    this.closeMobileMenu();
+    this.router.navigate(['/ho-so']);
+  }
+
   getInitial(username: string | null): string {
     return username ? username.charAt(0).toUpperCase() : '?';
   }

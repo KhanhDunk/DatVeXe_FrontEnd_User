@@ -1,0 +1,94 @@
+<section class="profile-shell">
+  <header class="profile-hero">
+    <div>
+      <p class="eyebrow">Hồ sơ cá nhân</p>
+      <h1>Cập nhật thông tin đặt vé của bạn</h1>
+      <p>Giữ thông tin liên hệ chính xác để không bỏ lỡ thông báo hành trình, khuyến mãi và dịch vụ chăm sóc khách hàng.</p>
+    </div>
+
+    <div class="hero-meta" *ngIf="profile() as current">
+      <div>
+        <span>Mã khách hàng</span>
+        <strong>#{{ current.userId }}</strong>
+      </div>
+      <div>
+        <span>Đăng ký</span>
+        <strong>{{ current.createdAt ? (current.createdAt | date: 'dd/MM/yyyy HH:mm') : 'Đang cập nhật' }}</strong>
+      </div>
+      <div>
+        <span>Cập nhật cuối</span>
+        <strong>{{ current.updatedAt ? (current.updatedAt | date: 'dd/MM/yyyy HH:mm') : '---' }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <div class="profile-grid">
+    <article class="profile-card" *ngIf="profile() as current; else emptyState">
+      <div class="card-head">
+        <div>
+          <p class="card-eyebrow">Thông tin hiện tại</p>
+          <h2>{{ current.username }}</h2>
+        </div>
+        <button type="button" class="ghost" (click)="refresh()" [disabled]="loading()">
+          <span aria-hidden="true">⟳</span>
+          Tải lại
+        </button>
+      </div>
+      <dl>
+        <div>
+          <dt>Email liên hệ</dt>
+          <dd>{{ current.email || 'Đang cập nhật' }}</dd>
+        </div>
+        <div>
+          <dt>Số điện thoại</dt>
+          <dd>{{ current.phone || 'Đang cập nhật' }}</dd>
+        </div>
+        <div>
+          <dt>Quyền truy cập</dt>
+          <dd>{{ current.roleName || 'Khách hàng' }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="profile-card profile-form" [class.loading]="loading()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-grid">
+          <label>
+            Tên hiển thị
+            <input type="text" formControlName="username" placeholder="Ví dụ: Nguyen Van A" />
+            <span class="error" *ngIf="controlError('username') as error">{{ error }}</span>
+          </label>
+
+          <label>
+            Email
+            <input type="email" formControlName="email" placeholder="email@domain.com" />
+            <span class="error" *ngIf="controlError('email') as error">{{ error }}</span>
+          </label>
+
+          <label>
+            Số điện thoại
+            <input type="tel" formControlName="phone" placeholder="Nhập số điện thoại" />
+            <span class="error" *ngIf="controlError('phone') as error">{{ error }}</span>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="saving() || loading() || !hasChanges()">
+            {{ saving() ? 'Đang lưu...' : 'Lưu thay đổi' }}
+          </button>
+          <span class="hint" *ngIf="!hasChanges()">Bạn chưa thay đổi nội dung nào.</span>
+        </div>
+      </form>
+
+      <p class="feedback" *ngIf="feedback() as note" [class.error]="note.type === 'error'">
+        {{ note.message }}
+      </p>
+    </article>
+  </div>
+</section>
+
+<ng-template #emptyState>
+  <article class="profile-card empty">
+    <p>Chúng tôi đang tải thông tin của bạn...</p>
+  </article>
+</ng-template>

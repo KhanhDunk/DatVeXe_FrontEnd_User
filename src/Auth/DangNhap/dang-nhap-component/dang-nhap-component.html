@@ -8,12 +8,12 @@
     <form (ngSubmit)="login()" class="login-form">
       <div class="form-group">
         <label for="username">Tên đăng nhập</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Nhập tên đăng nhập" required>
+        <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Nhập tên đăng nhập" autocomplete="username" required>
       </div>
 
       <div class="form-group">
         <label for="password">Mật khẩu</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Nhập mật khẩu" required>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
       </div>
 
       <div class="forgot-password">

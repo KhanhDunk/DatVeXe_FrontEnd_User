@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginRequest } from '../Interface/login-interface';
 import { RegisterRequest } from '../Interface/register-interface';
@@ -17,8 +18,9 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/Auth`;
   private currentUserSubject = new BehaviorSubject<string | null>(this.getStoredUsername());
   readonly authState$ = this.currentUserSubject.asObservable();
+  private readonly logoutNoticeKey = 'dvx_fe_logout_notice';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
 
   login(data: LoginRequest): Observable<ResponseDTO<string>> {
@@ -61,6 +63,27 @@ export class AuthService {
   // 🔓 LOGOUT
   logout(): void {
     this.clearSession();
+    this.clearLogoutNotice();
+  }
+
+  forceLogout(message?: string): void {
+    if (message && this.isBrowser()) {
+      localStorage.setItem(this.logoutNoticeKey, message);
+    }
+    this.clearSession();
+    this.router.navigate(['/dang-nhap'], { replaceUrl: true });
+  }
+
+  consumeLogoutNotice(): string | null {
+    if (!this.isBrowser()) {
+      return null;
+    }
+
+    const message = localStorage.getItem(this.logoutNoticeKey);
+    if (message) {
+      this.clearLogoutNotice();
+    }
+    return message;
   }
 
   // 🔑 GET TOKEN
@@ -78,6 +101,13 @@ export class AuthService {
   // ✅ CHECK LOGIN
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  updateCachedUsername(username: string): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('username', username);
+    }
+    this.currentUserSubject.next(username);
   }
 
   private setSession(token: string, username: string): void {
@@ -101,6 +131,13 @@ export class AuthService {
       return null;
     }
     return localStorage.getItem('username');
+  }
+
+  private clearLogoutNotice(): void {
+    if (!this.isBrowser()) {
+      return;
+    }
+    localStorage.removeItem(this.logoutNoticeKey);
   }
 
   private isBrowser(): boolean {
