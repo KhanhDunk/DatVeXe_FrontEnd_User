@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription, distinctUntilChanged, filter, map } from 'rxjs';
@@ -24,7 +24,8 @@ export class StaticPageComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private staticPageService: StaticPageService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -51,12 +52,14 @@ export class StaticPageComponent implements OnInit, OnDestroy {
         this.page = page;
         this.safeContent = this.sanitizer.bypassSecurityTrustHtml(page.content);
         this.isLoading = false;
+        this.cdr.markForCheck();
       },
       error: (error) => {
         this.page = undefined;
         this.safeContent = undefined;
         this.errorMessage = error?.message ?? 'Khong tim thay noi dung phu hop';
         this.isLoading = false;
+        this.cdr.markForCheck();
       }
     });
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Service/auth-service';
@@ -15,7 +15,7 @@ import type { SweetAlertOptions } from 'sweetalert2';
 
   styleUrl: './dang-nhap-component.scss',
 })
-export class DangNhapComponent {
+export class DangNhapComponent implements OnInit {
   username = '';
   password = '';
   loading = false;
@@ -26,6 +26,14 @@ export class DangNhapComponent {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    const notice = this.authService.consumeLogoutNotice();
+    if (notice) {
+      this.statusMessage = notice;
+      this.hasError = true;
+    }
+  }
 
   async login() {
     this.statusMessage = '';
